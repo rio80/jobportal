@@ -1,0 +1,1 @@
+Hallo selamat datang {{ $nama }}
