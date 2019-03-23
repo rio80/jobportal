@@ -15,6 +15,8 @@ Route::get('generate-pdf', 'HomeController@generatePDF');
 
 Route::get('/','LoginController@index');
 
+Route::get('dashboard','LoginController@dashboard');
+
 Route::get('register','RegisterController@index');
 
 Route::get('register-pekerja','RegisterController@registerPekerja');
