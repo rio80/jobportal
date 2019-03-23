@@ -17,15 +17,16 @@
     <link href="{{ 'css/main.css' }}" rel="stylesheet" />
     <link href="{{ 'css/custom.css' }}" rel="stylesheet" />
 </head>
-
+@yield('navbar')
 @yield('page')
+
 
 <footer class="footer">
     <div class="container">
         <nav>
             <ul>
                 <li><a href="javascript:void(0);">Tentang kami</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="{{ url('dashboard') }}">Dashboard</a></li>
             </ul>
         </nav>
         <div class="copyright" id="copyright">

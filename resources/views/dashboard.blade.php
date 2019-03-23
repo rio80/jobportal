@@ -13,7 +13,7 @@
                         <span class="navbar-toggler-bar bottom-bar"></span>
                     </button>
                 </div>
-                <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="./assets/img/blurred-image-1.jpg">
+                <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="{{ 'img/blurred-image-1.jpg' }}">
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link btn btn-success" href="register.html">
@@ -34,11 +34,11 @@
 
         <div class="wrapper">
             <div class="page-header clear-filter" filter-color="orange">
-                <div class="page-header-image" data-parallax="true" style="background-image:url('./assets/img/bg5.jpg');">
+                <div class="page-header-image" data-parallax="true" style="background-image:url({{'img/bg5.jpg'}});">
                 </div>
                 <div class="container">
                     <div class="photo-container">
-                        <img src="./assets/img/ryan.jpg" alt="">
+                        <img src="{{ 'img/ryan.jpg' }}" alt="">
                     </div>
                     <h3 class="title">Ryan Scheinder</h3>
                     <p class="category">Pencari Kerja</p>
