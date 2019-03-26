@@ -18,6 +18,7 @@
   border-radius: 8px;
   border: 1px solid #E3E3E3;
   color: #ffffff;
+  color: #000000;
   cursor: pointer;
   display: inline-block;
   font-size: 75%;
@@ -38,6 +39,7 @@
 .typography-line span {
   bottom: 10px;
   color: #c0c1c2;
+  color: #000000;
   display: block;
   font-weight: 400;
   font-size: 13px;
@@ -211,7 +213,7 @@
 }
 
 .fixed-section li a {
-  font-size: 14px;
+  font-size: 16px;
   padding: 2px;
   display: block;
   color: #666666;
@@ -452,6 +454,9 @@
   font-size: 2.8em;
   text-transform: uppercase;
   font-weight: 300;
+  color: #FFFFFF;
+  margin-top: 7rem;
+  margin-bottom: 1px;
 }
 
 .brand .n-logo {
@@ -523,4 +528,12 @@ hr.divider {
   max-width: 3.25rem;
   border-width: 0.2rem;
   border-color: #f4623a;
+}
+
+.input-group {
+    margin: 15px auto;
+}
+
+.h1-seo small {
+    font-size: 40%;
 }

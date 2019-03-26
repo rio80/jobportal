@@ -5,8 +5,8 @@
     <body class="login-page sidebar-collapse">
         @extends('navbar')
 
-        <div class="page-header clear-filter" filter-color="orange">
-            <div class="page-header-image" style="background-image:url({{ 'img/bg2.jpg' }})"></div>
+        <div class="not-landing page-header clear-filter" filter-color="white">
+            <div class="page-header-image" style="background-image:url({{ 'img/white-solid.jpg' }}); z-index: 0;"></div>
             <div class="content">
                 <div class="container">
                     <div class="col-lg-12">
