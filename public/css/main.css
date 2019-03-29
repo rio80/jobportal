@@ -145,8 +145,8 @@
     z-index: -1;
 }
 
-.bootstrap-switch input[type='radio'].form-control,
-.bootstrap-switch input[type='checkbox'].form-control {
+.bootstrap-switch input[type='radio'].form-controlx,
+.bootstrap-switch input[type='checkbox'].form-controlx {
     height: auto;
 }
 
@@ -439,7 +439,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 /* Disabled state;
- */
+*/
 
 [disabled] .noUi-connect {
     background: #B8B8B8;
@@ -1386,7 +1386,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .navbar .navbar-nav>a.btn {
     border-width: 2px;
     font-weight: 400;
-    font-size: 0.857em;
+    font-size: 1.0em;
     line-height: 1.35em;
     margin: 10px 1px;
     border: none;
@@ -1574,7 +1574,7 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
     min-width: 2.375rem;
     width: 2.375rem;
     padding: 0;
-    font-size: 0.9375rem;
+    font-size: 1.0rem;
     overflow: hidden;
     position: relative;
     line-height: normal;
@@ -2446,37 +2446,39 @@ fieldset[disabled] .btn-link.active {
     color: #0077B5 !important;
 }
 
-.form-control::-moz-placeholder {
+/*
+.form-controlx::-moz-placeholder {
     color: #888888;
     opacity: 0.8;
     filter: alpha(opacity=80);
 }
 
-.form-control:-moz-placeholder {
+.form-controlx:-moz-placeholder {
     color: #888888;
     opacity: 0.8;
     filter: alpha(opacity=80);
 }
 
-.form-control::-webkit-input-placeholder {
+.form-controlx::-webkit-input-placeholder {
     color: #888888;
     opacity: 0.8;
     filter: alpha(opacity=80);
 }
 
-.form-control:-ms-input-placeholder {
+.form-controlx:-ms-input-placeholder {
     color: #888888;
     opacity: 0.8;
     filter: alpha(opacity=80);
 }
 
-.form-control {
+.form-controlx {
     background-color: transparent;
     border: 1px solid #E3E3E3;
     border-radius: 30px;
+    border-radius: 5px;
     color: #2c2c2c;
     line-height: normal;
-    font-size: 0.8571em;
+    font-size: 1.0em;
     -webkit-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
     -moz-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
     -o-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
@@ -2486,11 +2488,11 @@ fieldset[disabled] .btn-link.active {
     box-shadow: none;
 }
 
-.has-success .form-control {
+.has-success .form-controlx {
     border-color: #E3E3E3;
 }
 
-.form-control:focus {
+.form-controlx:focus {
     border: 1px solid #f96332;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -2498,45 +2500,45 @@ fieldset[disabled] .btn-link.active {
     color: #2c2c2c;
 }
 
-.form-control:focus+.input-group-text,
-.form-control:focus~.input-group-text {
+.form-controlx:focus+.input-groupx-text,
+.form-controlx:focus~.input-groupx-text {
     border: 1px solid #f96332;
     border-left: none;
     background-color: transparent;
 }
 
-.has-success .form-control,
-.has-error .form-control,
-.has-success .form-control:focus,
-.has-error .form-control:focus {
+.has-success .form-controlx,
+.has-error .form-controlx,
+.has-success .form-controlx:focus,
+.has-error .form-controlx:focus {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
 
-.has-success .form-control:focus {
+.has-success .form-controlx:focus {
     border-color: #1be611;
 }
 
-.has-danger .form-control.form-control-success,
-.has-danger .form-control.form-control-danger,
-.has-success .form-control.form-control-success,
-.has-success .form-control.form-control-danger {
+.has-danger .form-controlx.form-controlx-success,
+.has-danger .form-controlx.form-controlx-danger,
+.has-success .form-controlx.form-controlx-success,
+.has-success .form-controlx.form-controlx-danger {
     background-image: none;
 }
 
-.has-danger .form-control {
+.has-danger .form-controlx {
     border-color: #ffcfcf;
     color: #FF3636;
     background-color: rgba(222, 222, 222, 0.1);
 }
 
-.has-danger .form-control:focus {
+.has-danger .form-controlx:focus {
     background-color: #FFFFFF;
 }
 
-.form-control+.form-control-feedback {
+.form-controlx+.form-controlx-feedback {
     border-radius: 0.25rem;
-    font-size: 14px;
+    font-size: 1em;
     margin-top: -7px;
     position: absolute;
     right: 10px;
@@ -2544,7 +2546,7 @@ fieldset[disabled] .btn-link.active {
     vertical-align: middle;
 }
 
-.open .form-control {
+.open .form-controlx {
     border-radius: 0.25rem 0.25rem 0 0;
     border-bottom-color: transparent;
 }
@@ -2563,7 +2565,7 @@ fieldset[disabled] .btn-link.active {
 
 .has-success.input-lg:after,
 .has-danger.input-lg:after {
-    font-size: 13px;
+    font-size: 14px;
     top: 13px;
 }
 
@@ -2572,134 +2574,138 @@ fieldset[disabled] .btn-link.active {
     color: #FF3636;
 }
 
-.form-group.no-border.input-lg .input-group-text,
-.input-group.no-border.input-lg .input-group-text {
+.form-groupx.no-border.input-lg .input-groupx-text,
+.input-groupx.no-border.input-lg .input-groupx-text {
     padding: 15px 0 15px 19px;
 }
 
-.form-group.no-border.input-lg .form-control,
-.input-group.no-border.input-lg .form-control {
+.form-groupx.no-border.input-lg .form-controlx,
+.input-groupx.no-border.input-lg .form-controlx {
     padding: 15px 19px;
 }
 
-.form-group.no-border.input-lg .form-control+.input-group-text,
-.input-group.no-border.input-lg .form-control+.input-group-text {
+.form-groupx.no-border.input-lg .form-controlx+.input-groupx-text,
+.input-groupx.no-border.input-lg .form-controlx+.input-groupx-text {
     padding: 15px 19px 15px 0;
 }
 
-.form-group.input-lg .form-control,
-.input-group.input-lg .form-control {
+.form-groupx.input-lg .form-controlx,
+.input-groupx.input-lg .form-controlx {
     padding: 14px 18px;
 }
 
-.form-group.input-lg .form-control+.input-group-text,
-.input-group.input-lg .form-control+.input-group-text {
+.form-groupx.input-lg .form-controlx+.input-groupx-text,
+.input-groupx.input-lg .form-controlx+.input-groupx-text {
     padding: 14px 18px 14px 0;
 }
 
-.form-group.input-lg .input-group-text,
-.input-group.input-lg .input-group-text {
+.form-groupx.input-lg .input-groupx-text,
+.input-groupx.input-lg .input-groupx-text {
     padding: 14px 0 15px 18px;
 }
 
-.form-group.input-lg .input-group-text+.form-control,
-.input-group.input-lg .input-group-text+.form-control {
+.form-groupx.input-lg .input-groupx-text+.form-controlx,
+.input-groupx.input-lg .input-groupx-text+.form-controlx {
     padding: 15px 18px 15px 16px;
 }
 
-.form-group.no-border .form-control,
-.input-group.no-border .form-control {
+.form-groupx.no-border .form-controlx,
+.input-groupx.no-border .form-controlx {
     padding: 11px 19px;
 }
 
-.form-group.no-border .form-control+.input-group-text,
-.input-group.no-border .form-control+.input-group-text {
+.form-groupx.no-border .form-controlx+.input-groupx-text,
+.input-groupx.no-border .form-controlx+.input-groupx-text {
     padding: 11px 19px 11px 0;
 }
 
-.form-group.no-border .input-group-text,
-.input-group.no-border .input-group-text {
+.form-groupx.no-border .input-groupx-text,
+.input-groupx.no-border .input-groupx-text {
     padding: 11px 0 11px 19px;
 }
 
-.form-group .form-control,
-.input-group .form-control {
+.form-groupx .form-controlx,
+.input-groupx .form-controlx {
     padding: 10px 18px 10px 18px;
 }
 
-.form-group .form-control+.input-group-text,
-.input-group .form-control+.input-group-text {
+.form-groupx .form-controlx+.input-groupx-text,
+.input-groupx .form-controlx+.input-groupx-text {
     padding: 10px 18px 10px 0;
 }
 
-.form-group .input-group-text,
-.input-group .input-group-text {
+.form-groupx .input-groupx-text,
+.input-groupx .input-groupx-text {
     padding: 10px 0 10px 18px;
 }
 
-.form-group .input-group-text+.form-control,
-.form-group .input-group-text~.form-control,
-.input-group .input-group-text+.form-control,
-.input-group .input-group-text~.form-control {
+.form-groupx .input-groupx-text+.form-controlx,
+.form-groupx .input-groupx-text~.form-controlx,
+.input-groupx .input-groupx-text+.form-controlx,
+.input-groupx .input-groupx-text~.form-controlx {
     padding: 10px 19px 11px 16px;
 }
 
-.form-group.no-border .form-control,
-.form-group.no-border .form-control+.input-group-text,
-.input-group.no-border .form-control,
-.input-group.no-border .form-control+.input-group-text {
+.form-groupx.no-border .form-controlx,
+.form-groupx.no-border .form-controlx+.input-groupx-text,
+.input-groupx.no-border .form-controlx,
+.input-groupx.no-border .form-controlx+.input-groupx-text {
     background-color: rgba(222, 222, 222, 0.3);
     border: medium none;
 }
 
-.form-group.no-border .form-control:focus,
-.form-group.no-border .form-control:active,
-.form-group.no-border .form-control:active,
-.form-group.no-border .form-control+.input-group-text:focus,
-.form-group.no-border .form-control+.input-group-text:active,
-.form-group.no-border .form-control+.input-group-text:active,
-.input-group.no-border .form-control:focus,
-.input-group.no-border .form-control:active,
-.input-group.no-border .form-control:active,
-.input-group.no-border .form-control+.input-group-text:focus,
-.input-group.no-border .form-control+.input-group-text:active,
-.input-group.no-border .form-control+.input-group-text:active {
+.form-groupx.no-border .form-controlx:focus,
+.form-groupx.no-border .form-controlx:active,
+.form-groupx.no-border .form-controlx:active,
+.form-groupx.no-border .form-controlx+.input-groupx-text:focus,
+.form-groupx.no-border .form-controlx+.input-groupx-text:active,
+.form-groupx.no-border .form-controlx+.input-groupx-text:active,
+.input-groupx.no-border .form-controlx:focus,
+.input-groupx.no-border .form-controlx:active,
+.input-groupx.no-border .form-controlx:active,
+.input-groupx.no-border .form-controlx+.input-groupx-text:focus,
+.input-groupx.no-border .form-controlx+.input-groupx-text:active,
+.input-groupx.no-border .form-controlx+.input-groupx-text:active {
     border: medium none;
     background-color: rgba(222, 222, 222, 0.5);
 }
 
-.form-group.no-border .form-control:focus+.input-group-text,
-.input-group.no-border .form-control:focus+.input-group-text {
+.form-groupx.no-border .form-controlx:focus+.input-groupx-text,
+.input-groupx.no-border .form-controlx:focus+.input-groupx-text {
     background-color: rgba(222, 222, 222, 0.5);
 }
 
-.form-group.no-border .input-group-prepend .input-group-text,
-.input-group.no-border .input-group-prepend .input-group-text {
+.form-groupx.no-border .input-groupx-prepend .input-groupx-text,
+.input-groupx.no-border .input-groupx-prepend .input-groupx-text {
     background-color: rgba(222, 222, 222, 0.3);
     border: none;
     border-left: transparent !important;
 }
 
-.form-group.no-border.input-group-focus.no-border .input-group-text,
-.input-group.no-border.input-group-focus.no-border .input-group-text {
+.form-groupx.no-border.input-groupx-focus.no-border .input-groupx-text,
+.input-groupx.no-border.input-groupx-focus.no-border .input-groupx-text {
     background-color: rgba(222, 222, 222, 0.5);
 }
 
-.has-error .form-control-feedback,
+.has-error .form-controlx-feedback,
 .has-error .control-label {
     color: #FF3636;
+    color: #000000;
 }
 
-.has-success .form-control-feedback,
+.has-success .form-controlx-feedback,
 .has-success .control-label {
     color: #18ce0f;
 }
 
-.input-group-text {
+.input-groupx-text {
     background-color: #FFFFFF;
     border: 1px solid #E3E3E3;
     border-radius: 30px;
+    border-radius: 5px;
     color: #555555;
+    border: 1px solid #000000;
+    color: #000000;
     -webkit-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
     -moz-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
     -o-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
@@ -2707,111 +2713,116 @@ fieldset[disabled] .btn-link.active {
     transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
-.input-group-focus .input-group-text {
+.input-groupx-focus .input-groupx-text {
     background-color: #FFFFFF;
     border-color: #f96332;
+    border-color: #000000;
 }
 
-.has-success .input-group-text,
-.has-danger .input-group-text {
+.has-success .input-groupx-text,
+.has-danger .input-groupx-text {
     background-color: #FFFFFF;
 }
 
-.has-danger .form-control:focus+.input-group-text {
+.has-danger .form-controlx:focus+.input-groupx-text {
     color: #FF3636;
+    color: #000000;
 }
 
-.has-success .form-control:focus+.input-group-text {
+.has-success .form-controlx:focus+.input-groupx-text {
     color: #18ce0f;
+    color: #000000;
 }
 
-.input-group-text+.form-control,
-.input-group-text~.form-control {
+.input-groupx-text+.form-controlx,
+.input-groupx-text~.form-controlx {
     padding: -0.5rem 0.7rem;
     padding-left: 18px;
 }
 
-.input-group-text i {
+.input-groupx-text i {
     width: 17px;
 }
 
-.input-group,
-.form-group {
+.input-groupx,
+.form-groupx {
     margin-bottom: 10px;
     position: relative;
 }
 
-.input-group[disabled] .input-group-text {
+.input-groupx[disabled] .input-groupx-text {
     background-color: #E3E3E3;
 }
 
-.input-group .input-group-prepend,
-.form-group .input-group-prepend {
+.input-groupx .input-groupx-prepend,
+.form-groupx .input-groupx-prepend {
     margin-right: 0;
 }
 
-.input-group .input-group-prepend .input-group-text,
-.form-group .input-group-prepend .input-group-text {
+.input-groupx .input-groupx-prepend .input-groupx-text,
+.form-groupx .input-groupx-prepend .input-groupx-text {
     border-left: 1px solid #E3E3E3;
 }
 
-.input-group .input-group-append .input-group-text,
-.form-group .input-group-append .input-group-text {
+.input-groupx .input-groupx-append .input-groupx-text,
+.form-groupx .input-groupx-append .input-groupx-text {
     border-right: 1px solid #E3E3E3;
     padding: 10px 18px 10px 0;
 }
 
-.input-group.input-group-focus .input-group-prepend .input-group-text,
-.form-group.input-group-focus .input-group-prepend .input-group-text {
+.input-groupx.input-groupx-focus .input-groupx-prepend .input-groupx-text,
+.form-groupx.input-groupx-focus .input-groupx-prepend .input-groupx-text {
     border-left: 1px solid #f96332;
+    border-left: 1px solid #000000;
 }
 
-.input-group.input-group-focus .input-group-append .input-group-text,
-.form-group.input-group-focus .input-group-append .input-group-text {
+.input-groupx.input-groupx-focus .input-groupx-append .input-groupx-text,
+.form-groupx.input-groupx-focus .input-groupx-append .input-groupx-text {
     border-right: 1px solid #f96332;
+    border-right: 1px solid #000000;
 }
 
-.input-group.input-group-focus.no-border .input-group-prepend .input-group-text,
-.form-group.input-group-focus.no-border .input-group-prepend .input-group-text {
+.input-groupx.input-groupx-focus.no-border .input-groupx-prepend .input-groupx-text,
+.form-groupx.input-groupx-focus.no-border .input-groupx-prepend .input-groupx-text {
     border-left: transparent;
 }
 
-.input-group .form-control:first-child,
-.input-group-text:first-child,
-.input-group-btn:first-child>.dropdown-toggle,
-.input-group-btn:last-child>.btn:not(:last-child):not(.dropdown-toggle) {
+.input-groupx .form-controlx:first-child,
+.input-groupx-text:first-child,
+.input-groupx-btn:first-child>.dropdown-toggle,
+.input-groupx-btn:last-child>.btn:not(:last-child):not(.dropdown-toggle) {
     border-right: 0 none;
 }
 
-.input-group .form-control:last-child,
-.input-group-text:last-child,
-.input-group-btn:last-child>.dropdown-toggle,
-.input-group-btn:first-child>.btn:not(:first-child) {
+.input-groupx .form-controlx:last-child,
+.input-groupx-text:last-child,
+.input-groupx-btn:last-child>.dropdown-toggle,
+.input-groupx-btn:first-child>.btn:not(:first-child) {
     border-left: 0 none;
 }
 
-.form-control[disabled],
-.form-control[readonly],
-fieldset[disabled] .form-control {
+.form-controlx[disabled],
+.form-controlx[readonly],
+fieldset[disabled] .form-controlx {
     background-color: #E3E3E3;
     color: #888888;
     cursor: not-allowed;
 }
 
-.input-group-btn .btn {
+.input-groupx-btn .btn {
     border-width: 1px;
     padding: 11px 0.7rem;
 }
 
-.input-group-btn .btn-default:not(.btn-fill) {
+.input-groupx-btn .btn-default:not(.btn-fill) {
     border-color: #DDDDDD;
 }
 
-.input-group-btn:last-child>.btn {
+.input-groupx-btn:last-child>.btn {
     margin-left: 0;
 }
 
-textarea.form-control {
+textarea.form-controlx {
     max-width: 100%;
     max-height: 80px;
     padding: 10px 10px 0 0;
@@ -2822,32 +2833,32 @@ textarea.form-control {
     line-height: 2;
 }
 
-textarea.form-control:focus,
-textarea.form-control:active {
+textarea.form-controlx:focus,
+textarea.form-controlx:active {
     border-left: none;
     border-top: none;
     border-right: none;
 }
 
-.has-success.form-group .form-control,
-.has-success.form-group.no-border .form-control,
-.has-danger.form-group .form-control,
-.has-danger.form-group.no-border .form-control {
+.has-success.form-groupx .form-controlx,
+.has-success.form-groupx.no-border .form-controlx,
+.has-danger.form-groupx .form-controlx,
+.has-danger.form-groupx.no-border .form-controlx {
     padding-right: 40px;
 }
 
-.form.form-newsletter .form-group {
+.form.form-newsletter .form-groupx {
     float: left;
     width: 78%;
     margin-right: 2%;
     margin-top: 9px;
 }
 
-.input-group .input-group-btn {
+.input-groupx .input-groupx-btn {
     padding: 0 12px;
 }
 
-.form-group input[type=file] {
+.form-groupx input[type=file] {
     opacity: 0;
     position: absolute;
     top: 0;
@@ -2932,7 +2943,7 @@ textarea.form-control:active {
     opacity: 1;
 }
 
-.form-control input[type="checkbox"]:disabled+.form-check-sign::before,
+.form-controlx input[type="checkbox"]:disabled+.form-check-sign::before,
 .checkbox input[type="checkbox"]:disabled+.form-check-sign::after {
     cursor: not-allowed;
 }
@@ -2988,6 +2999,7 @@ textarea.form-control:active {
 .form-check-radio input[type="radio"]:disabled+.form-check-sign::after {
     color: #9A9A9A;
 }
+*/
 
 .progress-container {
     position: relative;
@@ -3204,7 +3216,7 @@ textarea.form-control:active {
     line-height: 30px;
     color: #2c2c2c;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
     text-transform: uppercase;
     background: transparent;
 }
@@ -3321,6 +3333,7 @@ h4,
 h5,
 h6 {
     font-weight: 400;
+    color: #000000;
 }
 
 small {
@@ -3500,11 +3513,12 @@ p {
 }
 
 body {
-    font-size: 14px;
+    font-size: 16px;
     font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
     overflow-x: hidden;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
+    margin-top:20px;
 }
 
 .main {
@@ -4256,7 +4270,7 @@ Created using IcoMoon - icomoon.io
 
 .nav-tabs {
     border: 0;
-    padding: 5px 0.7rem;
+    padding: 11px 0.7rem;
 }
 
 .nav-tabs:not(.nav-tabs-neutral)>.nav-item>.nav-link.active {
@@ -5257,10 +5271,12 @@ img {
 
 .footer {
     padding: 24px 0;
+    /* height: 80px; */
 }
 
 .footer.footer-default {
     background-color: #f2f2f2;
+    border-top: 1px solid #bbbbbb;
 }
 
 .footer nav {
@@ -5364,6 +5380,8 @@ img {
 .card-signup {
     max-width: 350px;
     margin: 0 auto;
+    height:400px;
+
 }
 
 .card-signup .card-header {
@@ -5428,9 +5446,9 @@ img {
 }
 
 .index-page .page-header .category-absolute {
-    position: absolute;
-    top: 100vh;
-    margin-top: -60px;
+    position: relative;
+    margin: 0 auto;
+    margin-bottom: 100%;
     padding: 0 15px;
     width: 100%;
     color: rgba(255, 255, 255, 0.5);
@@ -5476,7 +5494,7 @@ img {
     margin-bottom: 30px;
 }
 
-.landing-page .section-contact-us .input-group,
+.landing-page .section-contact-us .input-groupx,
 .landing-page .section-contact-us .send-button,
 .landing-page .section-contact-us .textarea-container {
     padding: 0 40px;
@@ -5491,7 +5509,7 @@ img {
 }
 
 .profile-page .page-header {
-    min-height: 550px;
+    min-height: 0px;
 }
 
 .profile-page .profile-container {
@@ -5510,6 +5528,7 @@ img {
 .profile-page .title {
     text-align: center;
     margin-top: 30px;
+    color: #FFFFFF;
 }
 
 .profile-page .description,
@@ -5530,18 +5549,20 @@ img {
 .profile-page .content {
     max-width: 450px;
     margin: 0 auto;
+    color: #FFFFFF;
 }
 
 .profile-page .content .social-description {
     display: inline-block;
     max-width: 150px;
-    width: 145px;
+    width: 30%;
     text-align: center;
     margin: 15px 0 0px;
 }
 
 .profile-page .content .social-description h2 {
     margin-bottom: 15px;
+    color: #FFFFFF;
 }
 
 .profile-page .button-container {
@@ -5636,7 +5657,7 @@ img {
 .login-page .card-login {
     border-radius: 0.25rem;
     padding-bottom: 0.7rem;
-    max-width: 320px;
+    max-width: 25rem;
 }
 
 .login-page .card-login .btn-wd {
@@ -5653,130 +5674,154 @@ img {
     width: 100%;
 }
 
-.login-page .card-login .input-group:last-child {
+.login-page .card-login .input-groupx:last-child {
     margin-bottom: 40px;
 }
 
-.login-page .card-login.card-plain .form-control::-moz-placeholder {
+.login-page .card-login.card-plain .form-controlx::-moz-placeholder {
     color: #ebebeb;
     opacity: 1;
     filter: alpha(opacity=100);
 }
 
-.login-page .card-login.card-plain .form-control:-moz-placeholder {
+.login-page .card-login.card-plain .form-controlx:-moz-placeholder {
     color: #ebebeb;
     opacity: 1;
     filter: alpha(opacity=100);
 }
 
-.login-page .card-login.card-plain .form-control::-webkit-input-placeholder {
+.login-page .card-login.card-plain .form-controlx::-webkit-input-placeholder {
     color: #ebebeb;
     opacity: 1;
     filter: alpha(opacity=100);
 }
 
-.login-page .card-login.card-plain .form-control:-ms-input-placeholder {
+.login-page .card-login.card-plain .form-controlx:-ms-input-placeholder {
     color: #ebebeb;
     opacity: 1;
     filter: alpha(opacity=100);
 }
 
-.login-page .card-login.card-plain .form-control {
+.login-page .card-login.card-plain .form-controlx {
     border-color: rgba(255, 255, 255, 0.5);
     color: #FFFFFF;
+    border-color: rgba(0, 0, 0, 0.5);
+    color: #000000;
 }
 
-.login-page .card-login.card-plain .form-control:focus {
+.login-page .card-login.card-plain .form-controlx:focus {
     border-color: #FFFFFF;
     background-color: transparent;
     color: #FFFFFF;
+    border-color: #000000;
+    color: #000000;
 }
 
 .login-page .card-login.card-plain .has-success:after,
 .login-page .card-login.card-plain .has-danger:after {
     color: #FFFFFF;
+    color: #000000;
 }
 
-.login-page .card-login.card-plain .has-danger .form-control {
+.login-page .card-login.card-plain .has-danger .form-controlx {
     background-color: transparent;
 }
 
-.login-page .card-login.card-plain .input-group-text {
+.login-page .card-login.card-plain .input-groupx-text {
     background-color: transparent;
     border-color: rgba(255, 255, 255, 0.5);
     color: #FFFFFF;
+    border-color: rgba(0, 0, 0, 0.5);
+    color: #000000;
 }
 
-.login-page .card-login.card-plain .input-group-focus .input-group-text {
+.login-page .card-login.card-plain .input-groupx-focus .input-groupx-text {
     background-color: transparent;
     border-color: #FFFFFF;
     color: #FFFFFF;
+    border-color: #000000;
+    color: #000000;
 }
 
-.login-page .card-login.card-plain .form-group.no-border .form-control,
-.login-page .card-login.card-plain .input-group.no-border .form-control {
+.login-page .card-login.card-plain .form-groupx.no-border .form-controlx,
+.login-page .card-login.card-plain .input-groupx.no-border .form-controlx {
     background-color: rgba(255, 255, 255, 0.1);
     color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #000000;
 }
 
-.login-page .card-login.card-plain .form-group.no-border .form-control:focus,
-.login-page .card-login.card-plain .form-group.no-border .form-control:active,
-.login-page .card-login.card-plain .form-group.no-border .form-control:active,
-.login-page .card-login.card-plain .input-group.no-border .form-control:focus,
-.login-page .card-login.card-plain .input-group.no-border .form-control:active,
-.login-page .card-login.card-plain .input-group.no-border .form-control:active {
+.login-page .card-login.card-plain .form-groupx.no-border .form-controlx:focus,
+.login-page .card-login.card-plain .form-groupx.no-border .form-controlx:active,
+.login-page .card-login.card-plain .form-groupx.no-border .form-controlx:active,
+.login-page .card-login.card-plain .input-groupx.no-border .form-controlx:focus,
+.login-page .card-login.card-plain .input-groupx.no-border .form-controlx:active,
+.login-page .card-login.card-plain .input-groupx.no-border .form-controlx:active {
     background-color: rgba(255, 255, 255, 0.2);
     color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #000000;
 }
 
-.login-page .card-login.card-plain .form-group.no-border .form-control+.input-group-text,
-.login-page .card-login.card-plain .input-group.no-border .form-control+.input-group-text {
+.login-page .card-login.card-plain .form-groupx.no-border .form-controlx+.input-groupx-text,
+.login-page .card-login.card-plain .input-groupx.no-border .form-controlx+.input-groupx-text {
     background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
-.login-page .card-login.card-plain .form-group.no-border .form-control+.input-group-text:focus,
-.login-page .card-login.card-plain .form-group.no-border .form-control+.input-group-text:active,
-.login-page .card-login.card-plain .form-group.no-border .form-control+.input-group-text:active,
-.login-page .card-login.card-plain .input-group.no-border .form-control+.input-group-text:focus,
-.login-page .card-login.card-plain .input-group.no-border .form-control+.input-group-text:active,
-.login-page .card-login.card-plain .input-group.no-border .form-control+.input-group-text:active {
+.login-page .card-login.card-plain .form-groupx.no-border .form-controlx+.input-groupx-text:focus,
+.login-page .card-login.card-plain .form-groupx.no-border .form-controlx+.input-groupx-text:active,
+.login-page .card-login.card-plain .form-groupx.no-border .form-controlx+.input-groupx-text:active,
+.login-page .card-login.card-plain .input-groupx.no-border .form-controlx+.input-groupx-text:focus,
+.login-page .card-login.card-plain .input-groupx.no-border .form-controlx+.input-groupx-text:active,
+.login-page .card-login.card-plain .input-groupx.no-border .form-controlx+.input-groupx-text:active {
     background-color: rgba(255, 255, 255, 0.2);
     color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #000000;
 }
 
-.login-page .card-login.card-plain .form-group.no-border .form-control:focus+.input-group-text,
-.login-page .card-login.card-plain .input-group.no-border .form-control:focus+.input-group-text {
+.login-page .card-login.card-plain .form-groupx.no-border .form-controlx:focus+.input-groupx-text,
+.login-page .card-login.card-plain .input-groupx.no-border .form-controlx:focus+.input-groupx-text {
     background-color: rgba(255, 255, 255, 0.2);
     color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #000000;
 }
 
-.login-page .card-login.card-plain .form-group.no-border .input-group-text,
-.login-page .card-login.card-plain .input-group.no-border .input-group-text {
+.login-page .card-login.card-plain .form-groupx.no-border .input-groupx-text,
+.login-page .card-login.card-plain .input-groupx.no-border .input-groupx-text {
     background-color: rgba(255, 255, 255, 0.1);
     border: none;
     color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #000000;
 }
 
-.login-page .card-login.card-plain .form-group.no-border.input-group-focus .input-group-text,
-.login-page .card-login.card-plain .input-group.no-border.input-group-focus .input-group-text {
+.login-page .card-login.card-plain .form-groupx.no-border.input-groupx-focus .input-groupx-text,
+.login-page .card-login.card-plain .input-groupx.no-border.input-groupx-focus .input-groupx-text {
     background-color: rgba(255, 255, 255, 0.2);
     color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #000000;
 }
 
-.login-page .card-login.card-plain .input-group-text,
-.login-page .card-login.card-plain .form-group.no-border .input-group-text,
-.login-page .card-login.card-plain .input-group.no-border .input-group-text {
+.login-page .card-login.card-plain .input-groupx-text,
+.login-page .card-login.card-plain .form-groupx.no-border .input-groupx-text,
+.login-page .card-login.card-plain .input-groupx.no-border .input-groupx-text {
     color: rgba(255, 255, 255, 0.8);
+    color: rgba(0, 0, 0, 0.8);
 }
 
 .login-page .link {
     font-size: 14px;
     color: #FFFFFF;
+    color: #000000;
     text-decoration: none;
 }
 
 .section {
-    padding: 70px 0;
+    padding: 20px 0;
     position: relative;
     background: #FFFFFF;
 }
@@ -5797,19 +5842,36 @@ img {
     padding-top: 20vh;
 }
 
-.page-header {
-    min-height: 100vh;
-    max-height: 999px;
+.main-header {
+    min-height: 75vh;
+    max-height: 75vh;
     padding: 0;
     color: #FFFFFF;
     position: relative;
     overflow: hidden;
 }
 
+.page-header {
+    min-height: 75vh;
+    max-height: 80vh;
+    padding: 0;
+    color: #FFFFFF;
+    color: #000000;
+    position: relative;
+    overflow: hidden;
+    margin-top:-20px;
+}
+
+.not-landing {
+    min-height: 100vh;
+    max-height: 999px;
+}
+
 .page-header>.content {
-    margin-top: 12%;
+    margin-top: 100px;
     text-align: center;
     margin-bottom: 50px;
+    padding-bottom: 60px;
 }
 
 .page-header.page-header-small {
@@ -5896,6 +5958,19 @@ img {
     background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
     /* For Firefox 3.6 to 15 */
     background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
+    /* Standard syntax */
+}
+
+.clear-filter[filter-color="white"] {
+    background: rgba(44, 44, 44, 0.2);
+    /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(255, 255, 255, 0.6));
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(255, 255, 255, 0.6));
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(255, 255, 255, 0.6));
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), rgba(255, 255, 255, 0.6));
     /* Standard syntax */
 }
 
@@ -6091,6 +6166,7 @@ img {
 
 [data-background-color]:not([data-background-color="gray"]) {
     color: #FFFFFF;
+    color: #000000;
 }
 
 [data-background-color]:not([data-background-color="gray"]) .title,
@@ -6099,10 +6175,12 @@ img {
 [data-background-color]:not([data-background-color="gray"]) p.blockquote,
 [data-background-color]:not([data-background-color="gray"]) p.blockquote small {
     color: #FFFFFF;
+    color: #000000;
 }
 
 [data-background-color]:not([data-background-color="gray"]) .separator {
     background-color: #FFFFFF;
+    background-color: #000000;
 }
 
 [data-background-color]:not([data-background-color="gray"]) .navbar.bg-white p {
@@ -6118,21 +6196,25 @@ img {
 [data-background-color]:not([data-background-color="gray"]) a:not(.btn):not(.dropdown-item),
 [data-background-color]:not([data-background-color="gray"]) .icons-container {
     color: #FFFFFF;
+    color: #000000;
 }
 
-[data-background-color]:not([data-background-color="gray"]) .input-group-text,
-[data-background-color]:not([data-background-color="gray"]) .form-group.no-border .input-group-text,
-[data-background-color]:not([data-background-color="gray"]) .input-group.no-border .input-group-text {
+[data-background-color]:not([data-background-color="gray"]) .input-groupx-text,
+[data-background-color]:not([data-background-color="gray"]) .form-groupx.no-border .input-groupx-text,
+[data-background-color]:not([data-background-color="gray"]) .input-groupx.no-border .input-groupx-text {
     color: rgba(255, 255, 255, 0.8);
+    color: rgba(0, 0, 0, 0.8);
 }
 
 [data-background-color]:not([data-background-color="gray"]) .description,
 [data-background-color]:not([data-background-color="gray"]) .social-description p {
     color: rgba(255, 255, 255, 0.8);
+    color: rgba(0, 0, 0, 0.8);
 }
 
 [data-background-color]:not([data-background-color="gray"]) p.blockquote {
     border-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(0, 0, 0, 0.2);
 }
 
 [data-background-color]:not([data-background-color="gray"]) .checkbox label::before,
@@ -6140,135 +6222,164 @@ img {
 [data-background-color]:not([data-background-color="gray"]) .radio label::before,
 [data-background-color]:not([data-background-color="gray"]) .radio label::after {
     border-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(0, 0, 0, 0.2);
 }
 
 [data-background-color]:not([data-background-color="gray"]) .checkbox label::after,
 [data-background-color]:not([data-background-color="gray"]) .checkbox label,
 [data-background-color]:not([data-background-color="gray"]) .radio label {
     color: #FFFFFF;
+    color: #000000;
 }
 
 [data-background-color]:not([data-background-color="gray"]) .checkbox input[type="checkbox"]:disabled+label,
 [data-background-color]:not([data-background-color="gray"]) .radio input[type="radio"]:disabled+label {
     color: #FFFFFF;
+    color: #000000;
 }
 
 [data-background-color]:not([data-background-color="gray"]) .radio input[type="radio"]:not(:disabled):hover+label::after,
 [data-background-color]:not([data-background-color="gray"]) .radio input[type="radio"]:checked+label::after {
     background-color: #FFFFFF;
     border-color: #FFFFFF;
+    background-color: #000000;
+    border-color: #000000;
 }
 
-[data-background-color]:not([data-background-color="gray"]) .form-control::-moz-placeholder {
+[data-background-color]:not([data-background-color="gray"]) .form-controlx::-moz-placeholder {
     color: #ebebeb;
     opacity: 1;
     filter: alpha(opacity=100);
 }
 
-[data-background-color]:not([data-background-color="gray"]) .form-control:-moz-placeholder {
+[data-background-color]:not([data-background-color="gray"]) .form-controlx:-moz-placeholder {
     color: #ebebeb;
     opacity: 1;
     filter: alpha(opacity=100);
 }
 
-[data-background-color]:not([data-background-color="gray"]) .form-control::-webkit-input-placeholder {
+[data-background-color]:not([data-background-color="gray"]) .form-controlx::-webkit-input-placeholder {
     color: #ebebeb;
     opacity: 1;
     filter: alpha(opacity=100);
 }
 
-[data-background-color]:not([data-background-color="gray"]) .form-control:-ms-input-placeholder {
+[data-background-color]:not([data-background-color="gray"]) .form-controlx:-ms-input-placeholder {
     color: #ebebeb;
     opacity: 1;
     filter: alpha(opacity=100);
 }
 
-[data-background-color]:not([data-background-color="gray"]) .form-control {
+[data-background-color]:not([data-background-color="gray"]) .form-controlx {
     border-color: rgba(255, 255, 255, 0.5);
     color: #FFFFFF;
+    border-color: rgba(0, 0, 0, 0.5);
+    color: #000000;
 }
 
-[data-background-color]:not([data-background-color="gray"]) .form-control:focus {
+[data-background-color]:not([data-background-color="gray"]) .form-controlx:focus {
     border-color: #FFFFFF;
     background-color: transparent;
     color: #FFFFFF;
+    border-color: #000000;
+    color: #000000;
 }
 
 [data-background-color]:not([data-background-color="gray"]) .has-success:after,
 [data-background-color]:not([data-background-color="gray"]) .has-danger:after {
     color: #FFFFFF;
+    color: #000000;
 }
 
-[data-background-color]:not([data-background-color="gray"]) .has-danger .form-control {
+[data-background-color]:not([data-background-color="gray"]) .has-danger .form-controlx {
     background-color: transparent;
 }
 
-[data-background-color]:not([data-background-color="gray"]) .input-group-text {
+[data-background-color]:not([data-background-color="gray"]) .input-groupx-text {
     background-color: transparent;
     border-color: rgba(255, 255, 255, 0.5);
     color: #FFFFFF;
+    border-color: rgba(0, 0, 0, 0.5);
+    color: #000000;
 }
 
-[data-background-color]:not([data-background-color="gray"]) .input-group-focus .input-group-text {
+[data-background-color]:not([data-background-color="gray"]) .input-groupx-focus .input-groupx-text {
     background-color: transparent;
     border-color: #FFFFFF;
     color: #FFFFFF;
+    border-color: #000000;
+    color: #000000;
 }
 
-[data-background-color]:not([data-background-color="gray"]) .form-group.no-border .form-control,
-[data-background-color]:not([data-background-color="gray"]) .input-group.no-border .form-control {
+[data-background-color]:not([data-background-color="gray"]) .form-groupx.no-border .form-controlx,
+[data-background-color]:not([data-background-color="gray"]) .input-groupx.no-border .form-controlx {
     background-color: rgba(255, 255, 255, 0.1);
     color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #000000;
 }
 
-[data-background-color]:not([data-background-color="gray"]) .form-group.no-border .form-control:focus,
-[data-background-color]:not([data-background-color="gray"]) .form-group.no-border .form-control:active,
-[data-background-color]:not([data-background-color="gray"]) .form-group.no-border .form-control:active,
-[data-background-color]:not([data-background-color="gray"]) .input-group.no-border .form-control:focus,
-[data-background-color]:not([data-background-color="gray"]) .input-group.no-border .form-control:active,
-[data-background-color]:not([data-background-color="gray"]) .input-group.no-border .form-control:active {
+[data-background-color]:not([data-background-color="gray"]) .form-groupx.no-border .form-controlx:focus,
+[data-background-color]:not([data-background-color="gray"]) .form-groupx.no-border .form-controlx:active,
+[data-background-color]:not([data-background-color="gray"]) .form-groupx.no-border .form-controlx:active,
+[data-background-color]:not([data-background-color="gray"]) .input-groupx.no-border .form-controlx:focus,
+[data-background-color]:not([data-background-color="gray"]) .input-groupx.no-border .form-controlx:active,
+[data-background-color]:not([data-background-color="gray"]) .input-groupx.no-border .form-controlx:active {
     background-color: rgba(255, 255, 255, 0.2);
     color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #000000;
 }
 
-[data-background-color]:not([data-background-color="gray"]) .form-group.no-border .form-control+.input-group-text,
-[data-background-color]:not([data-background-color="gray"]) .input-group.no-border .form-control+.input-group-text {
+[data-background-color]:not([data-background-color="gray"]) .form-groupx.no-border .form-controlx+.input-groupx-text,
+[data-background-color]:not([data-background-color="gray"]) .input-groupx.no-border .form-controlx+.input-groupx-text {
     background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
-[data-background-color]:not([data-background-color="gray"]) .form-group.no-border .form-control+.input-group-text:focus,
-[data-background-color]:not([data-background-color="gray"]) .form-group.no-border .form-control+.input-group-text:active,
-[data-background-color]:not([data-background-color="gray"]) .form-group.no-border .form-control+.input-group-text:active,
-[data-background-color]:not([data-background-color="gray"]) .input-group.no-border .form-control+.input-group-text:focus,
-[data-background-color]:not([data-background-color="gray"]) .input-group.no-border .form-control+.input-group-text:active,
-[data-background-color]:not([data-background-color="gray"]) .input-group.no-border .form-control+.input-group-text:active {
+[data-background-color]:not([data-background-color="gray"]) .form-groupx.no-border .form-controlx+.input-groupx-text:focus,
+[data-background-color]:not([data-background-color="gray"]) .form-groupx.no-border .form-controlx+.input-groupx-text:active,
+[data-background-color]:not([data-background-color="gray"]) .form-groupx.no-border .form-controlx+.input-groupx-text:active,
+[data-background-color]:not([data-background-color="gray"]) .input-groupx.no-border .form-controlx+.input-groupx-text:focus,
+[data-background-color]:not([data-background-color="gray"]) .input-groupx.no-border .form-controlx+.input-groupx-text:active,
+[data-background-color]:not([data-background-color="gray"]) .input-groupx.no-border .form-controlx+.input-groupx-text:active {
     background-color: rgba(255, 255, 255, 0.2);
     color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #000000;
 }
 
-[data-background-color]:not([data-background-color="gray"]) .form-group.no-border .form-control:focus+.input-group-text,
-[data-background-color]:not([data-background-color="gray"]) .input-group.no-border .form-control:focus+.input-group-text {
+[data-background-color]:not([data-background-color="gray"]) .form-groupx.no-border .form-controlx:focus+.input-groupx-text,
+[data-background-color]:not([data-background-color="gray"]) .input-groupx.no-border .form-controlx:focus+.input-groupx-text {
     background-color: rgba(255, 255, 255, 0.2);
     color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #000000;
 }
 
-[data-background-color]:not([data-background-color="gray"]) .form-group.no-border .input-group-text,
-[data-background-color]:not([data-background-color="gray"]) .input-group.no-border .input-group-text {
+[data-background-color]:not([data-background-color="gray"]) .form-groupx.no-border .input-groupx-text,
+[data-background-color]:not([data-background-color="gray"]) .input-groupx.no-border .input-groupx-text {
     background-color: rgba(255, 255, 255, 0.1);
     border: none;
     color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #000000;
 }
 
-[data-background-color]:not([data-background-color="gray"]) .form-group.no-border.input-group-focus .input-group-text,
-[data-background-color]:not([data-background-color="gray"]) .input-group.no-border.input-group-focus .input-group-text {
+[data-background-color]:not([data-background-color="gray"]) .form-groupx.no-border.input-groupx-focus .input-groupx-text,
+[data-background-color]:not([data-background-color="gray"]) .input-groupx.no-border.input-groupx-focus .input-groupx-text {
     background-color: rgba(255, 255, 255, 0.2);
     color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #000000;
 }
 
 [data-background-color]:not([data-background-color="gray"]) .btn.btn-simple {
     background-color: transparent;
     border-color: rgba(255, 255, 255, 0.5);
     color: #FFFFFF;
+    border-color: rgba(0, 0, 0, 0.5);
+    color: #000000;
 }
 
 [data-background-color]:not([data-background-color="gray"]) .btn.btn-simple:hover,
@@ -6285,14 +6396,18 @@ img {
     background-color: transparent;
     border-color: #FFFFFF;
     color: #FFFFFF;
+    border-color: #000000;
+    color: #000000;
 }
 
 [data-background-color]:not([data-background-color="gray"]) .nav-tabs>.nav-item>.nav-link i.now-ui-icons {
     color: #FFFFFF;
+    color: #000000;
 }
 
 [data-background-color]:not([data-background-color="gray"]).section-nucleo-icons .icons-container i:nth-child(6) {
     color: #FFFFFF;
+    color: #000000;
 }
 
 @media screen and (max-width: 991px) {
