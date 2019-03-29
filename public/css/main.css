@@ -439,7 +439,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 /* Disabled state;
- */
+*/
 
 [disabled] .noUi-connect {
     background: #B8B8B8;
@@ -3518,6 +3518,7 @@ body {
     overflow-x: hidden;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
+    margin-top:20px;
 }
 
 .main {
@@ -5270,6 +5271,7 @@ img {
 
 .footer {
     padding: 24px 0;
+    /* height: 80px; */
 }
 
 .footer.footer-default {
@@ -5378,6 +5380,8 @@ img {
 .card-signup {
     max-width: 350px;
     margin: 0 auto;
+    height:400px;
+
 }
 
 .card-signup .card-header {
@@ -5442,9 +5446,9 @@ img {
 }
 
 .index-page .page-header .category-absolute {
-    position: absolute;
-    top: 60vh;
-    margin-top: -60px;
+    position: relative;
+    margin: 0 auto;
+    margin-bottom: 100%;
     padding: 0 15px;
     width: 100%;
     color: rgba(255, 255, 255, 0.5);
@@ -5505,7 +5509,7 @@ img {
 }
 
 .profile-page .page-header {
-    min-height: 550px;
+    min-height: 0px;
 }
 
 .profile-page .profile-container {
@@ -5524,6 +5528,7 @@ img {
 .profile-page .title {
     text-align: center;
     margin-top: 30px;
+    color: #FFFFFF;
 }
 
 .profile-page .description,
@@ -5544,18 +5549,20 @@ img {
 .profile-page .content {
     max-width: 450px;
     margin: 0 auto;
+    color: #FFFFFF;
 }
 
 .profile-page .content .social-description {
     display: inline-block;
     max-width: 150px;
-    width: 145px;
+    width: 30%;
     text-align: center;
     margin: 15px 0 0px;
 }
 
 .profile-page .content .social-description h2 {
     margin-bottom: 15px;
+    color: #FFFFFF;
 }
 
 .profile-page .button-container {
@@ -5814,7 +5821,7 @@ img {
 }
 
 .section {
-    padding: 70px 0;
+    padding: 20px 0;
     position: relative;
     background: #FFFFFF;
 }
@@ -5846,12 +5853,13 @@ img {
 
 .page-header {
     min-height: 75vh;
-    max-height: 75vh;
+    max-height: 80vh;
     padding: 0;
     color: #FFFFFF;
     color: #000000;
     position: relative;
     overflow: hidden;
+    margin-top:-20px;
 }
 
 .not-landing {
@@ -5860,9 +5868,10 @@ img {
 }
 
 .page-header>.content {
-    margin-top: 12%;
+    margin-top: 100px;
     text-align: center;
     margin-bottom: 50px;
+    padding-bottom: 60px;
 }
 
 .page-header.page-header-small {
