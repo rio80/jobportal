@@ -3,15 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use PDF;
 
 class HomeController extends Controller
 {
-    //
-    public function generatePDF(){
-        $data = ['title' => 'Welcome to the Jungle'];
-        $pdf = PDF::loadView('myPDF', $data);
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
-        return $pdf->stream();
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        return view('home');
     }
 }
