@@ -29,7 +29,7 @@
         <nav>
             <ul>
                 <li><a href="javascript:void(0);">Tentang kami</a></li>
-                <li><a href="{{ url('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
             </ul>
         </nav>
         <div class="copyright" id="copyright">
