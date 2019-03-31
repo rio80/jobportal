@@ -1,17 +1,19 @@
 @extends('template')
-@section('page')
-    <body class="login-page sidebar-collapse">
-        @extends('navbar')
 
+@section('page')
+
+    <body class="login-page sidebar-collapse">
+
+        @extends('navbar')
         <div class="not-landing page-header clear-filter" filter-color="white">
-            <div class="page-header-image" style="background-image:url({{ 'img/white-solid.jpg' }}); z-index: 0;"></div>
+            <div class="page-header-image" style="background-image:url({{ URL::asset('img/white-solid.jpg') }}); z-index: 0;"></div>
             <div class="content">
                 <div class="container">
                     <div class="col-md-12 ml-auto mr-auto">
                         <div class="card card-login card-plain">
                             <form class="form">
                                 <div class="card-header text-center">
-                                    <h4 class="card-title title-up">Daftar<br><small>sebagai pencari kerja</small></h4>
+                                    <h4 class="card-title title-up">Daftar<br><small>sebagai perusahaan</small></h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="input-group">
@@ -52,4 +54,4 @@
                 </div>
             </div>
 
-@endsection
+            @endsection

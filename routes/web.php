@@ -9,21 +9,24 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
+
 Route::get('generate-pdf', 'HomeController@generatePDF');
 
+Route::get('/', 'LoginController@index');
 
-Route::get('/','LoginController@index');
+Route::get('login', 'LoginController@login');
 
-Route::get('login','LoginController@login');
+Route::get('dashboard', 'LoginController@dashboard');
 
-Route::get('dashboard','LoginController@dashboard');
+Route::group(['prefix' => 'register'], function () {
 
-Route::get('register','RegisterController@index');
+    Route::get('/', 'RegisterController@index')->name('register');
 
-Route::get('register-pekerja','RegisterController@registerPekerja');
+    Route::get('/pekerja', 'RegisterController@registerPekerja')->name('pekerja');
 
-Route::get('register-perusahaan','RegisterController@registerPerusahaan');
+    Route::get('/perusahaan', 'RegisterController@registerPerusahaan')->name('perusahaan');
+});
 
 // Route::get('/', function(){
 //     return view('registrasi');
@@ -39,3 +42,7 @@ Route::get('register-perusahaan','RegisterController@registerPerusahaan');
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

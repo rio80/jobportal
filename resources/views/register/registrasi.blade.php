@@ -6,7 +6,7 @@
         @extends('navbar')
 
         <div class="not-landing page-header clear-filter" filter-color="white">
-            <div class="page-header-image" style="background-image:url({{ 'img/white-solid.jpg' }}); z-index: 0;"></div>
+            <div class="page-header-image" style="background-image:url({{ asset('img/white-solid.jpg') }}); z-index: 0;"></div>
             <div class="content">
                 <div class="container">
                     <div class="col-lg-12">
@@ -22,7 +22,7 @@
                                         <h6>Buat resume online Gratis untuk peroleh peluang kerja lebih baik.</h6>
                                     </div>
                                     <div class="card-footer">
-                                        <a href="{{ url('register-pekerja') }}" class="btn btn-neutral btn-round"><i class="fas fa-user-plus"></i> Daftar</a>
+                                        <a href="{{ route('pekerja') }}" class="btn btn-neutral btn-round"><i class="fas fa-user-plus"></i> Daftar</a>
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                         <h6>Pasang iklan lowongan agar terhubung dengan pencari kerja yang paling potensial.</h6>
                                     </div>
                                     <div class="card-footer">
-                                        <a href="{{ url('register-perusahaan') }}" class="btn btn-neutral btn-round"><i class="fas fa-user-plus"></i> Daftar</a>
+                                        <a href="{{ route('perusahaan') }}" class="btn btn-neutral btn-round"><i class="fas fa-user-plus"></i> Daftar</a>
                                     </div>
                                 </div>
                             </div>

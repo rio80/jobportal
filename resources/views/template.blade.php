@@ -13,11 +13,11 @@
         name='viewport' />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet">
-    <link href="{{ 'css/bootstrap.min.css' }}" rel="stylesheet" />
-    <link href="{{ 'css/main.css' }}" rel="stylesheet" />
-    <link href="{{ 'css/custom.css' }}" rel="stylesheet" />
+    <link href="{{ URL::asset('css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ URL::asset('css/main.css') }}" rel="stylesheet" />
+    <link href="{{ URL::asset('css/custom.css') }}" rel="stylesheet" />
 
-<script src="{{ 'js/core/jquery.min.js' }}" type="text/javascript"></script>
+<script src="{{ URL::asset('js/core/jquery.min.js') }}" type="text/javascript"></script>
 
 </head>
 @yield('navbar')
@@ -46,12 +46,12 @@
 
 {{-- </div> --}}
 
-<script src="{{ 'js/core/popper.min.js' }}" type="text/javascript"></script>
-<script src="{{ 'js/core/bootstrap.min.js' }}" type="text/javascript"></script>
-<script src="{{ 'js/plugins/bootstrap-switch.js' }}"></script>
-<script src="{{ 'js/plugins/nouislider.min.js' }}" type="text/javascript"></script>
-<script src="{{ 'js/plugins/bootstrap-datepicker.js' }}" type="text/javascript"></script>
-<script src="{{ 'js/now-ui-kit.js?v=1.2.0' }}" type="text/javascript"></script>
+<script src="{{ URL::asset('js/core/popper.min.js') }}" type="text/javascript"></script>
+<script src="{{ URL::asset('js/core/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ URL::asset('js/plugins/bootstrap-switch.js') }}"></script>
+<script src="{{ URL::asset('js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
+<script src="{{ URL::asset('js/plugins/bootstrap-datepicker.js') }}" type="text/javascript"></script>
+<script src="{{ URL::asset('js/now-ui-kit.js?v=1.2.0') }}" type="text/javascript"></script>
 </body>
 
 </html>

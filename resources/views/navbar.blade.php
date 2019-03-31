@@ -3,7 +3,7 @@
 <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent" color-on-scroll="-1">
     <div class="container">
         <div class="navbar-translate">
-            <span class="logo-container"><img class="brand" src="{{ 'img/job-icon.png' }}" alt=""></span>
+            <span class="logo-container"><img class="brand" src="{{ URL::asset('img/job-icon.png') }}" alt=""></span>
             <a class="navbar-brand" href="index.html" rel="tooltip" title="Job Seekers" data-placement="bottom">
                 <h3>Job Seekers</h3>
             </a>
@@ -13,7 +13,7 @@
                 <span class="navbar-toggler-bar bottom-bar"></span>
             </button>
         </div>
-        <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="{{ 'img/blurred-image-1.jpg' }}">
+        <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="{{ URL::asset('img/blurred-image-1.jpg') }}">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link btn btn-success" href="{{ url('register') }}">
