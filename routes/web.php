@@ -17,7 +17,7 @@ Route::get('/', 'LoginController@index');
 
 Route::get('login', 'LoginController@login');
 
-Route::get('dashboard', 'LoginController@dashboard');
+Route::get('/dashboard', 'PelamarController@index')->name('dashboard');
 
 Route::group(['prefix' => 'register'], function () {
 
