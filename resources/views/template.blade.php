@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="./assets/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ 'img/apple-touch-icon.png' }}">
+    <link rel="icon" type="image/png" href="{{ 'img/favicon.ico' }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
         Jobseekers
@@ -13,20 +13,23 @@
         name='viewport' />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet">
-    <link href="{{ 'css/bootstrap.min.css' }}" rel="stylesheet" />
-    <link href="{{ 'css/main.css' }}" rel="stylesheet" />
-    <link href="{{ 'css/custom.css' }}" rel="stylesheet" />
+    <link href="{{ URL::asset('css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ URL::asset('css/main.css') }}" rel="stylesheet" />
+    <link href="{{ URL::asset('css/custom.css') }}" rel="stylesheet" />
+
+<script src="{{ URL::asset('js/core/jquery.min.js') }}" type="text/javascript"></script>
+
 </head>
 @yield('navbar')
 @yield('page')
 
 
-<footer class="footer">
+<footer class="footer footer-default">
     <div class="container">
         <nav>
             <ul>
                 <li><a href="javascript:void(0);">Tentang kami</a></li>
-                <li><a href="{{ url('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
             </ul>
         </nav>
         <div class="copyright" id="copyright">
@@ -41,15 +44,14 @@
     </div>
 </footer>
 
-</div>
+{{-- </div> --}}
 
-<script src="{{ 'js/core/jquery.min.js' }}" type="text/javascript"></script>
-<script src="{{ 'js/core/popper.min.js' }}" type="text/javascript"></script>
-<script src="{{ 'js/core/bootstrap.min.js' }}" type="text/javascript"></script>
-<script src="{{ 'js/plugins/bootstrap-switch.js' }}"></script>
-<script src="{{ 'js/plugins/nouislider.min.js' }}" type="text/javascript"></script>
-<script src="{{ 'js/plugins/bootstrap-datepicker.js' }}" type="text/javascript"></script>
-<script src="{{ 'js/now-ui-kit.js?v=1.2.0' }}" type="text/javascript"></script>
+<script src="{{ URL::asset('js/core/popper.min.js') }}" type="text/javascript"></script>
+<script src="{{ URL::asset('js/core/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ URL::asset('js/plugins/bootstrap-switch.js') }}"></script>
+<script src="{{ URL::asset('js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
+<script src="{{ URL::asset('js/plugins/bootstrap-datepicker.js') }}" type="text/javascript"></script>
+<script src="{{ URL::asset('js/now-ui-kit.js?v=1.2.0') }}" type="text/javascript"></script>
 </body>
 
 </html>
