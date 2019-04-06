@@ -7,7 +7,14 @@ use App\Traits\Uuids;
 
 class Registrasi extends Model
 {
-    use Uuids;
-
     //
+    use Uuids;
+    protected $guarded = [];
+
+    protected $table = "tb_ref_registrasi";
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
 }
