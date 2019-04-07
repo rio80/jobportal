@@ -19,6 +19,7 @@
     <link href="{{ URL::asset('css/floating-labels.css') }}" rel="stylesheet" />
 
 
+
 <script src="{{ URL::asset('js/core/jquery.min.js') }}" type="text/javascript"></script>
 <script src="{{ URL::asset('js/custom.js') }}" type="text/javascript"></script>
 

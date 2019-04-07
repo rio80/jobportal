@@ -11,11 +11,11 @@
 |
  */
 
+Auth::routes();
+
+Route::get('/', 'HomepageController@index');
+
 Route::get('generate-pdf', 'HomeController@generatePDF');
-
-Route::get('/', 'LoginController@index');
-
-Route::get('login', 'LoginController@login');
 
 Route::get('/dashboard', 'PelamarController@index')->name('dashboard');
 
@@ -54,4 +54,4 @@ Route::post('/sendmail', function(){
 
 // Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');

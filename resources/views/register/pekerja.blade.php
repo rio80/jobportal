@@ -70,7 +70,7 @@
                                 <a href="login.html" class="btn btn-info"><i class="far fa-user"></i> Masuk</a>
                             </div>
                         </form>
-                        {{!! Form::close()  !!}}
+                        {!! Form::close()  !!}
                     </div>
                 </div>
             </div>

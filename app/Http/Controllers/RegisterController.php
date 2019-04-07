@@ -9,6 +9,8 @@ use \App\Pelamar;
 use \App\PemberiKerja;
 use \App\Registrasi;
 use \App\User;
+use Illuminate\Support\Facades\Hash;
+
 
 class RegisterController extends Controller
 {
@@ -38,7 +40,7 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => $nama,
             'email' => $email,
-            'password' => bcrypt($password),
+            'password' => Hash::make($password),
         ]);
 
         $insertRegister = Registrasi::create([

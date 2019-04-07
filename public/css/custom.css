@@ -253,7 +253,7 @@
 }
 
 h4.h1-seo {
-    font-size: 100% !important;
+    font-size: 40px !important;
 }
 .logo-container .brand-logo {
     display: none;
@@ -331,9 +331,12 @@ h4.h1-seo {
     .logo-container .brand {
         display: none;
     }
+
     h4.h1-seo {
-        font-size: 100% !important;
+        font-size: 20px !important;
     }
+
+
 }
 
 @media (max-width: 768px) {
@@ -568,8 +571,8 @@ hr.divider {
     margin: 15px auto;
 }
 
-.h1-seo small {
-    font-size: 30%;
+small {
+    font-size: 50%;
     position: relative;
     top: -17px;
 }

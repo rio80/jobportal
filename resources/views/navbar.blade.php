@@ -14,19 +14,39 @@
             </button>
         </div>
         <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="{{ URL::asset('img/blurred-image-1.jpg') }}">
+
             <ul class="navbar-nav">
+
+                @guest
                 <li class="nav-item">
-                    <a class="nav-link btn btn-success" href="{{ url('register') }}">
-                        <i class='fas fa-user-plus'></i>
-                        <p>Daftar</p>
-                    </a>
+                    <a class="nav-link btn btn-info" href="{{ route('login') }}">{{ __('Login') }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-info" href="{{ url('login') }}">
-                        <i class='far fa-user'></i>
-                        <p>Masuk</p>
+                @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-success" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
+                @endif
+            @else
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link btn btn-success dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
                 </li>
+            @endguest
+
+
             </ul>
         </div>
     </div>
