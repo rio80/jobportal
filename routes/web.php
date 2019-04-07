@@ -11,13 +11,15 @@
 |
  */
 
+Auth::routes();
+
+Route::get('/', 'HomepageController@index');
+
 Route::get('generate-pdf', 'HomeController@generatePDF');
 
-Route::get('/', 'LoginController@index');
-
-Route::get('login', 'LoginController@login');
-
 Route::get('/dashboard', 'PelamarController@index')->name('dashboard');
+
+Route::get('/lowongan', 'LowonganController@index')->name('list-lowongan');
 
 Route::group(['prefix' => 'register'], function () {
 
@@ -25,19 +27,26 @@ Route::group(['prefix' => 'register'], function () {
 
     Route::get('/pekerja', 'RegisterController@registerPekerja')->name('pekerja');
 
+    Route::post('/insert-pekerja', 'RegisterController@insertRegisterPekerja')->name('insert-pekerja');
+
     Route::get('/perusahaan', 'RegisterController@registerPerusahaan')->name('perusahaan');
+
+    Route::post('/insert-perusahaan', 'RegisterController@insertRegisterPerusahaan')->name('insert-perusahaan');
+
+    Route::get('/verify/{token_verifikasi}', 'RegisterController@verifyUser') ->name('verify');
 });
 
-// Route::get('/', function(){
-//     return view('registrasi');
-// });
 
-// Route::post('/registrasi', function(){
-//     $email = Request::input('email');
-//     $registrasi = Request::input('nama');
-//     Mail::to($email)->send(new App\Mail\RegistrasiEmail($registrasi));
-//     return 'Registrasi Berhasil!';
-// });
+Route::get('/isiemail', function(){
+    return view('registrasi_email');
+});
+
+Route::post('/sendmail', function(){
+    $email = Request::input('email');
+    $registrasi = Request::input('nama');
+    Mail::to($email)->send(new App\Mail\RegistrasiEmail($registrasi));
+    return 'Registrasi Berhasil!';
+});
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -45,4 +54,4 @@ Route::group(['prefix' => 'register'], function () {
 
 // Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');

@@ -10,7 +10,9 @@ use App\Traits\Uuids;
 class User extends Authenticatable
 {
     use Notifiable;
+    use Uuids;
 
+    public $incrementing = false;
     /**
      * The attributes that are mass assignable.
      *
@@ -35,6 +37,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
+        // 'email_verified_at' => 'datetime',
         'email_verified_at' => 'datetime',
+
     ];
+
+    public function verifyUser()
+        {
+            return $this->hasOne('App\Registrasi');
+        }
 }
