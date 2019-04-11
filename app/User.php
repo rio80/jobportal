@@ -2,15 +2,16 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
+use App\Notifications\MyOwnResetPassword;
+use App\Traits\Uuids;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Traits\Uuids;
+use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable;
     use Uuids;
+    use Notifiable;
 
     public $incrementing = false;
     /**
@@ -43,7 +44,22 @@ class User extends Authenticatable
     ];
 
     public function verifyUser()
-        {
-            return $this->hasOne('App\Registrasi');
-        }
+    {
+        return $this->hasOne('App\Registrasi');
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $user = [
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => str_random(8),
+        ];
+        $userUpdate = User::where('email',$this->email)->first();
+        $userUpdate->password = $user['password'];
+        $userUpdate->save();
+
+        $this->notify(new MyOwnResetPassword($user));
+
+    }
 }

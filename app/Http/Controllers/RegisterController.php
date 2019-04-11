@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Mail;
 use \App\Mail\RegistrasiEmail;
 use \App\Pelamar;
 use \App\PemberiKerja;
 use \App\Registrasi;
 use \App\User;
-use Illuminate\Support\Facades\Hash;
-
 
 class RegisterController extends Controller
 {
@@ -22,6 +21,10 @@ class RegisterController extends Controller
     public function registerPekerja()
     {
         return view('register.pekerja');
+    }
+
+    public function resetPassword(){
+        return view('reset-password');
     }
 
     public function insertRegisterPekerja(Request $req)
@@ -47,7 +50,29 @@ class RegisterController extends Controller
             'user_id' => $user->id,
             'token_verifikasi' => sha1(time()),
         ]);
+        sendEmail($insert, $email, $insertRegister);
 
+    }
+
+    public function resendEmail(Request $req)
+    {
+
+        if ($req->isMethod('post')) {
+            $cekStatus = User::where('email', $req->email)->first();
+            if($cekStatus->status_verifikasi == 1){
+                echo "status sudah aktif";
+            }else{
+                $getToken = Registrasi::where('user_id', $cekStatus->id)->first();
+                \Mail::to($req->email)->send(new RegistrasiEmail($getToken));
+            }
+        } else {
+            return view('resend-email');
+
+        }
+    }
+
+    public function sendEmail($insert, $email, $insertRegister)
+    {
         if ($insert) {
             \Mail::to($email)->send(new RegistrasiEmail($insertRegister));
         }
@@ -57,9 +82,9 @@ class RegisterController extends Controller
     {
         $verifyUser = Registrasi::where('token_verifikasi', $token)->first();
         if (isset($verifyUser)) {
-            $status = $verifyUser->status_verifikasi;
+            $status = $verifyUser->user->status_verifikasi;
             if ($status !== "1") {
-                $verifyUser->status_verifikasi = "1";
+                $verifyUser->user->status_verifikasi = "1";
                 $verifyUser->user->email_verified_at = time();
                 $verifyUser->user->save();
                 $verifyUser->save();

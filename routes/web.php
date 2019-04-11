@@ -13,7 +13,17 @@
 
 Auth::routes();
 
+Auth::routes(['verify' => true]);
+
+Route::get('resend-email', 'RegisterController@resendEmail')->name('resend-email');
+
+Route::post('resend-email', 'RegisterController@resendEmail')->name('resend-email');
+
+Route::get('reset-password', 'RegisterController@resetPassword')->name('reset-password');
+
 Route::get('/', 'HomepageController@index');
+
+// Route::get('/reset-password', 'HomepageController@index');
 
 Route::get('generate-pdf', 'HomeController@generatePDF');
 
@@ -37,16 +47,16 @@ Route::group(['prefix' => 'register'], function () {
 });
 
 
-Route::get('/isiemail', function(){
-    return view('registrasi_email');
-});
+// Route::get('/isiemail', function(){
+//     return view('registrasi_email');
+// });
 
-Route::post('/sendmail', function(){
-    $email = Request::input('email');
-    $registrasi = Request::input('nama');
-    Mail::to($email)->send(new App\Mail\RegistrasiEmail($registrasi));
-    return 'Registrasi Berhasil!';
-});
+// Route::post('/sendmail', function(){
+//     $email = Request::input('email');
+//     $registrasi = Request::input('nama');
+//     Mail::to($email)->send(new App\Mail\RegistrasiEmail($registrasi));
+//     return 'Registrasi Berhasil!';
+// });
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -54,4 +64,4 @@ Route::post('/sendmail', function(){
 
 // Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
