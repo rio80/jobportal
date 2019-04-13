@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -26,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    // protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -64,12 +65,35 @@ class LoginController extends Controller
      * @param  mixed  $user
      * @return mixed
      */
-    protected function authenticated(Request $request, $user)
-    {
-        if (!$user->status_verifikasi === '1') {
+    protected function authenticated(
+        Request $req
+        // , $user
+    ) {
+        $cekLogin = (Auth::attempt(
+            [
+                'email' => $req->email,
+                'password' => $req->password,
+                'status_verifikasi' => 1,
+            ]
+            ));
+
+        if ($cekLogin) {
+        return redirect('dashboard');
+            // The user is active, not suspended, and exists.
+        }
+        else{
             auth()->logout();
-            return back()->with('warning', 'You need to confirm your account. We have sent you an activation code, please check your email.');
-          }
-          return redirect()->intended($this->redirectPath());
+            return back()->with('warning', 'Akun kamu belum di aktivasi,
+            buka link aktivasi kamu yang ada di email pendaftaran.');
+        }
+        // if($user->status_verifikasi !== '1'){
+        //     auth()->logout();
+        // return back()->with('warning', 'Akun kamu belum di aktivasi,
+        // buka link aktivasi kamu yang ada di email pendaftaran.');
+        // }
+        // // return redirect()->intended($this->redirectPath());
+        // return redirect('dashboard');
+
+
     }
 }

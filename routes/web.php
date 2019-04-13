@@ -15,19 +15,11 @@ Auth::routes();
 
 Auth::routes(['verify' => true]);
 
-Route::get('resend-email', 'RegisterController@resendEmail')->name('resend-email');
-
-Route::post('resend-email', 'RegisterController@resendEmail')->name('resend-email');
-
-Route::get('reset-password', 'RegisterController@resetPassword')->name('reset-password');
-
 Route::get('/', 'HomepageController@index');
 
 // Route::get('/reset-password', 'HomepageController@index');
 
 Route::get('generate-pdf', 'HomeController@generatePDF');
-
-Route::get('/dashboard', 'PelamarController@index')->name('dashboard');
 
 Route::get('/lowongan', 'LowonganController@index')->name('list-lowongan');
 
@@ -43,9 +35,29 @@ Route::group(['prefix' => 'register'], function () {
 
     Route::post('/insert-perusahaan', 'RegisterController@insertRegisterPerusahaan')->name('insert-perusahaan');
 
-    Route::get('/verify/{token_verifikasi}', 'RegisterController@verifyUser') ->name('verify');
+    Route::get('/verify/{token_verifikasi}', 'RegisterController@verifyUser')->name('verify');
+
+    Route::get('/resend-email', 'RegisterController@resendEmail')->name('resend-email');
+
+    Route::post('/resend-email', 'RegisterController@resendEmail')->name('resend-email');
+
+    Route::get('reset-password/{email}', 'RegisterController@resetPassword')->name('reset-password');
+
+    Route::post('reset-password/', 'RegisterController@resetPassword')->name('reset-send');
+
 });
 
+Route::group(['middleware' => ['web', 'auth', 'roles']], function () {
+    Route::group(['roles' => 'admin'], function () {
+
+    });
+    Route::group(['roles' => 'pelamar'], function () {
+        Route::get('/dashboard', 'PelamarController@index')->name('dashboard');
+    });
+    Route::group(['roles' => 'pengusaha'], function () {
+
+    });
+});
 
 // Route::get('/isiemail', function(){
 //     return view('registrasi_email');

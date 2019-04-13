@@ -15,7 +15,6 @@
             background-color: #ff5151;
             color: #000;
             font-size: 18px;
-            font-weight: bold;
             text-align: center;
             padding: 6px 8px 6px 8px;
         }
@@ -31,21 +30,20 @@
     <div class="kotak">
         Terima kasih sudah registrasi
         <hr>
-        Dengan diterimanya email ini, maka anda sudah terdaftar di system kami<br>
-        Untuk bisa login, maka anda harus aktivasi akun terlebih dahulu<br>
         @if(empty($registrasi['name']))
-        Berikut link untuk aktivasi :
-        <a href="{{  route('verify', ['token_verifikasi' => $registrasi->token_verifikasi ])}}">
-            Verify Email</a>
+            Dengan diterimanya email ini, maka anda sudah terdaftar di system kami<br>
+            Untuk bisa login, maka anda harus aktivasi akun terlebih dahulu<br>
+            Berikut link untuk aktivasi :
+            <a href="{{  route('verify', ['token_verifikasi' => $registrasi->token_verifikasi ])}}">
+                Verify Email
+            </a>
             <hr>
             <a href="www.jobportal.com" target="_blank">www.jobportal.com</a>
         @else
-            Password Hasil Reset : {{ $registrasi['password'] }} <br>
+            Password Hasil Reset : <u style="font-weight: bold;">{{ $registrasi['password'] }}</u><br>
             Copy password diatas, lalu Klik link dibawah untuk rubah Password anda : <br>
-            <a href="{{  route('reset-password')}}" target="_blank">www.jobportal.com</a>
+            <a href="{{  route('reset-password', ['email' => $registrasi['email']]) }}" target="_blank">www.jobportal.com</a>
         @endif
-
     </div>
 </body>
-
 </html>

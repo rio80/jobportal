@@ -23,8 +23,25 @@ class RegisterController extends Controller
         return view('register.pekerja');
     }
 
-    public function resetPassword(){
-        return view('reset-password');
+    public function resetPassword($email = null, Request $req)
+    {
+        if ($req->isMethod('post')) {
+
+            $cekUser = User::where('email', $req->email)->first();
+            // Membandingkan inputan User dengan Password Hashing di table users
+            if (Hash::check($req->password_reset, $cekUser->password)) {
+                $pass_new = $req->password_baru;
+                $cekUser->password = Hash::make($pass_new);
+                $cekUser->save();
+            } else {
+                return view('reset-password')->with('email', $req->email);
+            }
+            return redirect()->route('login');
+        }
+        return view('reset-password')->with('email', $email);
+
+        // ->where('password',$req->password_reset)
+
     }
 
     public function insertRegisterPekerja(Request $req)
@@ -50,7 +67,9 @@ class RegisterController extends Controller
             'user_id' => $user->id,
             'token_verifikasi' => sha1(time()),
         ]);
-        sendEmail($insert, $email, $insertRegister);
+        $this->sendEmail($insert, $email, $insertRegister);
+
+        return view('login');
 
     }
 
@@ -59,11 +78,12 @@ class RegisterController extends Controller
 
         if ($req->isMethod('post')) {
             $cekStatus = User::where('email', $req->email)->first();
-            if($cekStatus->status_verifikasi == 1){
-                echo "status sudah aktif";
-            }else{
+            if ($cekStatus->status_verifikasi == 1) {
+                return view('resend-email')->with('status', 'status sudah aktif');
+            } else {
                 $getToken = Registrasi::where('user_id', $cekStatus->id)->first();
                 \Mail::to($req->email)->send(new RegistrasiEmail($getToken));
+                return view('login');
             }
         } else {
             return view('resend-email');
