@@ -3,7 +3,10 @@
 
 <body class="index-page sidebar-collapse">
     @extends('navbar')
+
     <div class="wrapper">
+            @include('sweet::alert')
+
         <div class="page-header clear-filter" filter-color="orange">
             <div class="page-header-image" data-parallax="true" style="background-image:url({{ 'img/__header.jpg' }});">
             </div>

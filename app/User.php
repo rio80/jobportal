@@ -56,10 +56,10 @@ class User extends Authenticatable implements MustVerifyEmail
         $user = [
             'name' => $this->name,
             'email' => $this->email,
-            'password' => $str_random,
+            'password_old' => $str_random,
         ];
         $userUpdate = User::where('email',$this->email)->first();
-        $userUpdate->password = Hash::make($str_random);
+        $userUpdate->password_old = Hash::make($str_random);
         $userUpdate->save();
 
         $this->notify(new MyOwnResetPassword($user));

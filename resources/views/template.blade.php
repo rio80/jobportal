@@ -22,7 +22,7 @@
 
 <script src="{{ URL::asset('js/core/jquery.min.js') }}" type="text/javascript"></script>
 <script src="{{ URL::asset('js/custom.js') }}" type="text/javascript"></script>
-
+<script src="{{ URL::asset('js/sweetalert.min.js') }}"></script>
 
 </head>
 @yield('navbar')

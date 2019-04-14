@@ -29,8 +29,9 @@ class RegisterController extends Controller
 
             $cekUser = User::where('email', $req->email)->first();
             // Membandingkan inputan User dengan Password Hashing di table users
-            if (Hash::check($req->password_reset, $cekUser->password)) {
+            if (Hash::check($req->password_reset, $cekUser->password_old)) {
                 $pass_new = $req->password_baru;
+                $cekUser->password_old = $cekUser->password;
                 $cekUser->password = Hash::make($pass_new);
                 $cekUser->save();
             } else {
@@ -47,6 +48,7 @@ class RegisterController extends Controller
     public function insertRegisterPekerja(Request $req)
     {
         // dd($request->all());
+        $tipe = 1;
         $nama = $req->nama;
         $no_telp = $req->no_telp;
         $email = $req->email1;
@@ -61,6 +63,8 @@ class RegisterController extends Controller
             'name' => $nama,
             'email' => $email,
             'password' => Hash::make($password),
+            'tipe' => $tipe,
+            'role_id' => $tipe,
         ]);
 
         $insertRegister = Registrasi::create([
@@ -69,7 +73,7 @@ class RegisterController extends Controller
         ]);
         $this->sendEmail($insert, $email, $insertRegister);
 
-        return view('login');
+        return redirect('login');
 
     }
 
@@ -83,7 +87,7 @@ class RegisterController extends Controller
             } else {
                 $getToken = Registrasi::where('user_id', $cekStatus->id)->first();
                 \Mail::to($req->email)->send(new RegistrasiEmail($getToken));
-                return view('login');
+                return redirect('login');
             }
         } else {
             return view('resend-email');
@@ -129,6 +133,7 @@ class RegisterController extends Controller
         $no_telp = $req->no_telp;
         $email = $req->email;
         $password = $req->password;
+        $tipe = 2;
         $insert = PemberiKerja::create([
             'nama_pemberikerja' => $nama,
             'email1' => $email,

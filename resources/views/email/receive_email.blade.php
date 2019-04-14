@@ -40,7 +40,7 @@
             <hr>
             <a href="www.jobportal.com" target="_blank">www.jobportal.com</a>
         @else
-            Password Hasil Reset : <u style="font-weight: bold;">{{ $registrasi['password'] }}</u><br>
+            Password Hasil Reset : <u style="font-weight: bold;">{{ $registrasi['password_old'] }}</u><br>
             Copy password diatas, lalu Klik link dibawah untuk rubah Password anda : <br>
             <a href="{{  route('reset-password', ['email' => $registrasi['email']]) }}" target="_blank">www.jobportal.com</a>
         @endif
