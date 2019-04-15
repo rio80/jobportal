@@ -16,8 +16,13 @@
     <link href="{{ URL::asset('css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ URL::asset('css/main.css') }}" rel="stylesheet" />
     <link href="{{ URL::asset('css/custom.css') }}" rel="stylesheet" />
+    <link href="{{ URL::asset('css/floating-labels.css') }}" rel="stylesheet" />
+
+
 
 <script src="{{ URL::asset('js/core/jquery.min.js') }}" type="text/javascript"></script>
+<script src="{{ URL::asset('js/custom.js') }}" type="text/javascript"></script>
+<script src="{{ URL::asset('js/sweetalert.min.js') }}"></script>
 
 </head>
 @yield('navbar')

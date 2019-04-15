@@ -3519,6 +3519,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     margin-top:20px;
+    background-color: #f2f2f2;
 }
 
 .main {
@@ -5547,9 +5548,9 @@ img {
 }
 
 .profile-page .content {
-    max-width: 450px;
+    max-width: 95%;
     margin: 0 auto;
-    color: #FFFFFF;
+    color: rgb(10, 10, 10);
 }
 
 .profile-page .content .social-description {
@@ -7156,7 +7157,7 @@ img {
         margin-right: 0;
     }
     .footer .copyright {
-        text-align: center;
+        text-align: right;
     }
     .section-nucleo-icons .icons-container i {
         font-size: 30px;
@@ -7203,6 +7204,9 @@ img {
 @media screen and (max-width: 517px) {
     .alert .alert-icon {
         margin-top: 10px;
+    }
+    .profile-page .content {
+        font-size: 75%;
     }
 }
 
