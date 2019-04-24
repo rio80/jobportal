@@ -17,6 +17,8 @@ Auth::routes(['verify' => true]);
 
 Route::get('/', 'HomepageController@index');
 
+Route::get('showProv', 'HomepageController@showProv')->name('show-prov');
+
 // Route::get('/reset-password', 'HomepageController@index');
 
 Route::get('generate-pdf', 'HomeController@generatePDF');
@@ -53,6 +55,15 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function () {
     });
     Route::group(['roles' => 'pelamar'], function () {
         Route::get('/dashboard', 'PelamarController@index')->name('dashboard');
+        Route::get('/print_cv','PelamarController@print_cv')->name('print_cv');
+        Route::get('/resume','PelamarController@resume')->name('resume');
+        Route::get('/pendidikan_form','PelamarController@pendidikan_form')->name('pendidikan_form');
+        Route::get('/pendidikan_view','PelamarController@pendidikan_view')->name('pendidikan_view');
+        Route::get('/profil','PelamarController@profil')->name('profil');
+        Route::get('/pengalaman','PelamarController@pengalaman')->name('pengalaman');
+        Route::get('/pengalaman_view','PelamarController@pengalaman_view')->name('pengalaman_view');
+        Route::get('/menu_pelamar','PelamarController@menu_resume')->name('menu_pelamar');
+
     });
     Route::group(['roles' => 'pengusaha'], function () {
 

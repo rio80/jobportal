@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Mail;
 use \App\Mail\RegistrasiEmail;
-use \App\Pelamar;
-use \App\PemberiKerja;
-use \App\Registrasi;
-use \App\User;
+use \App\Models\Pelamar;
+use \App\Models\PemberiKerja;
+use \App\Models\Registrasi;
+use \App\Models\User;
 
 class RegisterController extends Controller
 {
@@ -63,7 +63,6 @@ class RegisterController extends Controller
             'name' => $nama,
             'email' => $email,
             'password' => Hash::make($password),
-            'tipe' => $tipe,
             'role_id' => $tipe,
         ]);
 
@@ -81,10 +80,29 @@ class RegisterController extends Controller
     {
 
         if ($req->isMethod('post')) {
+
             $cekStatus = User::where('email', $req->email)->first();
-            if ($cekStatus->status_verifikasi == 1) {
-                return view('resend-email')->with('status', 'status sudah aktif');
+
+            if (!isset($cekStatus)) {
+
+                alert()->error(
+                    'Email Tersebut tidak Terdaftar',
+                    'Verifikasi Email')
+                    ->persistent('Close');
+
+                return view('resend-email');
+
+            } else if ($cekStatus->status_verifikasi == 1) {
+
+                alert()->info(
+                    'Email Anda sudah Aktif',
+                     'Verifikasi Email')
+                     ->persistent('Close');
+
+                return view('resend-email');
+
             } else {
+
                 $getToken = Registrasi::where('user_id', $cekStatus->id)->first();
                 \Mail::to($req->email)->send(new RegistrasiEmail($getToken));
                 return redirect('login');
@@ -112,12 +130,10 @@ class RegisterController extends Controller
                 $verifyUser->user->email_verified_at = time();
                 $verifyUser->user->save();
                 $verifyUser->save();
-                $status = "Your e-mail is verified. You can now login.";
-            } else {
-                $status = "Your e-mail is already verified. You can now login.";
+                $status = "Email Kamu sudah disetujui, sekarang kamu dapat Login.";
             }
         } else {
-            return redirect('/login')->with('warning', "Sorry your email cannot be identified.");
+            return redirect('/login')->with('warning', "Maaf, Email tidak bisa di identifikasi");
         }
         return redirect('/login')->with('status', $status);
     }

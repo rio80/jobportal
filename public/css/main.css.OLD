@@ -4290,7 +4290,7 @@ Created using IcoMoon - icomoon.io
     background-color: transparent;
     border: 1px solid transparent;
     border-radius: 30px;
-    font-size: 16px;
+    font-size: 14px;
     padding: 11px 23px;
     line-height: 1.5;
 }
@@ -5272,6 +5272,7 @@ img {
 
 .footer {
     padding: 24px 0;
+    /* height: 80px; */
 }
 
 .footer.footer-default {
@@ -5381,6 +5382,7 @@ img {
     max-width: 350px;
     margin: 0 auto;
     height:400px;
+
 }
 
 .card-signup .card-header {
@@ -5820,7 +5822,7 @@ img {
 }
 
 .section {
-    padding: 70px 0;
+    padding: 20px 0;
     position: relative;
     background: #FFFFFF;
 }
@@ -5863,7 +5865,7 @@ img {
 
 .not-landing {
     min-height: 100vh;
-    max-height: 100%;
+    max-height: 999px;
 }
 
 .page-header>.content {
@@ -5914,8 +5916,8 @@ img {
 
 .page-header footer {
     position: absolute;
-    width: 100%;
     bottom: 0;
+    width: 100%;
 }
 
 .page-header .container {
@@ -7136,9 +7138,9 @@ img {
     .nav-tabs {
         display: inline-block;
         width: 100%;
-        /*padding-left: 100px;
+        padding-left: 100px;
         padding-right: 100px;
-        text-align: center;*/
+        text-align: center;
     }
     .nav-tabs .nav-item>.nav-link {
         margin-bottom: 5px;
@@ -7257,17 +7259,3 @@ img {
     }
 }
 
-.bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-@media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-    }
-}

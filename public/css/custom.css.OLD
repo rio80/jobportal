@@ -252,6 +252,16 @@
     width: 100%;
 }
 
+h4.h1-seo {
+    font-size: 40px !important;
+}
+.logo-container .brand-logo {
+    display: none;
+}
+.large-only {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .parallax .parallax-image {
         width: 100%;
@@ -261,15 +271,6 @@
     .parallax .parallax-image img {
         height: 100%;
         width: auto;
-    }
-    h4.h1-seo {
-        font-size: 40px !important;
-    }
-    .logo-container .brand-logo {
-        display: none;
-    }
-    .large-only {
-        display: none;
     }
 }
 
@@ -330,9 +331,12 @@
     .logo-container .brand {
         display: none;
     }
+
     h4.h1-seo {
         font-size: 20px !important;
     }
+
+
 }
 
 @media (max-width: 768px) {
@@ -575,162 +579,4 @@ small {
 
 footer .container {
     max-width: 100%;
-}
-
-.table-outspace {
-    border: 1px solid #bbbbbb;
-    padding: 3rem;
-    margin-bottom: 1rem;
-    background: repeating-linear-gradient(
-        45deg,
-        #eeeeee,
-        #eeeeee 3rem,
-        #ffffff 3rem,
-        #ffffff 6rem
-        );
-}
-
-.table-cv {
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 1rem;
-    background-color: #ffffff;
-    border: 1px solid #bbbbbb;
-}
-
-.table-cv td {
-    padding: 0.25rem 1rem;
-    text-align: left;
-    vertical-align: top;
-}
-
-.table-cv caption {
-    padding-bottom: 0;
-}
-
-.foto-cv {
-    vertical-align: top;
-}
-
-.cv-n-1 {
-    width: 1%;
-}
-
-.cv-n-2 {
-    width: 5%;
-}
-
-.cv-n-3 {
-    width: 1%;
-}
-
-.cv-n-4 {
-    width: 54%;
-}
-
-.cv-n-5 {
-    width: 39%;
-}
-
-.cv-n-6 {
-    width: 61%;
-}
-
-.subtitle-cv {
-    width: 100%;
-}
-
-.subtitle-cv td {
-    padding: 0;
-}
-
-.subtitle-cv hr {
-    margin-top: 0%;
-}
-
-.table-resume {
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 1rem;
-    background-color: #ffffff;
-    border-spacing: 9px;
-    border-collapse: separate;
-}
-
-.table-resume td {
-    padding: 0;
-}
-
-.table-resume td .card {
-    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.2);
-    font-size: 85%;
-    margin-bottom: 5px;
-    text-align: left;
-}
-
-.table-resume td .card p {
-    font-size: 100%;
-    font-weight: 400;
-    margin-top: 1rem;
-}
-
-.table-resume td .card .card-header {
-    border-bottom: 1px solid #bbbbbb;
-    padding: 5px 0;
-}
-
-.table-resume td table {
-    width: 100%;
-    max-width: 100%;
-    background-color: #ffffff;
-    margin-bottom: 0;
-    border-spacing: 0;
-    border-collapse: separate;
-}
-
-.table-resume td table td {
-    padding: 5px;
-}
-
-.table-resume td table td .profile-page .photo-container {
-    width: 70%;
-    height: auto;
-    margin-top: 0;
-    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.3);
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-/* Style all font awesome icons */
-.table-resume td table td .fab {
-    padding: 0.5rem;
-    width: 2.15rem;
-    height: 2.15rem;
-    font-size: 150%;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 50%;
-}
-
-/* Add a hover effect if you want */
-.table-resume td table td .fab:hover {
-    opacity: 0.7;
-}
-
-/* Set a specific color for each brand */
-
-/* Facebook */
-.fa-facebook-f {
-    background: #3B5998;
-    color: white;
-}
-
-/* Twitter */
-.fa-twitter {
-    background: #55ACEE;
-    color: white;
-}
-
-label {
-    margin-bottom: 0 !important;
 }
