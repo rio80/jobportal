@@ -28,6 +28,7 @@
 @yield('navbar')
 @yield('page')
 
+@include('sweet::alert')
 
 <footer class="footer footer-default">
     <div class="container">

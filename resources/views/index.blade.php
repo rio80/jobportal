@@ -5,8 +5,6 @@
     @extends('navbar')
 
     <div class="wrapper">
-            @include('sweet::alert')
-
         <div class="page-header clear-filter" filter-color="orange">
             <div class="page-header-image" data-parallax="true" style="background-image:url({{ 'img/__header.jpg' }});">
             </div>
@@ -14,7 +12,7 @@
                 <div class="brand">
                     <h4 class="h1-seo">JobSeekers Company<br><small>Media sempurna untuk pencari kerja</small></h4>
                 </div>
-
+                {!! Session::get('sweet_alert.text') !!}
                 <div class="category category-absolute">
                     <div class="card">
                         <div class="card-body" data-background-color="black">
@@ -130,5 +128,7 @@
             </div>
         </div>
     </div>
-
+    <script>
+       
+    </script>
     @endsection

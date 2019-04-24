@@ -14,6 +14,10 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $this->assertTrue(true);
+        $panjang = 5;
+        $lebar = 10;
+        $hasil = $panjang * $lebar;
+        
+        $this->getNumAssertions($hasil);
     }
 }

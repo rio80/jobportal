@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Alert;
+
 class HomepageController extends Controller
 {
-    public function index(){
-        Alert::success('Welcome', 'Demo success alert')->persistent("Ok");
+    public function index()
+    {
+        alert()->success('Success Message', 'Optional Title');
         return view('index');
     }
 }
