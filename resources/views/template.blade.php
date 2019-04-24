@@ -17,19 +17,23 @@
     <link href="{{ URL::asset('css/main.css') }}" rel="stylesheet" />
     <link href="{{ URL::asset('css/custom.css') }}" rel="stylesheet" />
     <link href="{{ URL::asset('css/floating-labels.css') }}" rel="stylesheet" />
+    <link href="{{ URL::asset('css/sidebar.css') }}" rel="stylesheet" />
 
 
 
-<script src="{{ URL::asset('js/core/jquery.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('js/custom.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('js/sweetalert.min.js') }}"></script>
+    <script src="{{ URL::asset('js/core/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ URL::asset('js/custom.js') }}" type="text/javascript"></script>
+    <script src="{{ URL::asset('js/sweetalert.min.js') }}"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://select2.github.io/select2-bootstrap-theme/css/select2-bootstrap.css">
 
 </head>
 @yield('navbar')
 @yield('page')
 
 @include('sweet::alert')
-
 <footer class="footer footer-default">
     <div class="container">
         <nav>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\LogLogin;
 use Alert;
 
 class LoginController extends Controller
@@ -68,7 +69,7 @@ class LoginController extends Controller
      */
     protected function authenticated(
         Request $req
-        // , $user
+        , $user
     ) {
         $cekLogin = (Auth::attempt(
             [
@@ -79,6 +80,10 @@ class LoginController extends Controller
             ));
 
         if ($cekLogin) {
+
+            $log = LogLogin::create([
+                'id_user' => $user->id,
+            ]);
         return redirect('dashboard');
             // The user is active, not suspended, and exists.
         }

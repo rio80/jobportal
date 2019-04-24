@@ -7,7 +7,7 @@
         <div class="page-header-image" style="background-image:url({{ 'img/white-solid.jpg' }}); z-index: 0;"></div>
         <div class="container" style="text-align: right;">
             <div class="card-body" style="background: white;min-width:300px;width:60%;margin:0px auto">
-                <form method="POST" action="{{ route('resend-email') }}" class="form-vertical">
+                <form method="POST" action="{{ route('resend-email') }}" class="form-vertical" id="form">
                     @csrf
                     <div class="card-header text-center">
                         <h5 class="card-title title-up">Kirim Ulang Email</h5>
@@ -15,7 +15,7 @@
                         {!! \Session::get('warning') !!}
                         @endif
                     </div>
-                    <div class="card-body" style="padding:0px">
+                    <div class="card-body" style="padding:0px;">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
