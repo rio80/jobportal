@@ -10,4 +10,6 @@ $(document).ready(function () {
             $('#btn_submit_reg').attr('disabled', true);
         }
     });
+
+   
 });

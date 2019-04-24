@@ -17,7 +17,7 @@
                         {{-- <form class="form" action="{{ route('insert-pekerja') }}" method="POST">
                             {{ csrf_field() }} --}}
                             <div class="card-header text-center">
-                                <h4 class="card-title title-up">Daftar<br><small>sebagai pencari kerja</small></h4>
+                                <h4 class="card-title title-up" style="padding-bottom:-20px">Daftar<br><small>sebagai pencari kerja</small></h4>
                             </div>
                             <div class="card-body">
                                 <div class="input-group">
