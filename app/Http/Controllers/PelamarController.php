@@ -20,8 +20,8 @@ class PelamarController extends Controller
         return view('pelamar.print_cv');
     }
 
-    public function resume(){
-        return view('pelamar.resume');
+    public function lowongan_detail(){
+        return view('pelamar.lowongan_detail');
     }
 
     public function pendidikan_form(){

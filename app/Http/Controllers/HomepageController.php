@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Alert;
 use App\Models\Kota;
 use App\Models\Provinsi;
 use Illuminate\Support\Facades\DB;
@@ -10,7 +11,9 @@ class HomepageController extends Controller
 {
     public function index()
     {
+
         $dataProv = $this->showProv();
+        alert()->success('Success Message', 'Optional Title');
         return view('index', compact('dataProv'));
     }
 

@@ -49,3 +49,5 @@ let mix = require('laravel-mix');
 //   terser: {}, // Terser-specific options. https://github.com/webpack-contrib/terser-webpack-plugin#options
 //   postCss: [] // Post-CSS options: https://github.com/postcss/postcss/blob/master/docs/plugins.md
 // });
+
+mix.js('node_modules/sweetalert/dist/sweetalert.min.js', 'public/js/');
