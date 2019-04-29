@@ -14,17 +14,17 @@
         name='viewport' />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet">
-    <link href="{{ URL::asset('css/bootstrap.min.css') }}" rel="stylesheet" />
-    <link href="{{ URL::asset('css/main.css') }}" rel="stylesheet" />
-    <link href="{{ URL::asset('css/custom.css') }}" rel="stylesheet" />
-    <link href="{{ URL::asset('css/floating-labels.css') }}" rel="stylesheet" />
-    <link href="{{ URL::asset('css/sidebar.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/floating-labels.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet" />
 
 
 
-    <script src="{{ URL::asset('js/core/jquery.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('js/custom.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('js/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('js/core/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/custom.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <link rel="stylesheet" type="text/css"
@@ -57,12 +57,12 @@
 
 {{-- </div> --}}
 
-<script src="{{ URL::asset('js/core/popper.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('js/core/bootstrap.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('js/plugins/bootstrap-switch.js') }}"></script>
-<script src="{{ URL::asset('js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('js/plugins/bootstrap-datepicker.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('js/now-ui-kit.js?v=1.2.0') }}" type="text/javascript"></script>
+<script src="{{ asset('js/core/popper.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/core/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/plugins/bootstrap-switch.js') }}"></script>
+<script src="{{ asset('js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/plugins/bootstrap-datepicker.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/now-ui-kit.js?v=1.2.0') }}" type="text/javascript"></script>
 </body>
 
 </html>
