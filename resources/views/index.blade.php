@@ -5,8 +5,6 @@
     @extends('navbar')
 
     <div class="wrapper">
-<<<<<<< HEAD
-=======
         <script>
             $(document).ready(function () {
                 $.fn.select2.defaults.set("theme", "bootstrap");
@@ -20,37 +18,9 @@
             });
 
         </script>
->>>>>>> 0019ee1694405256af99e6d26632da2a9728412b
         <div class="page-header clear-filter" filter-color="orange">
                  <div class="page-header-image" data-parallax="true" style="background-image:url({{ 'img/__header.jpg' }});">
             </div>
-<<<<<<< HEAD
-            <div class="container">
-                <div class="brand">
-                    <h4 class="h1-seo">JobSeekers Company<br><small>Media sempurna untuk pencari kerja</small></h4>
-                </div>
-                {!! Session::get('sweet_alert.text') !!}
-                <div class="category category-absolute">
-                    <div class="card">
-                        <div class="card-body" data-background-color="black">
-                            <div class="tab-content text-center">
-                                <div class="tab-pane active" id="pane1" role="tabpanel">
-                                    <div class="col-sm-12 col-lg-12">
-                                        <div class="row">
-                                            <div class="col-sm-12 col-lg-5">
-                                                <div class="form-group">
-                                                    <div class="input-group no-border">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-map"></i>
-                                                            </span>
-                                                        </div>
-                                                        <select class="form-control" id="inputGroupSelect01">
-                                                            <option selected>Lokasi...</option>
-                                                            <option value="1">One</option>
-                                                            <option value="2">Two</option>
-                                                            <option value="3">Three</option>
-=======
                 <div class="container">
                     <div class="brand">
                         <h4 class="h1-seo">JobSeekers Company<br><small>Media sempurna untuk pencari kerja</small></h4>
@@ -72,7 +42,6 @@
                                                              <select class="form-control js-states"
                                                             id="inputGroupSelectLokasi">
                                                             <option selected>Cari Lokasi Berdasarkan Kota</option>
->>>>>>> 0019ee1694405256af99e6d26632da2a9728412b
                                                         </select>
                                                         </div>
                                                     </div>
@@ -168,13 +137,6 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
-    </div>
-    <script>
-       
-    </script>
-=======
 
 
->>>>>>> 0019ee1694405256af99e6d26632da2a9728412b
     @endsection

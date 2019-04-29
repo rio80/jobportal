@@ -50,7 +50,7 @@ class MyOwnResetPassword extends Notification
                     // ->action('Notification Action', url('/'.$this->token))
                     // ->line('Thank you for using our application!');
                     ->from('admin@jobportal.com', 'Admin')
-                    ->subject('Welcome to the job Portal')
+                    ->subject('Reset Password JobpORTAL')
                     ->markdown('email.receive_email', ['registrasi' => $this->user]);
     }
 

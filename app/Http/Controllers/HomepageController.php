@@ -12,9 +12,8 @@ class HomepageController extends Controller
     public function index()
     {
 
-        alert()->success('Success Message', 'Optional Title');
-        return view('index');
         $dataProv = $this->showProv();
+        alert()->success('Success Message', 'Optional Title');
         return view('index', compact('dataProv'));
     }
 
