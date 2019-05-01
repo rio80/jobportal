@@ -20,10 +20,9 @@ Auth::routes(['verify' => true]);
 
 Route::group(['prefix' => 'dynamic-dependent'], function () {
     Route::get('/', 'LatDynamicDependentController@index')->name('dynamic-dependent');
-    Route::post('/fetch', 'LatDynamicDependentController@fetch')->name('fetch');
+    
 
 });
-Route::post('/get-lokasi', 'LatDynamicDependentController@getLokasi')->name('getLokasi');
 Route::get('/', 'HomepageController@index');
 
 Route::get('showProv', 'HomepageController@showProv')->name('show-prov');
@@ -69,10 +68,12 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function () {
         Route::get('/pendidikan_form','PelamarController@pendidikan_form')->name('pendidikan_form');
         Route::get('/pendidikan_view','PelamarController@pendidikan_view')->name('pendidikan_view');
         Route::get('/profil','PelamarController@profil')->name('profil');
-        Route::get('/pengalaman','PelamarController@pengalaman')->name('pengalaman');
+        Route::get('/pengalaman','PelamarController@pengalaman_long')->name('pengalaman_long');
         Route::get('/pengalaman_view','PelamarController@pengalaman_view')->name('pengalaman_view');
         Route::get('/menu_pelamar','PelamarController@menu_resume')->name('menu_pelamar');
-
+        Route::post('/fetch_lokasi', 'PelamarController@fetch_lokasi')->name('fetch_lokasi');
+        Route::post('/insert-pelamar', 'PelamarController@insert_pelamar')->name('insert-pelamar');
+        
     });
     Route::group(['roles' => 'pengusaha'], function () {
 
