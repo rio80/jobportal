@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Provinsi as prov;
 use App\Models\Kota as kota;
@@ -39,7 +40,17 @@ class PelamarController extends Controller
 
     public function profil(){
         $provList = prov::select()->get();
-        return view('pelamar.form_profil', compact('provList'));
+
+        $stat_nikah = DB::table('tb_ref_statusnikah')
+                    ->select('nama', 'id')
+                    ->get();
+
+        $stat_kerja = DB::table('tb_ref_statuskerja')
+                    ->select('nama', 'id')
+                    ->get();
+
+        return view('pelamar.form_profil', 
+        compact('provList', 'stat_nikah','stat_kerja'));
     }
 
     public function pengalaman_short(){
@@ -57,6 +68,8 @@ class PelamarController extends Controller
     public function menu_resume(){
         return view('pelamar.menu_pelamar');
     }
+
+
 
     public function fetch_lokasi(Request $req){
         $select = $req->get('select');

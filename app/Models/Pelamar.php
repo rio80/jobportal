@@ -18,4 +18,6 @@ class Pelamar extends Model
         'kode_prov', 'kode_kota', 'kode_kec', 'kode_kel', 'status_nikah', 'status_bekerja',
         'telp1', 'telp_wa', 'email1', 'email2', 'pasfoto', 'deskripsi_diri', 'password'
     ];
+
+    
 }

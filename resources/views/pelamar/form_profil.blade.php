@@ -29,13 +29,16 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="namalengkap">Nama Lengkap<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="namalengkap"
-                                        placeholder="Isi nama lengkap anda">
+                                    {!! Form::label('namalengkap', 
+                                    'Nama Lengkap <span class="text-danger">*</span>', 
+                                    ['class'=> 'control-label'],
+                                     false) !!}
+                                     {!! Form::text('namalengkap', '',['class'=> 'form-control', 'placeholder' => 'Isi nama lengkap anda']) !!}
+                                    
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="uploadfoto">Upload Foto Profil</label>
-                                    <input type="file" class="form-control" id="uploadfoto" placeholder="...">
+                                    {!! Form::label('uploadfoto', 'Upload Foto Profil',['class' => 'control-label']) !!}
+                                    {!! Form::file('uploadfoto', ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                         </div>
@@ -48,52 +51,34 @@
                                         <div class="col-md-12">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <label for="tgllahir">Tanggal lahir <span
-                                                            class="text-danger">*</span></label>
+                                                    {!! Form::label('tgllahir', 'Tanggal lahir <span
+                                                    class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <select id="tanggal" class="form-control input-lg">
-                                                        <option selected value="">Tanggal</option>
-                                                        @foreach (range(0, 31) as $tgl)
-                                                        <option value={{ $tgl }}>
-                                                            {{ $tgl }}
-                                                        </option>
-                                                        @endforeach
-
-                                                    </select>
+                                                    {{ Form::select('tanggal', range(1, 31), null, ['class' => 'form-control', 'id' => 'tanggal']) }}
                                                 </div>
                                                 <div class="col-md-4">
-                                                    {{-- <label for="bulan">&nbsp;</label> --}}
-                                                    <select id="bulan" class="form-control">
-                                                        <option selected value="">Bulan</option>
-                                                        @foreach ($bulan as $key => $item)
-                                                        <option value={{ $key }}>
-                                                            {{ $item }}
-                                                        </option>
-                                                        @endforeach
-                                                    </select>
+                                                    {!! Form::select('bulan', $bulan, null, ['class' => 'form-control', 'id' => 'bulan']) !!}
                                                 </div>
                                                 <div class="col-md-4">
-                                                    {{-- <label for="input2">&nbsp;</label> --}}
-                                                    <select id="tahun" class="form-control">
-                                                        <option selected value="">Tahun</option>
-                                                        @foreach (range(1970, date('Y')-15) as $thn)
-                                                        <option value={{ $thn }}>
-                                                            {{ $thn }}
-                                                        </option>
-                                                        @endforeach
-                                                    </select>
+                                                    {!! Form::select('tahun', range(1970, date('Y')-15), null, ['class' => 'form-control', 'id' => 'tahun']) !!}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="jekel">Jenis kelamin</label>
-                                    <select id="jekel" class="form-control">
-                                        <option selected>Laki-laki</option>
-                                        <option>Perempuan</option>
-                                    </select>
+                                    {!! Form::label('jekel', 'Jenis Kelamin', ['class' => 'control-label']) !!}
+                                    {!! Form::select('jekel', 
+                                    [
+                                        'Laki-laki' => 'Laki-laki', 
+                                        'Perempuan' => 'Perempuan'
+                                    ], 
+                                        'Laki-laki', 
+                                    [
+                                        'class' => 'form-control', 
+                                        'id' => 'jekel'
+                                    ]) !!}
                                 </div>
                             </div>
                         </div>
@@ -105,32 +90,29 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label for="nohp_wa">Nomor ponsel <span class="text-danger">*</span> <a
-                                                    href="#"><span
-                                                        class="fas fa-question-circle text-info"></a></span></label>
-                                            <select id="kode_hp_indo_wa" class="form-control">
-                                                <option selected>+62 (Indonesia)</option>
-                                            </select>
+                                            
+                                            {!! Form::label('nohp_wa', 'Nomor ponsel <span class="text-danger">*</span> <a
+                                            href="#"><span
+                                                class="fas fa-question-circle text-info"></a></span>', ['class' => 'control-label'], false) !!}
+
+                                            {!! Form::select('kode_hp_indo_wa', ['+62 (Indonesia)'],'+62 (Indonesia)', ['class' => 'form-control']) !!}
                                         </div>
                                         <div class="col-md-12" style="margin-top: 0.5rem;">
-                                            <input type="text" class="form-control" id="nohp_wa" placeholder="Nomor">
+                                            {!! Form::text('nohp_wa', null, ['class' => 'form-control', 'id' =>'nohp_wa', 'placeholder' => 'Masukan No HP']) !!}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label for="nohp">Nomor telepon lain</label>
-                                            <select id="kode_hp_indo" class="form-control">
-                                                <option selected>+62 (Indonesia)</option>
-                                            </select>
+                                            {!! Form::label('nohp', 'Nomor telepon lain', ['class' => 'control-label']) !!}
+
+                                            {!! Form::select('kode_hp', ['+62 (Indonesia)'],'+62 (Indonesia)', ['class' => 'form-control', 'id'=> 'nohp']) !!}
                                         </div>
                                         <div class="col-md-12" style="margin-top: 0.5rem;">
                                             <div class="row">
-                                                
                                                 <div class="col-md-12">
-                                                    <input type="text" class="form-control" id="nohp"
-                                                        placeholder="Nomor">
+                                                        {!! Form::text('nohp', null, ['class' => 'form-control', 'id' =>'nohp', 'placeholder' => 'Masukan No HP lain']) !!}
                                                 </div>
                                             </div>
                                         </div>
