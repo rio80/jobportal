@@ -12,6 +12,12 @@
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
+    <script src="{{ asset('jquery-ui-1.12.1.custom/external/jquery/jquery.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('jquery-ui-1.12.1.custom/jquery-ui.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/custom.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('select2/js/select2.min.js') }}"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
@@ -19,16 +25,17 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/floating-labels.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet" />
+    <link href="{{ asset('jquery-ui-1.12.1.custom/jquery-ui.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('jquery-ui-1.12.1.custom/jquery-ui.theme.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('jquery-ui-1.12.1.custom/jquery-ui.structure.min.css') }}" rel="stylesheet" />
 
 
 
-    <script src="{{ asset('js/core/jquery.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/custom.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+
+    <link href="{{ asset('select2/css/select2.min.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css"
-        href="https://select2.github.io/select2-bootstrap-theme/css/select2-bootstrap.css">
+        href="{{ asset('select2/css/select2-bootstrap.css') }}">
 
 </head>
 @yield('navbar')

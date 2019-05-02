@@ -53,11 +53,7 @@ class RegisterController extends Controller
         $no_telp = $req->no_telp;
         $email = $req->email1;
         $password = $req->password;
-        $insert = Pelamar::create([
-            'nama' => $nama,
-            'email1' => $email,
-            'telp1' => $no_telp,
-        ]);
+
 
         $user = User::create([
             'name' => $nama,
@@ -70,6 +66,14 @@ class RegisterController extends Controller
             'user_id' => $user->id,
             'token_verifikasi' => sha1(time()),
         ]);
+
+        $insert = Pelamar::create([
+            'nama' => $nama,
+            'email1' => $email,
+            'telp1' => $no_telp,
+            'no_reg' => $insertRegister->id,
+        ]);
+
         $this->sendEmail($insert, $email, $insertRegister);
 
         return redirect('login');
