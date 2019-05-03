@@ -178,6 +178,8 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
 
+        App\Providers\FormProfilServiceProvider::class,
+
     ],
 
     /*

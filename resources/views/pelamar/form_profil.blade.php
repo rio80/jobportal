@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{ route('insert-pelamar') }}" method="post" id="insertPelamar" name="insertPelamar">
+                <form action="{{ route('insert-profil') }}" method="post" id="insertPelamar" name="insertPelamar">
                     @csrf
                     <div class="form-group text-left">
                         <div class="col-md-12">
@@ -33,12 +33,17 @@
                                     'Nama Lengkap <span class="text-danger">*</span>', 
                                     ['class'=> 'control-label'],
                                      false) !!}
-                                     {!! Form::text('namalengkap', '',['class'=> 'form-control', 'placeholder' => 'Isi nama lengkap anda']) !!}
+                                     {!! Form::text('namalengkap', '',
+                                     [
+                                         'class'=> 'form-control', 
+                                         'placeholder' => 'Isi nama lengkap anda'
+                                    ]) !!}
                                     
                                 </div>
                                 <div class="col-md-6">
                                     {!! Form::label('uploadfoto', 'Upload Foto Profil',['class' => 'control-label']) !!}
-                                    {!! Form::file('uploadfoto', ['class' => 'form-control']) !!}
+                                    {!! Form::file('uploadfoto', 
+                                    ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                         </div>
@@ -125,16 +130,21 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="alamatktp1">Alamat sesuai KTP</label>
-                                    <input type="text" class="form-control" id="alamatktp1" placeholder="Alamat KTP 1">
+                                    {!! Form::label('alamatktp1', 'Alamat sesuai KTP', ['class' => 'control-label']) !!}
+ 
+                                    {!! Form::text('alamatktp1', null, ['class' => 'form-control' , 'id' => 'alamatktp1', 'placeholder' => 'Alamat KTP 1']) !!}
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="alamatktp2">&nbsp;</label>
-                                    <input type="text" class="form-control" id="alamatktp2" placeholder="Alamat KTP 2">
+             
+                                    {!! Form::label('alamatktp2', null, ['class' => 'control-label']) !!}
+ 
+                                    {!! Form::text('alamatktp2', null, ['class' => 'form-control' , 'id' => 'alamatktp2', 'placeholder' => 'Alamat KTP 2']) !!}
                                 </div>
                                 <div class="col-md-6">
-                                        <label for="kodepos">Kode pos sesuai KTP</label>
-                                        <input type="text" class="form-control" id="kodepos" placeholder="Kode pos">
+
+                                        {!! Form::label('kodeposktp', 'Kode pos sesuai KTP', ['class' => 'control-label']) !!}
+ 
+                                        {!! Form::text('kodeposktp', null, ['class' => 'form-control' , 'id' => 'kodepos', 'placeholder' => 'Kode pos KTP']) !!}
                                     </div>
                             </div>
                         </div>
@@ -143,18 +153,21 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="alamatdomisili1">Alamat sesuai Domisili</label>
-                                    <input type="text" class="form-control" id="alamatdomisili1"
-                                        placeholder="Alamat Domisili 1">
+    
+                                    {!! Form::label('alamatdomisili1', 'Alamat sesuai Domisili', ['class' => 'control-label']) !!}
+ 
+                                    {!! Form::text('alamatdomisili1', null, ['class' => 'form-control' , 'id' => 'alamatdomisili1', 'placeholder' => 'Alamat Domisili 1']) !!}
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="alamatdomisili2">&nbsp;</label>
-                                    <input type="text" class="form-control" id="alamatdomisili2"
-                                        placeholder="Alamat Domisili 2">
+             
+                                    {!! Form::label('alamatdomisili2', 'Alamat sesuai Domisili', ['class' => 'control-label']) !!}
+ 
+                                    {!! Form::text('alamatdomisili2', null, ['class' => 'form-control' , 'id' => 'alamatdomisili2', 'placeholder' => 'Alamat Domisili 2']) !!}
                                 </div>
                                 <div class="col-md-6">
-                                        <label for="kodepos">Kode pos sesuai Domisili</label>
-                                        <input type="text" class="form-control" id="kodepos" placeholder="Kode pos">
+                                    {!! Form::label('kodeposdom', 'Kode pos sesuai Domisili', ['class' => 'control-label']) !!}
+
+                                    {!! Form::text('kodeposdom', null, ['class' => 'form-control' , 'id' => 'kodeposdom', 'placeholder' => 'Kode pos sesuai Domisili']) !!}
                                     </div>
                             </div>
                         </div>
@@ -163,8 +176,10 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label for="email1">Email <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="email1" placeholder="...">
+    
+                                    {!! Form::label('email1', 'Email <span class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
+ 
+                                    {!! Form::text('email1', null, ['class' => 'form-control' , 'id' => 'email1', 'placeholder' => 'Masukan email']) !!}
                                 </div>
                             </div>
                         </div>
@@ -173,8 +188,10 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label for="email2">Ulangi Email <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="email2" placeholder="...">
+ 
+                                    {!! Form::label('email2', 'Email <span class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
+ 
+                                    {!! Form::text('email2', null, ['class' => 'form-control' , 'id' => 'email2', 'placeholder' => 'Ulangi email']) !!}
                                 </div>
                             </div>
                         </div>
@@ -190,41 +207,49 @@
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <label for="propinsi_ktp">Propinsi
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <select id="propinsi_ktp" class="form-control input-lg dynamic"
-                                                    data-dependent="kota_ktp">
-                                                    <option selected>Pilih provinsi</option>
-                                                    @foreach($provList as $prov)
-                                                    <option value="{{ $prov->id_prov }}">{{ $prov->nama_prov }}</option>
-                                                    @endforeach
-                                                </select>
+                                               
+                                                {!! Form::label('propinsi_ktp', 'Propinsi
+                                                <span class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
+
+                                                {!! Form::select('propinsi_ktp', $provList, 'Pilih provinsi',
+                                                [
+                                                    'class' => 'form-control input-lg dynamic', 
+                                                    'id' =>'propinsi_ktp', 
+                                                    'data-dependent' => 'kota_ktp']) !!}
+
                                             </div>
                                             <div class="col-md-12">
-                                                <label for="kota_ktp">Kota/Kabupaten
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <select id="kota_ktp" class="form-control input-lg dynamic"
-                                                    data-dependent="kecamatan_ktp">
-                                                    <option selected>Pilih Kota/Kabupaten</option>
-                                                </select>
+                                        
+                                                {!! Form::label('kota_ktp', 'Kota/Kabupaten
+                                                <span class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
+
+                                                {!! Form::select('kota_ktp', ['Pilih Kota/Kabupaten'], 'Pilih Kota/Kabupaten', 
+                                                [
+                                                    'class' => 'form-control input-lg dynamic', 
+                                                    'data-dependent' => 'kecamatan_ktp', 
+                                                    'id' =>'kota_ktp']) !!}
                                             </div>
 
                                             <div class="col-md-12">
-                                                <label for="kecamatan_ktp">Kecamatan<span
-                                                        class="text-danger">*</span></label>
-                                                <select id="kecamatan_ktp" class="form-control input-lg dynamic"
-                                                    data-dependent="kelurahan_ktp">
-                                                    <option selected>pilih kecamatan</option>
-                                                </select>
+
+                                                {!! Form::label('kecamatan_ktp', 'Kecamatan<span
+                                                class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
+
+                                                {!! Form::select('kecamatan_ktp', ['pilih kecamatan'], 'pilih kecamatan',
+                                                 [
+                                                     'class' => 'form-control input-lg dynamic', 
+                                                     'data-dependent' => 'kelurahan_ktp', 
+                                                     'id' =>'kecamatan_ktp']) !!}
                                             </div>
                                             <div class="col-md-12">
-                                                <label for="kelurahan_ktp">Kelurahan <span
-                                                        class="text-danger">*</span></label>
-                                                <select id="kelurahan_ktp" class="form-control input-lg dynamic">
-                                                    <option selected>Pilih kelurahan</option>
-                                                </select>
+           
+                                                {!! Form::label('kelurahan_ktp', 'Kelurahan <span
+                                                class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
+
+                                                {!! Form::select('kelurahan_ktp', ['Pilih kelurahan'], 'Pilih kelurahan', 
+                                                [
+                                                    'class' => 'form-control input-lg dynamic',
+                                                    'id' =>'kelurahan_ktp']) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -240,42 +265,50 @@
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <label for="propinsi_dom">Propinsi
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <select id="propinsi_dom" class="form-control input-lg dynamic"
-                                                    data-dependent="kota_dom">
-                                                    <option selected>Pilih provinsi</option>
-                                                    @foreach($provList as $prov)
-                                                    <option value="{{ $prov->id_prov }}">{{ $prov->nama_prov }}</option>
-                                                    @endforeach
-                                                </select>
+     
+                                                {!! Form::label('propinsi_dom', 'Propinsi
+                                                <span class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
+
+                                                {!! Form::select('propinsi_dom', $provList, 'Pilih provinsi',
+                                                [
+                                                    'class' => 'form-control input-lg dynamic',
+                                                    'id' =>'propinsi_dom', 
+                                                    'data-dependent' => 'kota_dom']) !!}
+
                                             </div>
                                             <div class="col-md-12">
-                                                <label for="kota_dom">Kota/Kabupaten
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <select id="kota_dom" class="form-control input-lg dynamic"
-                                                    data-dependent="kecamatan_dom">
-                                                    <option selected>Pilih Kota/Kabupaten</option>
-                                                </select>
+                                      
+                                                {!! Form::label('kota_dom', 'Kota/Kabupaten
+                                                <span class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
+
+                                                {!! Form::select('kota_dom', ['Pilih Kota/Kabupaten'], 'Pilih Kota/Kabupaten',
+                                                 [
+                                                     'class' => 'form-control input-lg dynamic', 
+                                                     'data-dependent' => 'kecamatan_dom',
+                                                     'id' =>'kota_dom']) !!}
+                                      
                                             </div>
 
 
                                             <div class="col-md-12">
-                                                <label for="kecamatan_dom">Kecamatan<span
-                                                        class="text-danger">*</span></label>
-                                                <select id="kecamatan_dom" class="form-control input-lg dynamic"
-                                                    data-dependent="kelurahan_dom">
-                                                    <option selected>pilih kecamatan</option>
-                                                </select>
+                 
+                                                {!! Form::label('kecamatan_dom', 'Kecamatan<span
+                                                class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
+
+                                                {!! Form::select('kecamatan_dom', ['pilih kecamatan'], 'pilih kecamatan', [
+                                                    'class' => 'form-control input-lg dynamic', 
+                                                    'data-dependent' => 'kelurahan_dom',
+                                                    'id' =>'kecamatan_dom']) !!}
                                             </div>
                                             <div class="col-md-12">
-                                                <label for="kelurahan_dom">Kelurahan <span
-                                                        class="text-danger">*</span></label>
-                                                <select id="kelurahan_dom" class="form-control input-lg dynamic">
-                                                    <option selected>Pilih kelurahan</option>
-                                                </select>
+                     
+                                                {!! Form::label('kelurahan_dom', 'Kelurahan <span
+                                                class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
+
+                                                {!! Form::select('kelurahan_dom', ['Pilih kelurahan'], 'Pilih kelurahan', 
+                                                [
+                                                    'class' => 'form-control input-lg dynamic', 
+                                                    'id' =>'kelurahan_dom']) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -288,14 +321,14 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="jenis_identitas">Identitas</label>
-                                    <select id="jenis_identitas" class="form-control">
-                                        <option selected value="-">Pilih Jenis Identitas</option>
-                                    </select>
+                                    {!! Form::label('jenis_identitas', 'Identitas', ['class' => 'control-label']) !!}
+                                    {!! Form::select('jenis_identitas', $jenis_identitas, null, ['class' => 'form-control', 'id' => 'jenis_identitas']) !!}
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="no_identitas">Nomor identitas</label>
-                                    <input type="text" class="form-control" id="no_identitas" placeholder="...">
+                                    {!! Form::label('no_identitas', 'Nomor identitas', ['class' => 'control-label']) !!}
+
+                                    {!! Form::text('no_identitas', null, ['class' => 'form-control', 'placeholder' => 'Masukan No Identitas Anda']) !!}
+
                                 </div>
                             </div>
                         </div>
@@ -305,16 +338,12 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="statusmenikah">Status Menikah<span class="text-danger">*</span></label>
-                                    <select name="statusnikah" id="statusnikah" class="form-control">
-                                        <option value=""></option>
-                                    </select>
+                                    {!! Form::label('statusmenikah', 'Status Menikah<span class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
+                                    {!! Form::select('statusnikah', $stat_nikah, null, ['class' => 'form-control', 'id' => 'statusnikah']) !!}
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="statusbekerja">Status Bekerja</label>
-                                    <select name="statusbekerja" id="statusbekerja" class="form-control">
-                                        <option value=""></option>
-                                    </select>
+                                    {!! Form::label('statusbekerja', 'Status Bekerja', ['class' => 'control-label']) !!}
+                                    {!! Form::select('statusbekerja', $stat_kerja, null, ['class' => 'form-control', 'id' => 'statusbekerja']) !!}
                                 </div>
                             </div>
                         </div>
@@ -324,22 +353,24 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label for="deskripsi">Deskripsi diri</label>
-                                    <textarea name="deskripsi" id="deskripsi" cols="0" class="form-control"
-                                        rows="10"></textarea>
+                                    {!! Form::label('deskripsi', 'Deskripsikan diri anda :', ['class' => 'control-label']) !!}
+
+                                    {!! Form::textarea('deskripsi', null, ['class' => 'form-control', 'cols' => '0', 'rows' => '5']) !!}
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="card-footer"
+                    style="text-align: right; border-top: 1px solid #bbbbbb; background-color: #eeeeee">
+                    <div class="col-md-12">
+                        {!! Form::submit('Simpan', ['class' => 'btn btn-success']) !!}
+                        {!! Form::button('Batal', ['class' => 'btn btn-danger']) !!}
+
+                    </div>
+                </div>
                 </form>
             </div>
-            <div class="card-footer"
-                style="text-align: right; border-top: 1px solid #bbbbbb; background-color: #eeeeee">
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-success">Simpan</button>
-                    <button type="button" class="btn btn-danger">Batal</button>
-                </div>
-            </div>
+           
         </div>
     </div>
 </div>

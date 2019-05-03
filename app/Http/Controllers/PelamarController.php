@@ -39,18 +39,7 @@ class PelamarController extends Controller
     }
 
     public function profil(){
-        $provList = prov::select()->get();
-
-        $stat_nikah = DB::table('tb_ref_statusnikah')
-                    ->select('nama', 'id')
-                    ->get();
-
-        $stat_kerja = DB::table('tb_ref_statuskerja')
-                    ->select('nama', 'id')
-                    ->get();
-
-        return view('pelamar.form_profil', 
-        compact('provList', 'stat_nikah','stat_kerja'));
+        return view('pelamar.form_profil');
     }
 
     public function pengalaman_short(){
@@ -68,8 +57,6 @@ class PelamarController extends Controller
     public function menu_resume(){
         return view('pelamar.menu_pelamar');
     }
-
-
 
     public function fetch_lokasi(Request $req){
         $select = $req->get('select');
@@ -98,8 +85,10 @@ class PelamarController extends Controller
                 $output .= '<option value="'.$row->id_kel.'">'.$row->nama_kel.'</option>';
             }
         } 
-        
-
         echo $output;
+    }
+
+    public function insertProfil(Request $req){
+        dd($req);
     }
 }
