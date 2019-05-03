@@ -29,6 +29,13 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-6">
+                                    @if(!empty($errors->first()))
+                                    <div class="row col-lg-12">
+                                        <div class="alert alert-danger">
+                                            <span>{{ $errors->first() }}</span>
+                                        </div>
+                                    </div>
+                                    @endif
                                     {!! Form::label('namalengkap', 
                                     'Nama Lengkap <span class="text-danger">*</span>', 
                                     ['class'=> 'control-label'],
@@ -36,7 +43,7 @@
                                      {!! Form::text('namalengkap', '',
                                      [
                                          'class'=> 'form-control', 
-                                         'placeholder' => 'Isi nama lengkap anda'
+                                         'placeholder' => 'Isi nama lengkap anda',
                                     ]) !!}
                                     
                                 </div>
@@ -95,7 +102,13 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            
+                                                @if(!empty($errors->first()))
+                                                <div class="row col-lg-12">
+                                                    <div class="alert alert-danger">
+                                                        <span>{{ $errors->first('nohp_wa') }}</span>
+                                                    </div>
+                                                </div>
+                                                @endif
                                             {!! Form::label('nohp_wa', 'Nomor ponsel <span class="text-danger">*</span> <a
                                             href="#"><span
                                                 class="fas fa-question-circle text-info"></a></span>', ['class' => 'control-label'], false) !!}
@@ -355,7 +368,14 @@
                                 <div class="col-md-12">
                                     {!! Form::label('deskripsi', 'Deskripsikan diri anda :', ['class' => 'control-label']) !!}
 
-                                    {!! Form::textarea('deskripsi', null, ['class' => 'form-control', 'cols' => '0', 'rows' => '5']) !!}
+                                    {!! Form::textarea('deskripsi', null, 
+                                    [
+                                    'class' => 'form-control', 
+                                    'cols' => '0', 
+                                    'rows' => '5', 
+                                    'id' => 'deskripsi'
+                                    ]) !!}
+
                                 </div>
                             </div>
                         </div>
@@ -398,7 +418,7 @@
                     },
                     beforeSend: function () {
                         $("#" + dependent).attr('disabled', 'disabled');
-                        $("#" + dependent).html('<option value="">Waiting...</option>');
+                        $("#" + dependent).html('<option value="">Mohon Tunggu...</option>');
 
                     }
                 });

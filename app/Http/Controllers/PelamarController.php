@@ -11,6 +11,8 @@ use App\Models\Kota as kota;
 use App\Models\Kecamatan as kec;
 use App\Models\Kelurahan as kel;
 
+use App\Http\Requests\StoreFormProfil;
+
 class PelamarController extends Controller
 {
     public function __construct()
@@ -88,7 +90,12 @@ class PelamarController extends Controller
         echo $output;
     }
 
-    public function insertProfil(Request $req){
+    public function insertProfil(StoreFormProfil $req){
+        $validated = $req->validated();
+        if ($validated->fails()) {
+            Session::flash('errors', $validated->messages()->first());
+            return redirect()->back()->withInput();
+       }
         dd($req);
     }
 }
