@@ -16,7 +16,8 @@ class Pelamar extends Model
         'alamat_ktp1', 'alamat_ktp2', 'kode_prov_ktp', 'kode_kota_ktp',
         'kode_kec_ktp', 'kode_kel_ktp', 'alamat_domisili1', 'alamat_domisili2',
         'kode_prov', 'kode_kota', 'kode_kec', 'kode_kel', 'status_nikah', 'status_bekerja',
-        'telp1', 'telp_wa', 'email1', 'email2', 'pasfoto', 'deskripsi_diri', 'password'
+        'telp1', 'telp_wa', 'email1', 'email2', 'pasfoto', 'deskripsi_diri', 'jenis_identitas',
+        'no_identitas', 'kodepos_ktp', 'kodepos_domisili',
     ];
 
     

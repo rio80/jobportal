@@ -67,12 +67,12 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function () {
         Route::get('/lowongan_detail','PelamarController@resume')->name('lowongan_detail');
         Route::get('/pendidikan_form','PelamarController@pendidikan_form')->name('pendidikan_form');
         Route::get('/pendidikan_view','PelamarController@pendidikan_view')->name('pendidikan_view');
-        Route::get('/profil','PelamarController@profil')->name('profil');
+        Route::get('/profil/{iduser}/edit','PelamarController@profil')->name('profil');
         Route::get('/pengalaman','PelamarController@pengalaman_long')->name('pengalaman_long');
         Route::get('/pengalaman_view','PelamarController@pengalaman_view')->name('pengalaman_view');
         Route::get('/menu_pelamar','PelamarController@menu_resume')->name('menu_pelamar');
         Route::post('/fetch_lokasi', 'PelamarController@fetch_lokasi')->name('fetch_lokasi');
-        Route::post('/insert-profil', 'PelamarController@insertProfil')->name('insert-profil');
+        Route::patch('/insert-profil/{pelamar}', 'PelamarController@insertProfil')->name('insert-profil');
         
     });
     Route::group(['roles' => 'pengusaha'], function () {

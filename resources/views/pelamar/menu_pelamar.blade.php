@@ -23,7 +23,8 @@
                 <a href='#' id="skl" class="list-group-item list-group-item-action bg-light">Keterampilan</a>
                 <a href='#' id="lng" class="list-group-item list-group-item-action bg-light">Bahasa</a>
                 <a href='#' id="inf_lain" class="list-group-item list-group-item-action bg-light">Info Lain</a>
-                <a href="{{ url('profil') }}" id="prof" class="list-group-item list-group-item-action bg-light">Profil Saya</a>
+                {{-- <a href="{{ url('profil') }}" id="prof" class="list-group-item list-group-item-action bg-light">Profil Saya</a> --}}
+                {{ link_to('profil/'.Auth::user()->id.'/edit','Profil',['class' => 'list-group-item list-group-item-action bg-light'])}}
                 <a href='#' id="res_unggah" class="list-group-item list-group-item-action bg-light">Resume Diunggah</a>
                 <a href='#' href="privasi" class="list-group-item list-group-item-action bg-light">Pengaturan Privasi</a>
             </div>

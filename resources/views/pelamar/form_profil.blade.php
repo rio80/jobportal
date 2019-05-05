@@ -2,9 +2,17 @@
 @section('content')
 <?php
     $bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+    $tanggals = [];
+    for($tanggal = 1; $tanggal <= 31; $tanggal++) $tanggals[$tanggal] = $tanggal;
+
+    $tahuns = [];
+    for($tahun = 1970; $tahun <= date('Y')-15; $tahun++) $tahuns[$tahun] = $tahun;
 ?>
 <script>
     $(function () {
+        // $('select[name="propinsi_ktp"]').first().val('22');
+
+
         $.fn.select2.defaults.set("theme", "bootstrap");
         $('#tanggal, #bulan, #tahun, ' +
             '#propinsi_ktp, #kota_ktp, #kecamatan_ktp, #kelurahan_ktp, ' +
@@ -12,6 +20,17 @@
     })
 
 </script>
+<style>
+    .pesan-error {
+        color: #a80000;
+        font-weight: 500;
+    }
+
+    .posisi-error {
+        text-align: right;
+    }
+
+</style>
 <div class="container">
     <div class="row">
         <button class="btn btn-info" id="menu-toggle" style="margin-top: -1rem;"><span
@@ -23,364 +42,593 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{ route('insert-profil') }}" method="post" id="insertPelamar" name="insertPelamar">
-                    @csrf
-                    <div class="form-group text-left">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    @if(!empty($errors->first()))
-                                    <div class="row col-lg-12">
-                                        <div class="alert alert-danger">
-                                            <span>{{ $errors->first() }}</span>
-                                        </div>
+                {{-- <form action="{{ route('insert-profil') }}" method="post" id="insertPelamar" name="insertPelamar"
+                enctype="multipart/form-data"> --}}
+                {{-- {!! Form::open(['url' => 'insert-profil', 'files' => true, 'method' => 'POST']) !!} --}}
+                {!! Form::model($pelamar, [
+                'method' => 'PATCH',
+                'files' => true,
+                'action' => [
+                'PelamarController@insertProfil', $pelamar->id
+                ]]) !!}
+                @csrf
+                <div class="form-group text-left">
+                    {!! Form::hidden('iduser', Auth::user()->id) !!}
+                    {!! Form::hidden('noreg', $pelamar->no_reg) !!}
+                    <div class="col-lg-12 col-md-12"><strong>
+                            Isian yang bertanda<span class="text-danger"> * </span> Wajib diisi</strong></div>
+                    <hr><br>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                {!! Form::label('namalengkap',
+                                'Nama Lengkap <span class="text-danger">*</span>',
+                                ['class'=> 'control-label'],
+                                false) !!}
+                                {!! Form::text('namalengkap', $pelamar->nama,
+                                [
+                                'class'=> 'form-control ' . ($errors->first('namalengkap') ? 'is-invalid' : 'is-valid'),
+
+                                'placeholder' => 'Isi nama lengkap anda',
+                                ]) !!}
+                                @if($errors->first('namalengkap'))
+                                <span class="help-block pesan-error">{{ $errors->first('namalengkap') }}</span>
+                                @endif
+                            </div>
+
+                            <div class="col-md-6">
+                                @if($errors->first('uploadfoto'))
+                                <div class="row col-lg-12">
+                                    <div class="alert alert-danger">
+                                        <span>{{ $errors->first('uploadfoto') }}</span>
                                     </div>
-                                    @endif
-                                    {!! Form::label('namalengkap', 
-                                    'Nama Lengkap <span class="text-danger">*</span>', 
-                                    ['class'=> 'control-label'],
-                                     false) !!}
-                                     {!! Form::text('namalengkap', '',
-                                     [
-                                         'class'=> 'form-control', 
-                                         'placeholder' => 'Isi nama lengkap anda',
-                                    ]) !!}
-                                    
                                 </div>
-                                <div class="col-md-6">
-                                    {!! Form::label('uploadfoto', 'Upload Foto Profil',['class' => 'control-label']) !!}
-                                    {!! Form::file('uploadfoto', 
-                                    ['class' => 'form-control']) !!}
-                                </div>
+                                @endif
+                                {!! Form::label('uploadfoto', 'Upload Foto Profil <span
+                                    class="text-danger">*</span>',['class' => 'control-label'], false) !!}
+                                {!! Form::file('uploadfoto',
+                                ['class' => 'form-control '.($errors->first('uploadfoto') ? 'is-invalid' : 'is-valid'),
+                                'id' => 'uploadfoto']) !!}
                             </div>
                         </div>
                     </div>
-                    <div class="form-group text-left">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    {!! Form::label('tgllahir', 'Tanggal lahir <span
-                                                    class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
-                                                </div>
-                                                <div class="col-md-4">
-                                                    {{ Form::select('tanggal', range(1, 31), null, ['class' => 'form-control', 'id' => 'tanggal']) }}
-                                                </div>
-                                                <div class="col-md-4">
-                                                    {!! Form::select('bulan', $bulan, null, ['class' => 'form-control', 'id' => 'bulan']) !!}
-                                                </div>
-                                                <div class="col-md-4">
-                                                    {!! Form::select('tahun', range(1970, date('Y')-15), null, ['class' => 'form-control', 'id' => 'tahun']) !!}
-                                                </div>
+                </div>
+                <div class="form-group text-left">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                {!! Form::label('tgllahir', 'Tanggal lahir <span
+                                                    class="text-danger">*</span>', ['class' => 'control-label'],
+                                                false) !!}
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    {!! Form::label('jekel', 'Jenis Kelamin', ['class' => 'control-label']) !!}
-                                    {!! Form::select('jekel', 
-                                    [
-                                        'Laki-laki' => 'Laki-laki', 
-                                        'Perempuan' => 'Perempuan'
-                                    ], 
-                                        'Laki-laki', 
-                                    [
-                                        'class' => 'form-control', 
-                                        'id' => 'jekel'
-                                    ]) !!}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group text-left">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                                @if(!empty($errors->first()))
-                                                <div class="row col-lg-12">
-                                                    <div class="alert alert-danger">
-                                                        <span>{{ $errors->first('nohp_wa') }}</span>
-                                                    </div>
-                                                </div>
-                                                @endif
-                                            {!! Form::label('nohp_wa', 'Nomor ponsel <span class="text-danger">*</span> <a
-                                            href="#"><span
-                                                class="fas fa-question-circle text-info"></a></span>', ['class' => 'control-label'], false) !!}
-
-                                            {!! Form::select('kode_hp_indo_wa', ['+62 (Indonesia)'],'+62 (Indonesia)', ['class' => 'form-control']) !!}
-                                        </div>
-                                        <div class="col-md-12" style="margin-top: 0.5rem;">
-                                            {!! Form::text('nohp_wa', null, ['class' => 'form-control', 'id' =>'nohp_wa', 'placeholder' => 'Masukan No HP']) !!}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            {!! Form::label('nohp', 'Nomor telepon lain', ['class' => 'control-label']) !!}
-
-                                            {!! Form::select('kode_hp', ['+62 (Indonesia)'],'+62 (Indonesia)', ['class' => 'form-control', 'id'=> 'nohp']) !!}
-                                        </div>
-                                        <div class="col-md-12" style="margin-top: 0.5rem;">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                        {!! Form::text('nohp', null, ['class' => 'form-control', 'id' =>'nohp', 'placeholder' => 'Masukan No HP lain']) !!}
-                                                </div>
+                                            <div class="col-md-4">
+                                                {{ Form::select('tanggal', $tanggals, null, ['class' => 'form-control', 'id' => 'tanggal']) }}
+                                            </div>
+                                            <div class="col-md-4">
+                                                {!! Form::select('bulan', $bulan, null, ['class' => 'form-control',
+                                                'id' => 'bulan']) !!}
+                                            </div>
+                                            <div class="col-md-4">
+                                                {!! Form::select('tahun', $tahuns, null, ['class'
+                                                => 'form-control', 'id' => 'tahun']) !!}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                {!! Form::label('jenis_kelamin', 'Jenis Kelamin <span class="text-danger">*</span>',
+                                ['class' =>
+                                'control-label'], false) !!}
+                                {!! Form::select('jenis_kelamin',
+                                [
+                                'L' => 'Laki-laki',
+                                'P' => 'Perempuan'
+                                ],
+                                null,
+                                [
+                                'class' => 'form-control',
+                                'id' => 'jenis_kelamin',
+                                'placeholder' => 'Pilih Jenis Kelamin'
+                                ]) !!}
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group text-left">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    {!! Form::label('alamatktp1', 'Alamat sesuai KTP', ['class' => 'control-label']) !!}
- 
-                                    {!! Form::text('alamatktp1', null, ['class' => 'form-control' , 'id' => 'alamatktp1', 'placeholder' => 'Alamat KTP 1']) !!}
-                                </div>
-                                <div class="col-md-6">
-             
-                                    {!! Form::label('alamatktp2', null, ['class' => 'control-label']) !!}
- 
-                                    {!! Form::text('alamatktp2', null, ['class' => 'form-control' , 'id' => 'alamatktp2', 'placeholder' => 'Alamat KTP 2']) !!}
-                                </div>
-                                <div class="col-md-6">
+                </div>
 
-                                        {!! Form::label('kodeposktp', 'Kode pos sesuai KTP', ['class' => 'control-label']) !!}
- 
-                                        {!! Form::text('kodeposktp', null, ['class' => 'form-control' , 'id' => 'kodepos', 'placeholder' => 'Kode pos KTP']) !!}
+                <div class="form-group text-left">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        {!! Form::label('nohp_wa', 'Nomor ponsel <span class="text-danger">*</span>
+                                        <a href="#"><span class="fas fa-question-circle text-info"></a></span>',
+                                        ['class' => 'control-label'], false) !!}
+
+                                        {!! Form::select('kode_hp_indo_wa', ['+62 (Indonesia)'],'+62 (Indonesia)',
+                                        ['class' => 'form-control']) !!}
                                     </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group text-left">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-6">
-    
-                                    {!! Form::label('alamatdomisili1', 'Alamat sesuai Domisili', ['class' => 'control-label']) !!}
- 
-                                    {!! Form::text('alamatdomisili1', null, ['class' => 'form-control' , 'id' => 'alamatdomisili1', 'placeholder' => 'Alamat Domisili 1']) !!}
-                                </div>
-                                <div class="col-md-6">
-             
-                                    {!! Form::label('alamatdomisili2', 'Alamat sesuai Domisili', ['class' => 'control-label']) !!}
- 
-                                    {!! Form::text('alamatdomisili2', null, ['class' => 'form-control' , 'id' => 'alamatdomisili2', 'placeholder' => 'Alamat Domisili 2']) !!}
-                                </div>
-                                <div class="col-md-6">
-                                    {!! Form::label('kodeposdom', 'Kode pos sesuai Domisili', ['class' => 'control-label']) !!}
-
-                                    {!! Form::text('kodeposdom', null, ['class' => 'form-control' , 'id' => 'kodeposdom', 'placeholder' => 'Kode pos sesuai Domisili']) !!}
+                                    <div class="col-md-12" style="margin-top: 0.5rem;">
+                                        {!! Form::text('nohp_wa', null, ['class' => 'form-control
+                                        '.($errors->first('nohp_wa') ? 'is-invalid' : 'is-valid'),
+                                        'id'
+                                        =>'nohp_wa', 'placeholder' => 'Masukan No HP']) !!}
+                                        <span class="help-block pesan-error">{{ $errors->first('nohp_wa') }}</span>
                                     </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group text-left">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12">
-    
-                                    {!! Form::label('email1', 'Email <span class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
- 
-                                    {!! Form::text('email1', null, ['class' => 'form-control' , 'id' => 'email1', 'placeholder' => 'Masukan email']) !!}
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {!! Form::label('nohp', 'Nomor telepon lain', ['class' => 'control-label'])
+                                        !!}
+
+                                        {!! Form::select('kode_hp', ['+62 (Indonesia)'],'+62 (Indonesia)', ['class'
+                                        => 'form-control', 'id'=> 'nohp']) !!}
+                                    </div>
+                                    <div class="col-md-12" style="margin-top: 0.5rem;">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                {!! Form::text('nohp', null,
+                                                [
+                                                'class' => 'form-control', 'id'
+                                                =>'nohp', 'placeholder' => 'Masukan No HP lain']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group text-left">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12">
- 
-                                    {!! Form::label('email2', 'Email <span class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
- 
-                                    {!! Form::text('email2', null, ['class' => 'form-control' , 'id' => 'email2', 'placeholder' => 'Ulangi email']) !!}
-                                </div>
+                </div>
+                <div class="form-group text-left">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {!! Form::label('alamatktp1', 'Alamat sesuai KTP <span class="text-danger">*</span>',
+                                ['class' => 'control-label'], false) !!}
+
+                                {!! Form::text('alamatktp1', null,
+                                [
+                                'class' => 'form-control '.($errors->first('alamatktp1') ? 'is-invalid' : 'is-valid') ,
+                                'id' =>
+                                'alamatktp1', 'placeholder' => 'Alamat KTP 1']) !!}
+                                <span class="help-block pesan-error">{{ $errors->first('alamatktp1') }}</span>
+                            </div>
+                            <div class="col-md-6">
+
+                                {!! Form::label('alamatktp2', 'Alamat KTP 2', ['class' => 'control-label']) !!}
+
+                                {!! Form::text('alamatktp2', null,
+                                ['class' => 'form-control' , 'id' =>
+                                'alamatktp2', 'placeholder' => 'Alamat KTP 2']) !!}
+
+                            </div><br>
+                            <div class="col-md-6">
+                                {!! Form::label('kodeposktp', 'Kode pos sesuai KTP <span class="text-danger">*</span>',
+                                ['class' => 'control-label'], false)
+                                !!}
+
+                                {!! Form::text('kodeposktp', null,
+                                ['class' => 'form-control '.($errors->first('kodeposktp') ? 'is-invalid' : 'is-valid'),
+                                'id' => 'kodepos',
+                                'placeholder' => 'Kode pos KTP']) !!}
+                                <span class="help-block pesan-error">{{ $errors->first('kodeposktp') }}</span>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="form-group text-left">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                {!! Form::label('alamatdomisili1', 'Alamat sesuai Domisili <span
+                                    class="text-danger">*</span>', ['class' =>
+                                'control-label'], false) !!}
+
+                                {!! Form::text('alamatdomisili1', null,
+                                ['class' => 'form-control '.($errors->first('alamatdomisili1') ? 'is-invalid' :
+                                'is-valid'), 'id' =>
+                                'alamatdomisili1', 'placeholder' => 'Alamat Domisili 1']) !!}
+                                <span class="help-block pesan-error">{{ $errors->first('alamatdomisili1') }}</span>
+                            </div>
+                            <div class="col-md-6">
+
+                                {!! Form::label('alamatdomisili2', 'Alamat sesuai Domisili', ['class' =>
+                                'control-label']) !!}
+
+                                {!! Form::text('alamatdomisili2', null, ['class' => 'form-control' , 'id' =>
+                                'alamatdomisili2', 'placeholder' => 'Alamat Domisili 2']) !!}
+                            </div>
+                            <div class="col-md-6">
+                                {!! Form::label('kodeposdom', 'Kode pos sesuai Domisili <span
+                                    class="text-danger">*</span>', ['class' =>
+                                'control-label'], false) !!}
+
+                                {!! Form::text('kodeposdom', null,
+                                ['class' => 'form-control '.($errors->first('kodeposdom') ? 'is-invalid' : 'is-valid'),
+                                'id' =>
+                                'kodeposdom', 'placeholder' => 'Kode pos sesuai Domisili']) !!}
+                                <span class="help-block pesan-error">{{ $errors->first('kodeposdom') }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group text-left">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                {!! Form::label('email1', 'Email <span class="text-danger">*</span>', ['class' =>
+                                'control-label'], false) !!}
+
+                                {!! Form::text('email1', null, [
+                                'class' => 'form-control '.($errors->first('email1') ? 'is-invalid' : 'is-valid'),
+                                'id' => 'email1',
+                                'placeholder' => 'Masukan email']) !!}
+                                <span class="help-block pesan-error">{{ $errors->first('email1') }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group text-left">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                {!! Form::label('email2', 'Ulangi Email <span class="text-danger">*</span>', ['class' =>
+                                'control-label'], false) !!}
+
+                                {!! Form::text('email2', null, [
+                                'class' => 'form-control '.($errors->first('email2') ? 'is-invalid' : 'is-valid'),
+                                'id' => 'email2',
+                                'placeholder' => 'Ulangi email']) !!}
+                                <span class="help-block pesan-error">{{ $errors->first('email2') }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
-                    <div class="row">
-                        <div class="col-md-6">
-
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="dropdown_lokasi_ktp_manual">
                             <fieldset class="border p-2">
                                 <legend><u>Alamat sesuai KTP</u></legend>
                                 <div class="form-group text-left">
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-md-12">
-                                               
-                                                {!! Form::label('propinsi_ktp', 'Propinsi
-                                                <span class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
 
-                                                {!! Form::select('propinsi_ktp', $provList, 'Pilih provinsi',
+                                                {!! Form::label('propinsi_ktp', 'Propinsi
+                                                <span class="text-danger">*</span>', ['class' => 'control-label'],
+                                                false) !!} <span
+                                                    class="help-block pesan-error">{{ $errors->first('propinsi_ktp') }}</span>
+
+                                                {!! Form::select('propinsi_ktp', $provList, null,
                                                 [
-                                                    'class' => 'form-control input-lg dynamic', 
-                                                    'id' =>'propinsi_ktp', 
-                                                    'data-dependent' => 'kota_ktp']) !!}
+                                                'class' => 'form-control input-lg dynamic',
+                                                'id' =>'propinsi_ktp',
+                                                'placeholder' => 'Pilih Provinsi',
+                                                'data-dependent' => 'kota_ktp']) !!}
 
                                             </div>
                                             <div class="col-md-12">
-                                        
-                                                {!! Form::label('kota_ktp', 'Kota/Kabupaten
-                                                <span class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
 
-                                                {!! Form::select('kota_ktp', ['Pilih Kota/Kabupaten'], 'Pilih Kota/Kabupaten', 
+                                                {!! Form::label('kota_ktp', 'Kota/Kabupaten
+                                                <span class="text-danger">*</span>', ['class' => 'control-label'],
+                                                false) !!}
+                                                <span
+                                                    class="help-block pesan-error">{{ $errors->first('kota_ktp') }}</span>
+                                                {!! Form::select('kota_ktp', ['Pilih Kota/Kabupaten'], null,
                                                 [
-                                                    'class' => 'form-control input-lg dynamic', 
-                                                    'data-dependent' => 'kecamatan_ktp', 
-                                                    'id' =>'kota_ktp']) !!}
+                                                'class' => 'form-control input-lg dynamic',
+                                                'data-dependent' => 'kecamatan_ktp',
+                                                'id' =>'kota_ktp']) !!}
                                             </div>
 
                                             <div class="col-md-12">
 
                                                 {!! Form::label('kecamatan_ktp', 'Kecamatan<span
-                                                class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
-
-                                                {!! Form::select('kecamatan_ktp', ['pilih kecamatan'], 'pilih kecamatan',
-                                                 [
-                                                     'class' => 'form-control input-lg dynamic', 
-                                                     'data-dependent' => 'kelurahan_ktp', 
-                                                     'id' =>'kecamatan_ktp']) !!}
+                                                    class="text-danger">*</span>', ['class' => 'control-label'], false)
+                                                !!}
+                                                <span
+                                                    class="help-block pesan-error">{{ $errors->first('kecamatan_ktp') }}</span>
+                                                {!! Form::select('kecamatan_ktp', ['pilih kecamatan'], 'pilih
+                                                kecamatan',
+                                                [
+                                                'class' => 'form-control input-lg dynamic',
+                                                'data-dependent' => 'kelurahan_ktp',
+                                                'id' =>'kecamatan_ktp']) !!}
                                             </div>
                                             <div class="col-md-12">
-           
-                                                {!! Form::label('kelurahan_ktp', 'Kelurahan <span
-                                                class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
 
-                                                {!! Form::select('kelurahan_ktp', ['Pilih kelurahan'], 'Pilih kelurahan', 
+                                                {!! Form::label('kelurahan_ktp', 'Kelurahan <span
+                                                    class="text-danger">*</span>', ['class' => 'control-label'], false)
+                                                !!}
+                                                <span
+                                                    class="help-block pesan-error">{{ $errors->first('kelurahan_ktp') }}</span>
+                                                {!! Form::select('kelurahan_ktp', ['Pilih kelurahan'], 'Pilih
+                                                kelurahan',
                                                 [
-                                                    'class' => 'form-control input-lg dynamic',
-                                                    'id' =>'kelurahan_ktp']) !!}
+                                                'class' => 'form-control input-lg dynamic',
+                                                'id' =>'kelurahan_ktp']) !!}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </fieldset>
-                        </div>
-                        <br>
+                            <div class="text-right"><a class="btn btn-danger edit-ktp-cancel">Batal Edit</a></div>
 
-                        <div class="col-md-6">
+                        </div>
+
+
+                        <div class="dropdown_lokasi_ktp_otomatis">
+                            <fieldset class="border p-2">
+                                <legend><u>Alamat sesuai KTP</u></legend>
+                                <div class="form-group text-left">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                {!! Form::label('propinsi_ktp', 'Propinsi
+                                                <span class="text-danger">*</span>', ['class' => 'control-label'],
+                                                false) !!} <span
+                                                    class="help-block pesan-error">{{ $errors->first('propinsi_ktp') }}</span><br>
+
+                                                {!! Form::text('show_prov', (isset($propinsi->nama_prov) ? $propinsi->nama_prov : 'Kosong'), ['class' =>
+                                                'form-control', 'readonly' => 'true']) !!}
+
+                                            </div>
+                                            <div class="col-md-12">
+
+                                                {!! Form::label('kota_ktp', 'Kota/Kabupaten
+                                                <span class="text-danger">*</span>', ['class' => 'control-label'],
+                                                false) !!}
+                                                <span
+                                                    class="help-block pesan-error">{{ $errors->first('kota_ktp') }}</span>
+                                                {!! Form::text('show_kota', (isset($kota->nama_kota) ? $kota->nama_kota : "Kosong"), ['class' =>
+                                                'form-control', 'readonly' => 'true']) !!}
+                                            </div>
+
+                                            <div class="col-md-12">
+
+                                                {!! Form::label('kecamatan_ktp', 'Kecamatan<span
+                                                    class="text-danger">*</span>', ['class' => 'control-label'], false)
+                                                !!}
+                                                <span
+                                                    class="help-block pesan-error">{{ $errors->first('kecamatan_ktp') }}</span>
+                                                {!! Form::text('show_kec', (isset($kec->nama_kec) ? $kec->nama_kec : "kosong"), ['class' => 'form-control',
+                                                'readonly' => 'true']) !!}
+                                            </div>
+                                            <div class="col-md-12">
+
+                                                {!! Form::label('kelurahan_ktp', 'Kelurahan <span
+                                                    class="text-danger">*</span>', ['class' => 'control-label'], false)
+                                                !!}
+                                                <span
+                                                    class="help-block pesan-error">{{ $errors->first('kelurahan_ktp') }}</span>
+                                                {!! Form::text('show_kel', (isset($kel->nama_kel) ?$kel->nama_kel : "kosong"), ['class' => 'form-control',
+                                                'readonly' => 'true']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="text-right"><a class="btn btn-info edit-ktp">Edit Lokasi</a></div>
+
+                        </div>
+
+                    </div>
+                    <br>
+
+                    <div class="col-md-6">
+                        <div class="dropdown_lokasi_dom_manual">
                             <fieldset class="border p-2">
                                 <legend><u>Alamat sesuai Domisili</u></legend>
                                 <div class="form-group text-left">
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-md-12">
-     
-                                                {!! Form::label('propinsi_dom', 'Propinsi
-                                                <span class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
 
+                                                {!! Form::label('propinsi_dom', 'Propinsi
+                                                <span class="text-danger">*</span>', ['class' => 'control-label'],
+                                                false) !!}
+                                                <span
+                                                    class="help-block pesan-error">{{ $errors->first('propinsi_dom') }}</span>
                                                 {!! Form::select('propinsi_dom', $provList, 'Pilih provinsi',
                                                 [
-                                                    'class' => 'form-control input-lg dynamic',
-                                                    'id' =>'propinsi_dom', 
-                                                    'data-dependent' => 'kota_dom']) !!}
+                                                'class' => 'form-control input-lg dynamic',
+                                                'id' =>'propinsi_dom',
+                                                'placeholder' => 'Pilih Provinsi',
+                                                'data-dependent' => 'kota_dom']) !!}
 
                                             </div>
                                             <div class="col-md-12">
-                                      
+
                                                 {!! Form::label('kota_dom', 'Kota/Kabupaten
-                                                <span class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
-
-                                                {!! Form::select('kota_dom', ['Pilih Kota/Kabupaten'], 'Pilih Kota/Kabupaten',
-                                                 [
-                                                     'class' => 'form-control input-lg dynamic', 
-                                                     'data-dependent' => 'kecamatan_dom',
-                                                     'id' =>'kota_dom']) !!}
-                                      
-                                            </div>
-
-
-                                            <div class="col-md-12">
-                 
-                                                {!! Form::label('kecamatan_dom', 'Kecamatan<span
-                                                class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
-
-                                                {!! Form::select('kecamatan_dom', ['pilih kecamatan'], 'pilih kecamatan', [
-                                                    'class' => 'form-control input-lg dynamic', 
-                                                    'data-dependent' => 'kelurahan_dom',
-                                                    'id' =>'kecamatan_dom']) !!}
-                                            </div>
-                                            <div class="col-md-12">
-                     
-                                                {!! Form::label('kelurahan_dom', 'Kelurahan <span
-                                                class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
-
-                                                {!! Form::select('kelurahan_dom', ['Pilih kelurahan'], 'Pilih kelurahan', 
+                                                <span class="text-danger">*</span>', ['class' => 'control-label'],
+                                                false) !!}
+                                                <span
+                                                    class="help-block pesan-error">{{ $errors->first('kota_dom') }}</span>
+                                                {!! Form::select('kota_dom', ['Pilih Kota/Kabupaten'], 'Pilih
+                                                Kota/Kabupaten',
                                                 [
-                                                    'class' => 'form-control input-lg dynamic', 
-                                                    'id' =>'kelurahan_dom']) !!}
+                                                'class' => 'form-control input-lg dynamic',
+                                                'data-dependent' => 'kecamatan_dom',
+                                                'id' =>'kota_dom']) !!}
+
+                                            </div>
+
+
+                                            <div class="col-md-12">
+
+                                                {!! Form::label('kecamatan_dom', 'Kecamatan<span
+                                                    class="text-danger">*</span>', ['class' => 'control-label'], false)
+                                                !!}
+                                                <span
+                                                    class="help-block pesan-error">{{ $errors->first('kecamatan_dom') }}</span>
+                                                {!! Form::select('kecamatan_dom', ['pilih kecamatan'], 'pilih
+                                                kecamatan', [
+                                                'class' => 'form-control input-lg dynamic',
+                                                'data-dependent' => 'kelurahan_dom',
+                                                'id' =>'kecamatan_dom']) !!}
+                                            </div>
+                                            <div class="col-md-12">
+
+                                                {!! Form::label('kelurahan_dom', 'Kelurahan <span
+                                                    class="text-danger">*</span>', ['class' => 'control-label'], false)
+                                                !!}
+                                                <span
+                                                    class="help-block pesan-error">{{ $errors->first('kelurahan_dom') }}</span>
+                                                {!! Form::select('kelurahan_dom', ['Pilih kelurahan'], 'Pilih
+                                                kelurahan',
+                                                [
+                                                'class' => 'form-control input-lg dynamic',
+                                                'id' =>'kelurahan_dom']) !!}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </fieldset>
+                            <div class="text-right"><a class="btn btn-danger edit-dom-cancel">Batal Edit</a></div>
+
                         </div>
-                    </div><br>
-                    
-                    <div class="form-group text-left">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    {!! Form::label('jenis_identitas', 'Identitas', ['class' => 'control-label']) !!}
-                                    {!! Form::select('jenis_identitas', $jenis_identitas, null, ['class' => 'form-control', 'id' => 'jenis_identitas']) !!}
-                                </div>
-                                <div class="col-md-6">
-                                    {!! Form::label('no_identitas', 'Nomor identitas', ['class' => 'control-label']) !!}
+                        <div class="dropdown_lokasi_dom_otomatis">
+                            <fieldset class="border p-2">
+                                <legend><u>Alamat sesuai Domisili</u></legend>
+                                <div class="form-group text-left">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                {!! Form::label('propinsi_ktp', 'Propinsi
+                                                <span class="text-danger">*</span>', ['class' => 'control-label'],
+                                                false) !!} <span
+                                                    class="help-block pesan-error">{{ $errors->first('propinsi_dom') }}</span><br>
 
-                                    {!! Form::text('no_identitas', null, ['class' => 'form-control', 'placeholder' => 'Masukan No Identitas Anda']) !!}
+                                                {!! Form::text('show_prov_dom', (isset($prop_dom->nama_prov) ? $prop_dom->nama_prov : "kosong"), ['class' =>
+                                                'form-control', 'readonly' => 'true']) !!}
 
+                                            </div>
+                                            <div class="col-md-12">
+
+                                                {!! Form::label('kota_ktp', 'Kota/Kabupaten
+                                                <span class="text-danger">*</span>', ['class' => 'control-label'],
+                                                false) !!}
+                                                <span
+                                                    class="help-block pesan-error">{{ $errors->first('kota_dom') }}</span>
+                                                {!! Form::text('show_kota_dom', (isset($kota_dom->nama_kota) ? $kota_dom->nama_kota : "kosong"), ['class' =>
+                                                'form-control', 'readonly' => 'true']) !!}
+                                            </div>
+
+                                            <div class="col-md-12">
+
+                                                {!! Form::label('kecamatan_ktp', 'Kecamatan<span
+                                                    class="text-danger">*</span>', ['class' => 'control-label'], false)
+                                                !!}
+                                                <span
+                                                    class="help-block pesan-error">{{ $errors->first('kecamatan_ktp_dom') }}</span>
+                                                {!! Form::text('show_kec_dom', (isset($kec_dom->nama_kec) ? $kec_dom->nama_kec : "Kosong"), ['class' =>
+                                                'form-control', 'readonly' => 'true']) !!}
+                                            </div>
+                                            <div class="col-md-12">
+
+                                                {!! Form::label('kelurahan_ktp', 'Kelurahan <span
+                                                    class="text-danger">*</span>', ['class' => 'control-label'], false)
+                                                !!}
+                                                <span
+                                                    class="help-block pesan-error">{{ $errors->first('kelurahan_ktp_dom') }}</span>
+                                                {!! Form::text('show_kel_dom', (isset($kel_dom->nama_kel) ? $kel_dom->nama_kel : "Kosong"), ['class' =>
+                                                'form-control', 'readonly' => 'true']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                            </fieldset>
+                            <div class="col-md-12 text-right"><a class="btn btn-info edit-dom">Edit Lokasi</a></div>
+                        </div>
+
+                    </div>
+                </div><br>
+
+                <div class="form-group text-left">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {!! Form::label('jenis_identitas', 'Identitas <span class="text-danger">*</span>',
+                                ['class' => 'control-label'], false) !!}
+                                {!! Form::select('jenis_identitas', $jenis_identitas, null,
+                                ['class' => 'form-control '.($errors->first('jenis_identitas') ? 'is-invalid' :
+                                'is-valid'),
+                                'id' => 'jenis_identitas', 'placeholder' => 'Pilih Jenis Identitas'])
+                                !!}
+                                <span class="help-block pesan-error">{{ $errors->first('jenis_identitas') }}</span>
+                            </div>
+                            <div class="col-md-6">
+                                {!! Form::label('no_identitas', 'Nomor identitas <span class="text-danger">*</span>',
+                                ['class' => 'control-label'], false) !!}
+                                {!! Form::text('no_identitas', null,
+                                ['class' => 'form-control '.($errors->first('no_identitas') ? 'is-invalid' :
+                                'is-valid'),
+                                'placeholder' =>
+                                'Masukan No Identitas Anda', 'id' => 'no_identitas']) !!}
+                                <span class="help-block pesan-error">{{ $errors->first('no_identitas') }}</span>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="form-group text-left">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    {!! Form::label('statusmenikah', 'Status Menikah<span class="text-danger">*</span>', ['class' => 'control-label'], false) !!}
-                                    {!! Form::select('statusnikah', $stat_nikah, null, ['class' => 'form-control', 'id' => 'statusnikah']) !!}
-                                </div>
-                                <div class="col-md-6">
-                                    {!! Form::label('statusbekerja', 'Status Bekerja', ['class' => 'control-label']) !!}
-                                    {!! Form::select('statusbekerja', $stat_kerja, null, ['class' => 'form-control', 'id' => 'statusbekerja']) !!}
-                                </div>
+                <div class="form-group text-left">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {!! Form::label('statusnikah', 'Status Menikah<span class="text-danger">*</span>',
+                                ['class' => 'control-label'], false) !!}
+                                {!! Form::select('statusnikah', $stat_nikah, null,
+                                ['class' => 'form-control '.($errors->first('statusnikah') ? 'is-invalid' : 'is-valid'),
+                                'id'
+                                => 'statusnikah', 'placeholder' => 'Pilih Status Nikah']) !!}
+                                <span class="help-block pesan-error">{{ $errors->first('statusnikah') }}</span>
+                            </div>
+                            <div class="col-md-6">
+                                {!! Form::label('statusbekerja', 'Status Bekerja <span class="text-danger">*</span>',
+                                ['class' => 'control-label'], false) !!}
+                                {!! Form::select('statusbekerja', $stat_kerja, null,
+                                ['class' => 'form-control '.($errors->first('statusbekerja') ? 'is-invalid' :
+                                'is-valid'),
+                                'id' => 'statusbekerja', 'placeholder' => 'Apakah Anda masih bekerja?']) !!}
+                                <span class="help-block pesan-error">{{ $errors->first('statusbekerja') }}</span>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="form-group text-left">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    {!! Form::label('deskripsi', 'Deskripsikan diri anda :', ['class' => 'control-label']) !!}
-
-                                    {!! Form::textarea('deskripsi', null, 
-                                    [
-                                    'class' => 'form-control', 
-                                    'cols' => '0', 
-                                    'rows' => '5', 
-                                    'id' => 'deskripsi'
-                                    ]) !!}
-
-                                </div>
+                <div class="form-group text-left">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                {!! Form::label('deskripsi', 'Deskripsikan diri anda : <span
+                                    class="text-danger">*</span>', ['class' =>
+                                'control-label'], false) !!}
+                                {!! Form::textarea('deskripsi', null,
+                                [
+                                'class' => 'form-control '.($errors->first('deskripsi') ? 'is-invalid' : 'is-valid'),
+                                'cols' => '0',
+                                'rows' => '5',
+                                'id' => 'deskripsi'
+                                ]) !!}
+                                <span class="help-block pesan-error">{{ $errors->first('deskripsi') }}</span>
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer"
+                </div>
+                <div class="card-footer"
                     style="text-align: right; border-top: 1px solid #bbbbbb; background-color: #eeeeee">
                     <div class="col-md-12">
                         {!! Form::submit('Simpan', ['class' => 'btn btn-success']) !!}
@@ -390,13 +638,14 @@
                 </div>
                 </form>
             </div>
-           
+
         </div>
     </div>
 </div>
 
 <script>
-    $('document').ready(function () {
+    $(function () {
+
         $('.dynamic').change(function () {
             if ($(this).val() != '') {
                 var select = $(this).attr('id');
@@ -418,12 +667,52 @@
                     },
                     beforeSend: function () {
                         $("#" + dependent).attr('disabled', 'disabled');
-                        $("#" + dependent).html('<option value="">Mohon Tunggu...</option>');
+                        $("#" + dependent).html(
+                            '<option value="">Mohon Tunggu...</option>');
 
                     }
                 });
             }
-        })
+        });
+
+        $('.dropdown_lokasi_ktp_otomatis').hide();
+        $('.dropdown_lokasi_dom_otomatis').hide();
+
+        let dataLokasi = '{{ isset($propinsi->nama_prov) ? $propinsi->nama_prov : "0" }}';
+        if (dataLokasi !== '0') {
+            $('.dropdown_lokasi_ktp_otomatis').show();
+            $('.dropdown_lokasi_ktp_manual').hide();
+        }
+
+        let dataLokasiDom = '{{ isset($prop_dom->nama_prov) ? $prop_dom->nama_prov : "0" }}';
+        if (dataLokasiDom !== '0') {
+            $('.dropdown_lokasi_dom_otomatis').show();
+            $('.dropdown_lokasi_dom_manual').hide();
+        }
+
+        $('.edit-ktp').on('click', function () {
+            $('.dropdown_lokasi_ktp_otomatis').hide();
+            $('.dropdown_lokasi_ktp_manual').show();
+            
+        });
+
+        $('.edit-ktp-cancel').on('click', function () {
+            $('.dropdown_lokasi_ktp_otomatis').show();
+            $('.dropdown_lokasi_ktp_manual').hide();
+        });
+
+        $('.edit-dom').on('click', function () {
+            $('.dropdown_lokasi_dom_otomatis').hide();
+            $('.dropdown_lokasi_dom_manual').show();
+        });
+
+        $('.edit-dom-cancel').on('click', function () {
+            $('.dropdown_lokasi_dom_otomatis').show();
+            $('.dropdown_lokasi_dom_manual').hide();
+        });
+
+
+        
     })
 
 </script>

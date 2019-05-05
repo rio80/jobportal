@@ -40,7 +40,7 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
-        /*'mysql' => [
+        'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
@@ -54,7 +54,7 @@ return [
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
-        ],*/
+        ],
 
         // 'mysql' => [
         //     'driver' => 'mysql',
@@ -72,21 +72,21 @@ return [
         //     'engine' => null,
         // ],
 
-        'mysql' => [
-            'driver' => 'mysql',
-            'host' => '104.223.71.219',
-            'port' => '3306',
-            'database' => 'job_portal',
-            'username' => 'rio',
-            'password' => '24434',
-            'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-            'prefix_indexes' => true,
-            'strict' => true,
-            'engine' => null,
-        ],
+        // 'mysql' => [
+        //     'driver' => 'mysql',
+        //     'host' => '104.223.71.219',
+        //     'port' => '3306',
+        //     'database' => 'job_portal',
+        //     'username' => 'rio',
+        //     'password' => '24434',
+        //     'unix_socket' => env('DB_SOCKET', ''),
+        //     'charset' => 'utf8mb4',
+        //     'collation' => 'utf8mb4_unicode_ci',
+        //     'prefix' => '',
+        //     'prefix_indexes' => true,
+        //     'strict' => true,
+        //     'engine' => null,
+        // ],
 
         'pgsql' => [
             'driver' => 'pgsql',
