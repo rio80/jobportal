@@ -15,8 +15,13 @@
     <script src="{{ asset('jquery-ui-1.12.1.custom/external/jquery/jquery.js') }}" type="text/javascript"></script>
     <script src="{{ asset('jquery-ui-1.12.1.custom/jquery-ui.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/custom.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
-    <script src="{{ asset('select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('js/sweetalert.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('select2/js/select2.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/input-mask/inputmask.dependencyLib.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/input-mask/inputmask.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/input-mask/inputmask.extensions.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/input-mask/inputmask.numeric.extensions.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/input-mask/inputmask.date.extensions.js') }}" type="text/javascript"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet">

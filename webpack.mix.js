@@ -50,4 +50,10 @@ let mix = require('laravel-mix');
 //   postCss: [] // Post-CSS options: https://github.com/postcss/postcss/blob/master/docs/plugins.md
 // });
 
-mix.js('node_modules/sweetalert/dist/sweetalert.min.js', 'public/js/');
+// mix.js('node_modules/sweetalert/dist/sweetalert.min.js', 'public/js/');
+
+mix.js('node_modules/inputmask/dist/inputmask/dependencyLibs/inputmask.dependencyLib.js', 'public/js/input-mask/');
+mix.js('node_modules/inputmask/dist/inputmask/inputmask.js', 'public/js/input-mask/');
+mix.js('node_modules/inputmask/dist/inputmask/inputmask.extensions.js', 'public/js/input-mask/');
+mix.js('node_modules/inputmask/dist/inputmask/inputmask.numeric.extensions.js', 'public/js/input-mask/');
+mix.js('node_modules/inputmask/dist/inputmask/inputmask.date.extensions.js', 'public/js/input-mask/');

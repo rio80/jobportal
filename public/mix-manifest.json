@@ -1,3 +1,7 @@
 {
-    "/js/sweetalert.min.js": "/js/sweetalert.min.js"
+    "/js/input-mask/inputmask.js": "/js/input-mask/inputmask.js",
+    "/js/input-mask/inputmask.date.extensions.js": "/js/input-mask/inputmask.date.extensions.js",
+    "/js/input-mask/inputmask.dependencyLib.js": "/js/input-mask/inputmask.dependencyLib.js",
+    "/js/input-mask/inputmask.extensions.js": "/js/input-mask/inputmask.extensions.js",
+    "/js/input-mask/inputmask.numeric.extensions.js": "/js/input-mask/inputmask.numeric.extensions.js"
 }

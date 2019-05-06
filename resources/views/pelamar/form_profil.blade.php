@@ -11,8 +11,7 @@
 <script>
     $(function () {
         // $('select[name="propinsi_ktp"]').first().val('22');
-
-
+        $("#input_tanggal").inputmask("99/99/9999",{ "placeholder": "dd/mm/yyyy" });
         $.fn.select2.defaults.set("theme", "bootstrap");
         $('#tanggal, #bulan, #tahun, ' +
             '#propinsi_ktp, #kota_ktp, #kecamatan_ktp, #kelurahan_ktp, ' +
@@ -106,16 +105,9 @@
                                                     class="text-danger">*</span>', ['class' => 'control-label'],
                                                 false) !!}
                                             </div>
+
                                             <div class="col-md-4">
-                                                {{ Form::select('tanggal', $tanggals, null, ['class' => 'form-control', 'id' => 'tanggal']) }}
-                                            </div>
-                                            <div class="col-md-4">
-                                                {!! Form::select('bulan', $bulan, null, ['class' => 'form-control',
-                                                'id' => 'bulan']) !!}
-                                            </div>
-                                            <div class="col-md-4">
-                                                {!! Form::select('tahun', $tahuns, null, ['class'
-                                                => 'form-control', 'id' => 'tahun']) !!}
+                                                <input type="text" name="input_tanggal" id="input_tanggal">
                                             </div>
                                         </div>
                                     </div>
@@ -677,6 +669,8 @@
 
         $('.dropdown_lokasi_ktp_otomatis').hide();
         $('.dropdown_lokasi_dom_otomatis').hide();
+
+        
 
         let dataLokasi = '{{ isset($propinsi->nama_prov) ? $propinsi->nama_prov : "0" }}';
         if (dataLokasi !== '0') {
