@@ -9,9 +9,10 @@
     for($tahun = 1970; $tahun <= date('Y')-15; $tahun++) $tahuns[$tahun] = $tahun;
 ?>
 <script>
-    $(function () {
+    $(document).ready(function($){
         // $('select[name="propinsi_ktp"]').first().val('22');
         $("#input_tanggal").inputmask("99/99/9999",{ "placeholder": "dd/mm/yyyy" });
+        
         $.fn.select2.defaults.set("theme", "bootstrap");
         $('#tanggal, #bulan, #tahun, ' +
             '#propinsi_ktp, #kota_ktp, #kecamatan_ktp, #kelurahan_ktp, ' +
@@ -60,7 +61,6 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-6">
-
                                 {!! Form::label('namalengkap',
                                 'Nama Lengkap <span class="text-danger">*</span>',
                                 ['class'=> 'control-label'],
@@ -100,14 +100,27 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="row">
+                                                <div class="col-md-4">
+                                                        <input name="input_tanggal" id="input_tanggal" class="form-control">
+                                                    </div>
                                             <div class="col-md-12">
-                                                {!! Form::label('tgllahir', 'Tanggal lahir <span
+                                                {!! Form::label('tanggal', 'Tanggal lahir <span
                                                     class="text-danger">*</span>', ['class' => 'control-label'],
                                                 false) !!}
                                             </div>
 
+                                         
+
                                             <div class="col-md-4">
-                                                <input type="text" name="input_tanggal" id="input_tanggal">
+                                                {{ Form::select('tanggal', $tanggals, null, ['class' => 'form-control', 'id' => 'tanggal']) }}
+                                            </div>
+                                            <div class="col-md-4">
+                                                {!! Form::select('bulan', $bulan, null, ['class' => 'form-control',
+                                                'id' => 'bulan']) !!}
+                                            </div>
+                                            <div class="col-md-4">
+                                                {!! Form::select('tahun', $tahuns, null, ['class'
+                                                => 'form-control', 'id' => 'tahun']) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -636,8 +649,7 @@
 </div>
 
 <script>
-    $(function () {
-
+    $(function ($) {
         $('.dynamic').change(function () {
             if ($(this).val() != '') {
                 var select = $(this).attr('id');

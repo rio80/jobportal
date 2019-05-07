@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Storage;
 use View;
+use Carbon\Carbon;
 
 class PelamarController extends Controller
 {
@@ -179,9 +180,12 @@ class PelamarController extends Controller
         }
         $updatePelamar = Pelamar::where('no_reg', $input['noreg'])->first();
         // dd($input);
+
         $updatePelamar->no_ktp = $input['no_identitas'];
         $updatePelamar->jenis_kelamin = $input['jenis_kelamin'];
-        // $updatePelamar->tanggal_lahir = $input['tanggal']."-".$input['bulan']."-".$input['tahun'];
+        $tz = "Asia/Bangkok";
+        $tgl_lahir = Carbon::createFromDate($input['tahun'], $input['bulan'],$input['tanggal'], $tz);
+        $updatePelamar->tanggal_lahir = $tgl_lahir;   
 
         if ($updatePelamar->kode_prov_ktp !== '0' && $input['propinsi_ktp'] !== '0' &&
         $updatePelamar->kode_kota_ktp !== '0' && $input['kota_ktp'] !== '0' &&
@@ -205,6 +209,8 @@ class PelamarController extends Controller
             $updatePelamar->kode_kec = $input['kecamatan_dom'];
             $updatePelamar->kode_kel = $input['kelurahan_dom'];
         }
+
+        
         $updatePelamar->save();
     }
 

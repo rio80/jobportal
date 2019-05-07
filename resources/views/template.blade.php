@@ -12,17 +12,13 @@
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
-    <script src="{{ asset('jquery-ui-1.12.1.custom/external/jquery/jquery.js') }}" type="text/javascript"></script>
+    {{-- <script src="{{ asset('jquery-ui-1.12.1.custom/external/jquery/jquery.js') }}" type="text/javascript"></script> --}}
+    <script src="{{ asset('js/jquery-3.4.1.min.js') }}" type="text/javascript"></script>    
     <script src="{{ asset('jquery-ui-1.12.1.custom/jquery-ui.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/custom.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/sweetalert.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('select2/js/select2.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/input-mask/inputmask.dependencyLib.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/input-mask/inputmask.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/input-mask/inputmask.extensions.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/input-mask/inputmask.numeric.extensions.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/input-mask/inputmask.date.extensions.js') }}" type="text/javascript"></script>
-
+   
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
@@ -68,6 +64,13 @@
 </footer>
 
 {{-- </div> --}}
+
+<script src="{{ asset('js/input-mask/inputmask.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/input-mask/inputmask.extensions.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/input-mask/jquery.inputmask.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/input-mask/inputmask.dependencyLib.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/input-mask/inputmask.numeric.extensions.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/input-mask/inputmask.date.extensions.js') }}" type="text/javascript"></script>
 
 <script src="{{ asset('js/core/popper.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/core/bootstrap.min.js') }}" type="text/javascript"></script>

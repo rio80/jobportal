@@ -5,6 +5,8 @@
  */
 let mix = require('../src/index');
 
+var Inputmask = require('inputmask');
+
 let ComponentFactory = require('../src/components/ComponentFactory');
 
 new ComponentFactory().installAll();
