@@ -29,7 +29,6 @@
     .posisi-error {
         text-align: right;
     }
-
 </style>
 <div class="container">
     <div class="row">
@@ -100,16 +99,16 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="row">
-                                                <div class="col-md-4">
-                                                        <input name="input_tanggal" id="input_tanggal" class="form-control">
-                                                    </div>
+                                            {{-- <div class="col-md-4">
+                                                <input name="input_tanggal" id="input_tanggal" class="form-control">
+                                            </div> --}}
                                             <div class="col-md-12">
                                                 {!! Form::label('tanggal', 'Tanggal lahir <span
                                                     class="text-danger">*</span>', ['class' => 'control-label'],
                                                 false) !!}
                                             </div>
 
-                                         
+
 
                                             <div class="col-md-4">
                                                 {{ Form::select('tanggal', $tanggals, null, ['class' => 'form-control', 'id' => 'tanggal']) }}
@@ -387,7 +386,8 @@
                                                 false) !!} <span
                                                     class="help-block pesan-error">{{ $errors->first('propinsi_ktp') }}</span><br>
 
-                                                {!! Form::text('show_prov', (isset($propinsi->nama_prov) ? $propinsi->nama_prov : 'Kosong'), ['class' =>
+                                                {!! Form::text('show_prov', (isset($propinsi->nama_prov) ?
+                                                $propinsi->nama_prov : 'Kosong'), ['class' =>
                                                 'form-control', 'readonly' => 'true']) !!}
 
                                             </div>
@@ -398,7 +398,8 @@
                                                 false) !!}
                                                 <span
                                                     class="help-block pesan-error">{{ $errors->first('kota_ktp') }}</span>
-                                                {!! Form::text('show_kota', (isset($kota->nama_kota) ? $kota->nama_kota : "Kosong"), ['class' =>
+                                                {!! Form::text('show_kota', (isset($kota->nama_kota) ? $kota->nama_kota
+                                                : "Kosong"), ['class' =>
                                                 'form-control', 'readonly' => 'true']) !!}
                                             </div>
 
@@ -409,7 +410,8 @@
                                                 !!}
                                                 <span
                                                     class="help-block pesan-error">{{ $errors->first('kecamatan_ktp') }}</span>
-                                                {!! Form::text('show_kec', (isset($kec->nama_kec) ? $kec->nama_kec : "kosong"), ['class' => 'form-control',
+                                                {!! Form::text('show_kec', (isset($kec->nama_kec) ? $kec->nama_kec :
+                                                "kosong"), ['class' => 'form-control',
                                                 'readonly' => 'true']) !!}
                                             </div>
                                             <div class="col-md-12">
@@ -419,7 +421,8 @@
                                                 !!}
                                                 <span
                                                     class="help-block pesan-error">{{ $errors->first('kelurahan_ktp') }}</span>
-                                                {!! Form::text('show_kel', (isset($kel->nama_kel) ?$kel->nama_kel : "kosong"), ['class' => 'form-control',
+                                                {!! Form::text('show_kel', (isset($kel->nama_kel) ?$kel->nama_kel :
+                                                "kosong"), ['class' => 'form-control',
                                                 'readonly' => 'true']) !!}
                                             </div>
                                         </div>
@@ -517,7 +520,8 @@
                                                 false) !!} <span
                                                     class="help-block pesan-error">{{ $errors->first('propinsi_dom') }}</span><br>
 
-                                                {!! Form::text('show_prov_dom', (isset($prop_dom->nama_prov) ? $prop_dom->nama_prov : "kosong"), ['class' =>
+                                                {!! Form::text('show_prov_dom', (isset($prop_dom->nama_prov) ?
+                                                $prop_dom->nama_prov : "kosong"), ['class' =>
                                                 'form-control', 'readonly' => 'true']) !!}
 
                                             </div>
@@ -528,7 +532,8 @@
                                                 false) !!}
                                                 <span
                                                     class="help-block pesan-error">{{ $errors->first('kota_dom') }}</span>
-                                                {!! Form::text('show_kota_dom', (isset($kota_dom->nama_kota) ? $kota_dom->nama_kota : "kosong"), ['class' =>
+                                                {!! Form::text('show_kota_dom', (isset($kota_dom->nama_kota) ?
+                                                $kota_dom->nama_kota : "kosong"), ['class' =>
                                                 'form-control', 'readonly' => 'true']) !!}
                                             </div>
 
@@ -539,7 +544,8 @@
                                                 !!}
                                                 <span
                                                     class="help-block pesan-error">{{ $errors->first('kecamatan_ktp_dom') }}</span>
-                                                {!! Form::text('show_kec_dom', (isset($kec_dom->nama_kec) ? $kec_dom->nama_kec : "Kosong"), ['class' =>
+                                                {!! Form::text('show_kec_dom', (isset($kec_dom->nama_kec) ?
+                                                $kec_dom->nama_kec : "Kosong"), ['class' =>
                                                 'form-control', 'readonly' => 'true']) !!}
                                             </div>
                                             <div class="col-md-12">
@@ -549,7 +555,8 @@
                                                 !!}
                                                 <span
                                                     class="help-block pesan-error">{{ $errors->first('kelurahan_ktp_dom') }}</span>
-                                                {!! Form::text('show_kel_dom', (isset($kel_dom->nama_kel) ? $kel_dom->nama_kel : "Kosong"), ['class' =>
+                                                {!! Form::text('show_kel_dom', (isset($kel_dom->nama_kel) ?
+                                                $kel_dom->nama_kel : "Kosong"), ['class' =>
                                                 'form-control', 'readonly' => 'true']) !!}
                                             </div>
                                         </div>

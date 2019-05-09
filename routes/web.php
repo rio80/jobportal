@@ -62,7 +62,7 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function () {
 
     });
     Route::group(['roles' => 'pelamar'], function () {
-        Route::get('/dashboard', 'PelamarController@index')->name('dashboard');
+        Route::get('/dashboard/{iduser}', 'PelamarController@index')->name('dashboard');
         Route::get('/print_cv','PelamarController@print_cv')->name('print_cv');
         Route::get('/lowongan_detail','PelamarController@resume')->name('lowongan_detail');
         Route::get('/pendidikan_form','PelamarController@pendidikan_form')->name('pendidikan_form');

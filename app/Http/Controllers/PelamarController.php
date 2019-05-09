@@ -22,8 +22,37 @@ class PelamarController extends Controller
         $this->middleware(['auth', 'verified']);
     }
 
-    public function index()
+    public function index($iduser)
     {
+        $cekPelamar = DB::table('tb_mst_pelamar')
+        ->join('tb_ref_registrasi', 'tb_mst_pelamar.no_reg', '=', 'tb_ref_registrasi.id')
+        ->join('users', 'tb_ref_registrasi.user_id', '=','users.id')
+        ->where('users.id', $iduser)
+        ->first();
+        if(($cekPelamar->nama == "-" || empty($cekPelamar->nama)) ||
+        ($cekPelamar->pasfoto == "-" || empty($cekPelamar->pasfoto)) ||
+        ($cekPelamar->telp1 == "-" || empty($cekPelamar->telp1)) ||
+        ($cekPelamar->alamat_ktp1 == "-" || empty($cekPelamar->alamat_ktp1)) ||
+        ($cekPelamar->kodepos_ktp == "-" || empty($cekPelamar->kodepos_ktp)) ||
+        ($cekPelamar->alamat_domisili1 == "-" || empty($cekPelamar->alamat_domisili1))||
+        ($cekPelamar->kodepos_domisili == "-" || empty($cekPelamar->kodepos_domisili)) ||
+        ($cekPelamar->email1 == "-" || empty($cekPelamar->email1)) ||
+        ($cekPelamar->kode_prov_ktp == "-" || empty($cekPelamar->kode_prov_ktp)) ||
+        ($cekPelamar->kode_kota_ktp == "-" || empty($cekPelamar->kode_kota_ktp))||
+        ($cekPelamar->kode_kec_ktp == "-" || empty($cekPelamar->kode_kec_ktp))||
+        ($cekPelamar->kode_kel_ktp == "-" || empty($cekPelamar->kode_kel_ktp)) ||
+        ($cekPelamar->kode_prov == "-" || empty($cekPelamar->kode_prov)) ||
+        ($cekPelamar->kode_kota == "-" || empty($cekPelamar->kode_kota)) ||
+        ($cekPelamar->kode_kec == "-" || empty($cekPelamar->kode_kec)) ||
+        ($cekPelamar->kode_kel == "-" || empty($cekPelamar->kode_kel)) ||
+        ($cekPelamar->jenis_identitas == "-" || empty($cekPelamar->jenis_identitas)) ||
+        ($cekPelamar->no_identitas == "-" || empty($cekPelamar->no_identitas)) ||
+        ($cekPelamar->status_nikah == "-" || empty($cekPelamar->status_nikah)) ||
+        ($cekPelamar->status_bekerja == "-" || empty($cekPelamar->status_bekerja)) ||
+        ($cekPelamar->deskripsi_diri == "-" || empty($cekPelamar->deskripsi_diri))){
+            alert()->warning('Warning Message', 'Harap Lengkapi Profil Anda');
+            return redirect("/profil/$iduser/edit");
+        }
         return view('pelamar.menu_pelamar');
     }
 
@@ -180,11 +209,11 @@ class PelamarController extends Controller
         }
         $updatePelamar = Pelamar::where('no_reg', $input['noreg'])->first();
         // dd($input);
-
+        
         $updatePelamar->no_ktp = $input['no_identitas'];
         $updatePelamar->jenis_kelamin = $input['jenis_kelamin'];
         $tz = "Asia/Bangkok";
-        $tgl_lahir = Carbon::createFromDate($input['tahun'], $input['bulan'],$input['tanggal'], $tz);
+        $tgl_lahir = Carbon::createFromDate($input['tahun'], $input['bulan'] + 1,$input['tanggal'], $tz);
         $updatePelamar->tanggal_lahir = $tgl_lahir;   
 
         if ($updatePelamar->kode_prov_ktp !== '0' && $input['propinsi_ktp'] !== '0' &&
@@ -210,7 +239,6 @@ class PelamarController extends Controller
             $updatePelamar->kode_kel = $input['kelurahan_dom'];
         }
 
-        
         $updatePelamar->save();
     }
 

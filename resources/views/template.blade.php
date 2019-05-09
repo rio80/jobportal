@@ -48,7 +48,7 @@
         <nav>
             <ul>
                 <li><a href="javascript:void(0);">Tentang kami</a></li>
-                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ route('dashboard', ['iduser' => Auth::user()->id]) }}">Dashboard</a></li>
             </ul>
         </nav>
         <div class="copyright" id="copyright">
