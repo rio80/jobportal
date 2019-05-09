@@ -12,13 +12,14 @@
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
-    {{-- <script src="{{ asset('jquery-ui-1.12.1.custom/external/jquery/jquery.js') }}" type="text/javascript"></script> --}}
-    <script src="{{ asset('js/jquery-3.4.1.min.js') }}" type="text/javascript"></script>    
+    {{-- <script src="{{ asset('jquery-ui-1.12.1.custom/external/jquery/jquery.js') }}" type="text/javascript"></script>
+    --}}
+    <script src="{{ asset('js/jquery-3.4.1.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('jquery-ui-1.12.1.custom/jquery-ui.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/custom.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/sweetalert.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('select2/js/select2.min.js') }}" type="text/javascript"></script>
-   
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
@@ -35,8 +36,7 @@
 
 
     <link href="{{ asset('select2/css/select2.min.css') }}" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('select2/css/select2-bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('select2/css/select2-bootstrap.css') }}">
 
 </head>
 @yield('navbar')
@@ -47,8 +47,14 @@
     <div class="container">
         <nav>
             <ul>
+                {{-- @guest
                 <li><a href="javascript:void(0);">Tentang kami</a></li>
+                @if (Route::has('register'))
+                @endif
+                @else
                 <li><a href="{{ route('dashboard', ['iduser' => Auth::user()->id]) }}">Dashboard</a></li>
+                @endguest --}}
+                
             </ul>
         </nav>
         <div class="copyright" id="copyright">

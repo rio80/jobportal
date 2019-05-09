@@ -9,11 +9,11 @@ use App\Models\Kelurahan as kel;
 use App\Models\Kota as kota;
 use App\Models\Pelamar;
 use App\Models\Registrasi;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Storage;
 use View;
-use Carbon\Carbon;
 
 class PelamarController extends Controller
 {
@@ -25,31 +25,31 @@ class PelamarController extends Controller
     public function index($iduser)
     {
         $cekPelamar = DB::table('tb_mst_pelamar')
-        ->join('tb_ref_registrasi', 'tb_mst_pelamar.no_reg', '=', 'tb_ref_registrasi.id')
-        ->join('users', 'tb_ref_registrasi.user_id', '=','users.id')
-        ->where('users.id', $iduser)
-        ->first();
-        if(($cekPelamar->nama == "-" || empty($cekPelamar->nama)) ||
-        ($cekPelamar->pasfoto == "-" || empty($cekPelamar->pasfoto)) ||
-        ($cekPelamar->telp1 == "-" || empty($cekPelamar->telp1)) ||
-        ($cekPelamar->alamat_ktp1 == "-" || empty($cekPelamar->alamat_ktp1)) ||
-        ($cekPelamar->kodepos_ktp == "-" || empty($cekPelamar->kodepos_ktp)) ||
-        ($cekPelamar->alamat_domisili1 == "-" || empty($cekPelamar->alamat_domisili1))||
-        ($cekPelamar->kodepos_domisili == "-" || empty($cekPelamar->kodepos_domisili)) ||
-        ($cekPelamar->email1 == "-" || empty($cekPelamar->email1)) ||
-        ($cekPelamar->kode_prov_ktp == "-" || empty($cekPelamar->kode_prov_ktp)) ||
-        ($cekPelamar->kode_kota_ktp == "-" || empty($cekPelamar->kode_kota_ktp))||
-        ($cekPelamar->kode_kec_ktp == "-" || empty($cekPelamar->kode_kec_ktp))||
-        ($cekPelamar->kode_kel_ktp == "-" || empty($cekPelamar->kode_kel_ktp)) ||
-        ($cekPelamar->kode_prov == "-" || empty($cekPelamar->kode_prov)) ||
-        ($cekPelamar->kode_kota == "-" || empty($cekPelamar->kode_kota)) ||
-        ($cekPelamar->kode_kec == "-" || empty($cekPelamar->kode_kec)) ||
-        ($cekPelamar->kode_kel == "-" || empty($cekPelamar->kode_kel)) ||
-        ($cekPelamar->jenis_identitas == "-" || empty($cekPelamar->jenis_identitas)) ||
-        ($cekPelamar->no_identitas == "-" || empty($cekPelamar->no_identitas)) ||
-        ($cekPelamar->status_nikah == "-" || empty($cekPelamar->status_nikah)) ||
-        ($cekPelamar->status_bekerja == "-" || empty($cekPelamar->status_bekerja)) ||
-        ($cekPelamar->deskripsi_diri == "-" || empty($cekPelamar->deskripsi_diri))){
+            ->join('tb_ref_registrasi', 'tb_mst_pelamar.no_reg', '=', 'tb_ref_registrasi.id')
+            ->join('users', 'tb_ref_registrasi.user_id', '=', 'users.id')
+            ->where('users.id', $iduser)
+            ->first();
+        if (($cekPelamar->nama == "-" || empty($cekPelamar->nama)) ||
+            ($cekPelamar->pasfoto == "-" || empty($cekPelamar->pasfoto)) ||
+            ($cekPelamar->telp1 == "-" || empty($cekPelamar->telp1)) ||
+            ($cekPelamar->alamat_ktp1 == "-" || empty($cekPelamar->alamat_ktp1)) ||
+            ($cekPelamar->kodepos_ktp == "-" || empty($cekPelamar->kodepos_ktp)) ||
+            ($cekPelamar->alamat_domisili1 == "-" || empty($cekPelamar->alamat_domisili1)) ||
+            ($cekPelamar->kodepos_domisili == "-" || empty($cekPelamar->kodepos_domisili)) ||
+            ($cekPelamar->email1 == "-" || empty($cekPelamar->email1)) ||
+            ($cekPelamar->kode_prov_ktp == "-" || empty($cekPelamar->kode_prov_ktp)) ||
+            ($cekPelamar->kode_kota_ktp == "-" || empty($cekPelamar->kode_kota_ktp)) ||
+            ($cekPelamar->kode_kec_ktp == "-" || empty($cekPelamar->kode_kec_ktp)) ||
+            ($cekPelamar->kode_kel_ktp == "-" || empty($cekPelamar->kode_kel_ktp)) ||
+            ($cekPelamar->kode_prov == "-" || empty($cekPelamar->kode_prov)) ||
+            ($cekPelamar->kode_kota == "-" || empty($cekPelamar->kode_kota)) ||
+            ($cekPelamar->kode_kec == "-" || empty($cekPelamar->kode_kec)) ||
+            ($cekPelamar->kode_kel == "-" || empty($cekPelamar->kode_kel)) ||
+            ($cekPelamar->jenis_identitas == "-" || empty($cekPelamar->jenis_identitas)) ||
+            ($cekPelamar->no_identitas == "-" || empty($cekPelamar->no_identitas)) ||
+            ($cekPelamar->status_nikah == "-" || empty($cekPelamar->status_nikah)) ||
+            ($cekPelamar->status_bekerja == "-" || empty($cekPelamar->status_bekerja)) ||
+            ($cekPelamar->deskripsi_diri == "-" || empty($cekPelamar->deskripsi_diri))) {
             alert()->warning('Warning Message', 'Harap Lengkapi Profil Anda');
             return redirect("/profil/$iduser/edit");
         }
@@ -119,6 +119,12 @@ class PelamarController extends Controller
             ->select('id_kel', 'nama_kel')
             ->where('id_kel', $pelamarTable->kode_kel)
             ->first();
+        
+            $data['getYearBorn'] = Carbon::createFromFormat('Y-m-d', $pelamarTable->tanggal_lahir)->year;
+            $data['getMonthBorn'] = Carbon::createFromFormat('Y-m-d', $pelamarTable->tanggal_lahir)->month;
+            $data['getDayBorn'] = Carbon::createFromFormat('Y-m-d', $pelamarTable->tanggal_lahir)->day;
+        $getId = [];
+        $data['idfoto'] = $pelamarTable->pasfoto;
         return View::make('pelamar.form_profil', $data);
     }
 
@@ -173,13 +179,13 @@ class PelamarController extends Controller
         echo $output;
     }
 
-    public function uploadFoto(StoreFormProfilRequest $request)
+    public function uploadFoto(StoreFormProfilRequest $request, $idPelamar)
     {
         $foto = $request->file('uploadfoto');
         $ext = $foto->getClientOriginalExtension();
 
         if ($request->file('uploadfoto')->isValid()) {
-            $foto_name = $request->email1 . "-" . date('YmdHis') . ".$ext";
+            $foto_name = $idPelamar . "_" . date('YmdHis') . ".$ext";
             $upload_path = 'fotoupload';
             $request->file('uploadfoto')->move($upload_path, $foto_name);
             return $foto_name;
@@ -204,34 +210,35 @@ class PelamarController extends Controller
     {
 
         $input = $req->all();
+        $updatePelamar = Pelamar::select('*', 'id as idpelamar')->where('no_reg', $input['noreg'])->first();
         if ($req->hasFile('uploadfoto')) {
-            $input['uploadfoto'] = $this->uploadFoto($req);
+            $input['uploadfoto'] = $this->uploadFoto($req, $updatePelamar->idpelamar);
+        } else {
+            $input['uploadfoto'] = "-";
         }
-        $updatePelamar = Pelamar::where('no_reg', $input['noreg'])->first();
         // dd($input);
-        
+        $updatePelamar->pasfoto = $input['uploadfoto'];
         $updatePelamar->no_ktp = $input['no_identitas'];
         $updatePelamar->jenis_kelamin = $input['jenis_kelamin'];
         $tz = "Asia/Bangkok";
-        $tgl_lahir = Carbon::createFromDate($input['tahun'], $input['bulan'] + 1,$input['tanggal'], $tz);
-        $updatePelamar->tanggal_lahir = $tgl_lahir;   
+        $tgl_lahir = Carbon::createFromDate($input['tahun'], $input['bulan'] + 1, $input['tanggal'], $tz);
+        $updatePelamar->tanggal_lahir = $tgl_lahir;
 
         if ($updatePelamar->kode_prov_ktp !== '0' && $input['propinsi_ktp'] !== '0' &&
-        $updatePelamar->kode_kota_ktp !== '0' && $input['kota_ktp'] !== '0' &&
-        $updatePelamar->kode_kec_ktp !== '0' && $input['kecamatan_ktp'] !== '0' &&
-        $updatePelamar->kode_kel_ktp !== '0' && $input['kelurahan_ktp'] !== '0') {
+            $updatePelamar->kode_kota_ktp !== '0' && $input['kota_ktp'] !== '0' &&
+            $updatePelamar->kode_kec_ktp !== '0' && $input['kecamatan_ktp'] !== '0' &&
+            $updatePelamar->kode_kel_ktp !== '0' && $input['kelurahan_ktp'] !== '0') {
             // dd('simpan lokasi ktp');
             $updatePelamar->kode_prov_ktp = $input['propinsi_ktp'];
             $updatePelamar->kode_kota_ktp = $input['kota_ktp'];
             $updatePelamar->kode_kec_ktp = $input['kecamatan_ktp'];
             $updatePelamar->kode_kel_ktp = $input['kelurahan_ktp'];
         }
-      
 
         if ($updatePelamar->kode_prov !== '0' && $input['propinsi_dom'] !== '0' &&
-        $updatePelamar->kode_kota !== '0' && $input['kota_dom'] !== '0' &&
-        $updatePelamar->kode_kec !== '0' && $input['kecamatan_dom'] !== '0' &&
-        $updatePelamar->kode_kel !== '0' && $input['kelurahan_dom'] !== '0') {
+            $updatePelamar->kode_kota !== '0' && $input['kota_dom'] !== '0' &&
+            $updatePelamar->kode_kec !== '0' && $input['kecamatan_dom'] !== '0' &&
+            $updatePelamar->kode_kel !== '0' && $input['kelurahan_dom'] !== '0') {
 
             $updatePelamar->kode_prov = $input['propinsi_dom'];
             $updatePelamar->kode_kota = $input['kota_dom'];

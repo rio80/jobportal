@@ -8,7 +8,7 @@
             <div class="sidebar-heading">
                 <div class="col-md-12">
                     <div class="col-md-12">
-                        <img src="./assets/img/ryan.jpg" class="rounded-circle">
+                        <img src="{{ asset('fotoupload/'.$idfoto) }}" class="rounded-circle">
                     </div>
                     <div class="col-md-12 text-center">
                         <div class="row">

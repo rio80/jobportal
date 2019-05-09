@@ -111,14 +111,14 @@
 
 
                                             <div class="col-md-4">
-                                                {{ Form::select('tanggal', $tanggals, null, ['class' => 'form-control', 'id' => 'tanggal']) }}
+                                                {{ Form::select('tanggal', $tanggals, [$getDayBorn], ['class' => 'form-control', 'id' => 'tanggal']) }}
                                             </div>
                                             <div class="col-md-4">
-                                                {!! Form::select('bulan', $bulan, null, ['class' => 'form-control',
+                                                {!! Form::select('bulan', $bulan, [$getMonthBorn], ['class' => 'form-control',
                                                 'id' => 'bulan']) !!}
                                             </div>
                                             <div class="col-md-4">
-                                                {!! Form::select('tahun', $tahuns, null, ['class'
+                                                {!! Form::select('tahun', $tahuns, [$getYearBorn], ['class'
                                                 => 'form-control', 'id' => 'tahun']) !!}
                                             </div>
                                         </div>
@@ -160,7 +160,7 @@
                                         ['class' => 'form-control']) !!}
                                     </div>
                                     <div class="col-md-12" style="margin-top: 0.5rem;">
-                                        {!! Form::text('nohp_wa', null, ['class' => 'form-control
+                                        {!! Form::text('nohp_wa', $pelamar->telp_wa, ['class' => 'form-control
                                         '.($errors->first('nohp_wa') ? 'is-invalid' : 'is-valid'),
                                         'id'
                                         =>'nohp_wa', 'placeholder' => 'Masukan No HP']) !!}
@@ -180,7 +180,7 @@
                                     <div class="col-md-12" style="margin-top: 0.5rem;">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                {!! Form::text('nohp', null,
+                                                {!! Form::text('nohp', $pelamar->telp1,
                                                 [
                                                 'class' => 'form-control', 'id'
                                                 =>'nohp', 'placeholder' => 'Masukan No HP lain']) !!}
@@ -199,7 +199,7 @@
                                 {!! Form::label('alamatktp1', 'Alamat sesuai KTP <span class="text-danger">*</span>',
                                 ['class' => 'control-label'], false) !!}
 
-                                {!! Form::text('alamatktp1', null,
+                                {!! Form::text('alamatktp1', $pelamar->alamat_ktp1,
                                 [
                                 'class' => 'form-control '.($errors->first('alamatktp1') ? 'is-invalid' : 'is-valid') ,
                                 'id' =>
@@ -210,7 +210,7 @@
 
                                 {!! Form::label('alamatktp2', 'Alamat KTP 2', ['class' => 'control-label']) !!}
 
-                                {!! Form::text('alamatktp2', null,
+                                {!! Form::text('alamatktp2', $pelamar->alamat_ktp2,
                                 ['class' => 'form-control' , 'id' =>
                                 'alamatktp2', 'placeholder' => 'Alamat KTP 2']) !!}
 
@@ -220,7 +220,7 @@
                                 ['class' => 'control-label'], false)
                                 !!}
 
-                                {!! Form::text('kodeposktp', null,
+                                {!! Form::text('kodeposktp', $pelamar->kodepos_ktp,
                                 ['class' => 'form-control '.($errors->first('kodeposktp') ? 'is-invalid' : 'is-valid'),
                                 'id' => 'kodepos',
                                 'placeholder' => 'Kode pos KTP']) !!}
@@ -238,7 +238,7 @@
                                     class="text-danger">*</span>', ['class' =>
                                 'control-label'], false) !!}
 
-                                {!! Form::text('alamatdomisili1', null,
+                                {!! Form::text('alamatdomisili1', $pelamar->alamat_domisili1,
                                 ['class' => 'form-control '.($errors->first('alamatdomisili1') ? 'is-invalid' :
                                 'is-valid'), 'id' =>
                                 'alamatdomisili1', 'placeholder' => 'Alamat Domisili 1']) !!}
@@ -249,7 +249,7 @@
                                 {!! Form::label('alamatdomisili2', 'Alamat sesuai Domisili', ['class' =>
                                 'control-label']) !!}
 
-                                {!! Form::text('alamatdomisili2', null, ['class' => 'form-control' , 'id' =>
+                                {!! Form::text('alamatdomisili2', $pelamar->alamat_domisili2, ['class' => 'form-control' , 'id' =>
                                 'alamatdomisili2', 'placeholder' => 'Alamat Domisili 2']) !!}
                             </div>
                             <div class="col-md-6">
@@ -257,7 +257,7 @@
                                     class="text-danger">*</span>', ['class' =>
                                 'control-label'], false) !!}
 
-                                {!! Form::text('kodeposdom', null,
+                                {!! Form::text('kodeposdom', $pelamar->kodepos_domisili,
                                 ['class' => 'form-control '.($errors->first('kodeposdom') ? 'is-invalid' : 'is-valid'),
                                 'id' =>
                                 'kodeposdom', 'placeholder' => 'Kode pos sesuai Domisili']) !!}
@@ -290,7 +290,7 @@
                                 {!! Form::label('email2', 'Ulangi Email <span class="text-danger">*</span>', ['class' =>
                                 'control-label'], false) !!}
 
-                                {!! Form::text('email2', null, [
+                                {!! Form::text('email2', $pelamar->email1, [
                                 'class' => 'form-control '.($errors->first('email2') ? 'is-invalid' : 'is-valid'),
                                 'id' => 'email2',
                                 'placeholder' => 'Ulangi email']) !!}
@@ -602,7 +602,7 @@
                             <div class="col-md-6">
                                 {!! Form::label('statusnikah', 'Status Menikah<span class="text-danger">*</span>',
                                 ['class' => 'control-label'], false) !!}
-                                {!! Form::select('statusnikah', $stat_nikah, null,
+                                {!! Form::select('statusnikah', $stat_nikah, [$pelamar->status_nikah],
                                 ['class' => 'form-control '.($errors->first('statusnikah') ? 'is-invalid' : 'is-valid'),
                                 'id'
                                 => 'statusnikah', 'placeholder' => 'Pilih Status Nikah']) !!}
@@ -611,7 +611,7 @@
                             <div class="col-md-6">
                                 {!! Form::label('statusbekerja', 'Status Bekerja <span class="text-danger">*</span>',
                                 ['class' => 'control-label'], false) !!}
-                                {!! Form::select('statusbekerja', $stat_kerja, null,
+                                {!! Form::select('statusbekerja', $stat_kerja, [$pelamar->status_bekerja],
                                 ['class' => 'form-control '.($errors->first('statusbekerja') ? 'is-invalid' :
                                 'is-valid'),
                                 'id' => 'statusbekerja', 'placeholder' => 'Apakah Anda masih bekerja?']) !!}
@@ -628,7 +628,7 @@
                                 {!! Form::label('deskripsi', 'Deskripsikan diri anda : <span
                                     class="text-danger">*</span>', ['class' =>
                                 'control-label'], false) !!}
-                                {!! Form::textarea('deskripsi', null,
+                                {!! Form::textarea('deskripsi', $pelamar->deskripsi_diri,
                                 [
                                 'class' => 'form-control '.($errors->first('deskripsi') ? 'is-invalid' : 'is-valid'),
                                 'cols' => '0',
