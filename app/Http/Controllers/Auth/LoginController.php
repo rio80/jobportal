@@ -84,7 +84,7 @@ class LoginController extends Controller
             $log = LogLogin::create([
                 'id_user' => $user->id,
             ]);
-        return redirect('dashboard');
+        return redirect('/');
             // The user is active, not suspended, and exists.
         }
         else{

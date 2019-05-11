@@ -22,7 +22,7 @@ class PelamarController extends Controller
         $this->middleware(['auth', 'verified']);
     }
 
-    public function index($iduser)
+    public function index($iduser = null)
     {
         $cekPelamar = DB::table('tb_mst_pelamar')
             ->join('tb_ref_registrasi', 'tb_mst_pelamar.no_reg', '=', 'tb_ref_registrasi.id')
@@ -119,12 +119,17 @@ class PelamarController extends Controller
             ->select('id_kel', 'nama_kel')
             ->where('id_kel', $pelamarTable->kode_kel)
             ->first();
-        
-            $data['getYearBorn'] = Carbon::createFromFormat('Y-m-d', $pelamarTable->tanggal_lahir)->year;
-            $data['getMonthBorn'] = Carbon::createFromFormat('Y-m-d', $pelamarTable->tanggal_lahir)->month;
-            $data['getDayBorn'] = Carbon::createFromFormat('Y-m-d', $pelamarTable->tanggal_lahir)->day;
+
+        $data['getYearBorn'] = Carbon::createFromFormat('Y-m-d', $pelamarTable->tanggal_lahir)->year;
+        $data['getMonthBorn'] = Carbon::createFromFormat('Y-m-d', $pelamarTable->tanggal_lahir)->month;
+        $data['getDayBorn'] = Carbon::createFromFormat('Y-m-d', $pelamarTable->tanggal_lahir)->day;
         $getId = [];
-        $data['idfoto'] = $pelamarTable->pasfoto;
+        // $data['idfoto'] = $pelamarTable->pasfoto;
+        session([
+            'idfoto' => $pelamarTable->pasfoto,
+            'dataPelamar' => $data['pelamar'],
+            'idpelamar' => $pelamarTable->id,
+        ]);
         return View::make('pelamar.form_profil', $data);
     }
 
@@ -206,20 +211,40 @@ class PelamarController extends Controller
         }
     }
 
-    public function insertProfil($id, StoreFormProfilRequest $req)
+    public function insertProfil(StoreFormProfilRequest $req)
     {
 
         $input = $req->all();
         $updatePelamar = Pelamar::select('*', 'id as idpelamar')->where('no_reg', $input['noreg'])->first();
         if ($req->hasFile('uploadfoto')) {
+            if($updatePelamar->pasfoto !== '-'){
+                $exist = Storage::disk('foto')->exists($updatePelamar->pasfoto);
+                if($exist){
+                    $delete = Storage::disk('foto')->delete($updatePelamar->pasfoto);
+                }
+            }
             $input['uploadfoto'] = $this->uploadFoto($req, $updatePelamar->idpelamar);
-        } else {
-            $input['uploadfoto'] = "-";
+            $updatePelamar->pasfoto = $input['uploadfoto'];
         }
-        // dd($input);
-        $updatePelamar->pasfoto = $input['uploadfoto'];
+        
         $updatePelamar->no_ktp = $input['no_identitas'];
         $updatePelamar->jenis_kelamin = $input['jenis_kelamin'];
+        $updatePelamar->telp_wa = $input['nohp_wa'];
+        $updatePelamar->telp1 = $input['nohp'];
+        $updatePelamar->alamat_ktp1 = $input['alamatktp1'];
+        $updatePelamar->alamat_ktp2 = $input['alamatktp2'];
+        $updatePelamar->kodepos_ktp = $input['kodeposktp'];
+        $updatePelamar->alamat_domisili1 = $input['alamatdomisili1'];
+        $updatePelamar->alamat_domisili2 = $input['alamatdomisili2'];
+        $updatePelamar->kodepos_domisili = $input['kodeposdom'];
+        $updatePelamar->email1 = $input['email1'];
+        $updatePelamar->email2 = $input['email2'];
+        $updatePelamar->jenis_identitas = $input['jenis_identitas'];
+        $updatePelamar->no_identitas = $input['no_identitas'];
+        $updatePelamar->status_nikah = $input['statusnikah'];
+        $updatePelamar->status_bekerja = $input['statusbekerja'];
+        $updatePelamar->deskripsi_diri = $input['deskripsi'];
+
         $tz = "Asia/Bangkok";
         $tgl_lahir = Carbon::createFromDate($input['tahun'], $input['bulan'] + 1, $input['tanggal'], $tz);
         $updatePelamar->tanggal_lahir = $tgl_lahir;
@@ -245,8 +270,14 @@ class PelamarController extends Controller
             $updatePelamar->kode_kec = $input['kecamatan_dom'];
             $updatePelamar->kode_kel = $input['kelurahan_dom'];
         }
+        session([
+            'idfoto' =>  $input['uploadfoto'],
+        ]);
 
         $updatePelamar->save();
+        alert()->success('Success Message', 'Data Profil Anda Sudah Komplit');
+
+        return redirect('menu_pelamar');
     }
 
 }

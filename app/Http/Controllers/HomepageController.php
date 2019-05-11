@@ -13,6 +13,12 @@ class HomepageController extends Controller
     {
 
         $dataProv = $this->showProv();
+        // $cekPelamar = DB::table('tb_mst_pelamar')
+        // ->join('tb_ref_registrasi', 'tb_mst_pelamar.no_reg', '=', 'tb_ref_registrasi.id')
+        // ->join('users', 'tb_ref_registrasi.user_id', '=', 'users.id')
+        // ->where('users.id', $idUser)
+        // ->first();
+        // $idfoto = $cekPelamar->pasfoto;
         alert()->success('Success Message', 'Optional Title');
         return view('index', compact('dataProv'));
     }

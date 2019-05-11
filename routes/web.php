@@ -72,7 +72,7 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function () {
         Route::get('/pengalaman_view','PelamarController@pengalaman_view')->name('pengalaman_view');
         Route::get('/menu_pelamar','PelamarController@menu_resume')->name('menu_pelamar');
         Route::post('/fetch_lokasi', 'PelamarController@fetch_lokasi')->name('fetch_lokasi');
-        Route::patch('/insert-profil/{pelamar}', 'PelamarController@insertProfil')->name('insert-profil');
+        Route::patch('/insert-profil', 'PelamarController@insertProfil')->name('insert-profil');
         
     });
     Route::group(['roles' => 'pengusaha'], function () {

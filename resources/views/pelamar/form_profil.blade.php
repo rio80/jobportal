@@ -290,7 +290,7 @@
                                 {!! Form::label('email2', 'Ulangi Email <span class="text-danger">*</span>', ['class' =>
                                 'control-label'], false) !!}
 
-                                {!! Form::text('email2', $pelamar->email1, [
+                                {!! Form::text('email2', null, [
                                 'class' => 'form-control '.($errors->first('email2') ? 'is-invalid' : 'is-valid'),
                                 'id' => 'email2',
                                 'placeholder' => 'Ulangi email']) !!}

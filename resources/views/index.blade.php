@@ -3,7 +3,6 @@
 
 <body class="index-page sidebar-collapse">
     @extends('navbar')
-
     <div class="wrapper">
         <script>
             $(document).ready(function () {
@@ -22,6 +21,7 @@
                  <div class="page-header-image" data-parallax="true" style="background-image:url({{ 'img/__header.jpg' }});">
             </div>
                 <div class="container">
+
                     <div class="brand">
                         <h4 class="h1-seo">JobSeekers Company<br><small>Media sempurna untuk pencari kerja</small></h4>
                     </div>

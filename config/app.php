@@ -179,6 +179,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
 
         App\Providers\FormProfilServiceProvider::class,
+        App\Providers\MenuPelamarProvider::class,
 
     ],
 

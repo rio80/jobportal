@@ -8,7 +8,11 @@
             <div class="sidebar-heading">
                 <div class="col-md-12">
                     <div class="col-md-12">
-                        <img src="{{ asset('fotoupload/'.$idfoto) }}" class="rounded-circle">
+                        @if(Session::has('idfoto'))
+                        <img src="{{ asset('fotoupload/'.Session::get('idfoto')) }}" class="rounded-circle">
+                        @else
+                        <img src="" class="rounded-circle">
+                        @endif
                     </div>
                     <div class="col-md-12 text-center">
                         <div class="row">
@@ -18,22 +22,31 @@
                 </div>
             </div>
             <div class="list-group list-group-flush">
-                <a href="{{ url('pengalaman_view') }}" id="exp" class="list-group-item list-group-item-action bg-light">Pengalaman</a>
-                <a href="{{ url('pendidikan_view') }}" id="edu" class="list-group-item list-group-item-action bg-light">Pendidikan</a>
-                <a href='#' id="skl" class="list-group-item list-group-item-action bg-light">Keterampilan</a>
-                <a href='#' id="lng" class="list-group-item list-group-item-action bg-light">Bahasa</a>
-                <a href='#' id="inf_lain" class="list-group-item list-group-item-action bg-light">Info Lain</a>
-                {{-- <a href="{{ url('profil') }}" id="prof" class="list-group-item list-group-item-action bg-light">Profil Saya</a> --}}
-                {{ link_to('profil/'.Auth::user()->id.'/edit','Profil',['class' => 'list-group-item list-group-item-action bg-light'])}}
-                <a href='#' id="res_unggah" class="list-group-item list-group-item-action bg-light">Resume Diunggah</a>
-                <a href='#' href="privasi" class="list-group-item list-group-item-action bg-light">Pengaturan Privasi</a>
+                {{ link_to('pengalaman_view', 'Pengalaman', ['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'exp_view' ? 'active' : ''), 'id' => 'exp_view']) }}
+
+                {{ link_to('pendidikan_view', 'Pendidikan', ['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'edu_view' ? 'active' : ''), 'id' => 'edu_view']) }}
+
+                {{ link_to('#', 'keterampilan', ['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'skl_view' ? 'active' : ''), 'id' => 'skl_view']) }}
+
+                {{ link_to('#', 'Bahasa', ['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'lng_view' ? 'active' : ''), 'id' => 'lng_view']) }}
+
+                {{ link_to('', 'Info Lain', ['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'inflain_view' ? 'active' : ''), 'id' => 'inflain_view']) }}
+
+                {{ link_to('profil/'.Auth::user()->id.'/edit','Profil',['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'profil' ? 'active' : ''), 'id' => 'profil'])}}
+
+                {{ link_to('#', 'Resume Di unggah', ['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'res_unggah' ? 'active' : ''), 'id' => 'res_unggah']) }}
+                
+                {{ link_to('#', 'Pengaturan
+                Privasi', ['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'res_unggah' ? 'active' : ''), 'id' => 'privacy']) }}
+
             </div>
         </div>
 
         <div id="page-content-wrapper" class="login-page sidebar-collapse">
             @extends('navbar')
             <div class="not-landing page-header clear-filter" filter-color="white">
-            <div class="page-header-image" style="background-image:url({{ 'img/white-solid.jpg' }}); z-index: 0;"></div>
+                <div class="page-header-image" style="background-image:url({{ 'img/white-solid.jpg' }}); z-index: 0;">
+                </div>
 
                 <div class="content">
                     @yield('content')
@@ -41,10 +54,10 @@
             </div>
 
             <script>
-                    $("#menu-toggle").click(function (e) {
-                        e.preventDefault();
-                        $("#wrapper").toggleClass("toggled");
-                    });
+                $("#menu-toggle").click(function (e) {
+                    e.preventDefault();
+                    $("#wrapper").toggleClass("toggled");
+                });
 
-                </script>
+            </script>
             @endsection
