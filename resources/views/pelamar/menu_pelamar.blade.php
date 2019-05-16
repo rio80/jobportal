@@ -22,6 +22,7 @@
                 </div>
             </div>
             <div class="list-group list-group-flush">
+
                 {{ link_to('pengalaman_view', 'Pengalaman', ['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'exp_view' ? 'active' : ''), 'id' => 'exp_view']) }}
 
                 {{ link_to('pendidikan_view', 'Pendidikan', ['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'edu_view' ? 'active' : ''), 'id' => 'edu_view']) }}
