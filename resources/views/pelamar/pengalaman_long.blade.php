@@ -14,47 +14,71 @@
             </div>
             <div class="card-body">
                 <form>
+                   
                     <div class="form-group row">
-                        <label for="input1" class="col-md-3 col-form-label text-left">Posisi <span
+                        <label for="nama_perusahaan" class="col-md-3 col-form-label text-left">Nama perusahaan <span
                                 class="text-danger">*</span></label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" id="input1" placeholder="Posisi">
+                            <input type="text" class="form-control" id="nama_perusahaan" placeholder="Nama perusahaan">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="input1a" class="col-md-3 col-form-label text-left">Nama perusahaan <span
+                        <label for="id_jenis_perusahaan" class="col-md-3 col-form-label text-left">Industri <span
                                 class="text-danger">*</span></label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" id="input1a" placeholder="Nama perusahaan">
+                            <select id="id_jenis_perusahaan" class="form-control">
+                                <option selected>Choose</option>
+                                <option>...</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="input2" class="col-md-3 col-form-label text-left">Lama bekerja <span
+                        <label for="id_jenis_pekerjaan" class="col-md-3 col-form-label text-left">Bidang pekerjaan <span
+                                class="text-danger">*</span></label>
+                        <div class="col-md-9">
+                            <select id="id_jenis_pekerjaan" class="form-control">
+                                <option selected>Choose</option>
+                                <option>...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="jabatan" class="col-md-3 col-form-label text-left">Jabatan <span
+                                class="text-danger">*</span></label>
+                        <div class="col-md-9">
+                            <select id="jabatan" class="form-control">
+                                <option selected>Choose</option>
+                                <option>...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="bulan_awal" class="col-md-3 col-form-label text-left">Periode <span
                                 class="text-danger">*</span></label>
                         <div class="col-md-3">
-                            <select id="input2" class="form-control">
+                            <select id="bulan_awal" class="form-control">
                                 <option selected>Oktober</option>
                                 <option>...</option>
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <select id="input3" class="form-control">
+                            <select id="tahun_awal" class="form-control">
                                 <option selected>2019</option>
                                 <option>...</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="input2a" class="col-md-3 col-form-label text-left">Sampai <span
+                        <label for="bulan_akhir" class="col-md-3 col-form-label text-left">Sampai <span
                                 class="text-danger">*</span></label>
                         <div class="col-md-3">
-                            <select id="input2a" class="form-control">
+                            <select id="bulan_akhir" class="form-control">
                                 <option selected>Oktober</option>
                                 <option>...</option>
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <select id="input3a" class="form-control">
+                            <select id="tahun_akhir" class="form-control">
                                 <option selected>2019</option>
                                 <option>...</option>
                             </select>
@@ -62,79 +86,16 @@
                         <div class="col-md-3">
                             <div class="form-check text-left">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox"> Sekarang
+                                    <input class="form-check-input" type="checkbox" name="sekarang" id="sekarang"> Sekarang
                                 </label>
                             </div>
                         </div>
                     </div>
+                    
                     <div class="form-group row">
-                        <label for="input4" class="col-md-3 col-form-label text-left">Spesialisasi <span
-                                class="text-danger">*</span></label>
-                        <div class="col-md-8">
-                            <select id="input4" class="form-control">
-                                <option selected>Choose</option>
-                                <option>...</option>
-                            </select>
-                        </div>
-                        <div class="col-md-1 text-left">
-                            <a href="#" class="text-info"><span class="fas fa-question-circle"></span></a>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="input5" class="col-md-3 col-form-label text-left">Bidang pekerjaan <span
-                                class="text-danger">*</span></label>
+                        <label for="tugas_tanggungjawab" class="col-md-3 col-form-label text-left">Tugas dan Tanggung Jawab di perusahaan ini</label>
                         <div class="col-md-9">
-                            <select id="input5" class="form-control">
-                                <option selected>Choose</option>
-                                <option>...</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="input6" class="col-md-3 col-form-label text-left">Negara</label>
-                        <div class="col-md-9">
-                            <select id="input6" class="form-control">
-                                <option selected>Choose</option>
-                                <option>...</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="input7" class="col-md-3 col-form-label text-left">Industri <span
-                                class="text-danger">*</span></label>
-                        <div class="col-md-9">
-                            <select id="input7" class="form-control">
-                                <option selected>Choose</option>
-                                <option>...</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="input7a" class="col-md-3 col-form-label text-left">Jabatan <span
-                                class="text-danger">*</span></label>
-                        <div class="col-md-9">
-                            <select id="input7a" class="form-control">
-                                <option selected>Choose</option>
-                                <option>...</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="input8" class="col-md-3 col-form-label text-left">Gaji bulanan</label>
-                        <div class="col-md-3">
-                            <select id="input8" class="form-control">
-                                <option selected>Mata uang</option>
-                                <option>...</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="text" class="form-control" id="input8a" placeholder="...">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="input11" class="col-md-3 col-form-label text-left">Keterangan kerja</label>
-                        <div class="col-md-9">
-                            <textarea class="form-control" id="input11" rows="9"></textarea>
+                            <textarea class="form-control" id="tugas_tanggungjawab" rows="9"></textarea>
                         </div>
                     </div>
                 </form>

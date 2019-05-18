@@ -9,7 +9,7 @@ use \App\Mail\RegistrasiEmail;
 use \App\Models\Pelamar;
 use \App\Models\PemberiKerja;
 use \App\Models\Registrasi;
-use \App\Models\User;
+use \App\User;
 
 class RegisterController extends Controller
 {
@@ -66,7 +66,8 @@ class RegisterController extends Controller
             'user_id' => $user->id,
             'token_verifikasi' => sha1(time()),
         ]);
-
+        
+        // Buat query untuk view id pada register
         $insert = Pelamar::create([
             'nama' => $nama,
             'email1' => $email,

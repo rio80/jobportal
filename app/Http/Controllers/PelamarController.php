@@ -215,63 +215,74 @@ class PelamarController extends Controller
     {
 
         $input = $req->all();
-        $updatePelamar = Pelamar::select('*', 'id as idpelamar')->where('no_reg', $input['noreg'])->first();
+        $updatePelamar = Pelamar::select('*', 'id as idpelamar')
+            ->where('no_reg', $input['noreg'])
+            ->first();
+
         if ($req->hasFile('uploadfoto')) {
-            if($updatePelamar->pasfoto !== '-'){
-                $exist = Storage::disk('foto')->exists($updatePelamar->pasfoto);
-                if($exist){
-                    $delete = Storage::disk('foto')->delete($updatePelamar->pasfoto);
+            if ($updatePelamar->pasfoto !== '-') {
+                $exist = Storage::disk('foto')
+                    ->exists($updatePelamar->pasfoto);
+                if ($exist) {
+                    $delete = Storage::disk('foto')
+                        ->delete($updatePelamar->pasfoto);
                 }
             }
             $input['uploadfoto'] = $this->uploadFoto($req, $updatePelamar->idpelamar);
             $updatePelamar->pasfoto = $input['uploadfoto'];
+        } else {
+            $input['uploadfoto'] = '';
         }
-        
-        $updatePelamar->no_ktp = $input['no_identitas'];
+
         $updatePelamar->jenis_kelamin = $input['jenis_kelamin'];
         $updatePelamar->telp_wa = $input['nohp_wa'];
         $updatePelamar->telp1 = $input['nohp'];
         $updatePelamar->alamat_ktp1 = $input['alamatktp1'];
-        $updatePelamar->alamat_ktp2 = $input['alamatktp2'];
-        $updatePelamar->kodepos_ktp = $input['kodeposktp'];
         $updatePelamar->alamat_domisili1 = $input['alamatdomisili1'];
-        $updatePelamar->alamat_domisili2 = $input['alamatdomisili2'];
-        $updatePelamar->kodepos_domisili = $input['kodeposdom'];
         $updatePelamar->email1 = $input['email1'];
-        $updatePelamar->email2 = $input['email2'];
         $updatePelamar->jenis_identitas = $input['jenis_identitas'];
-        $updatePelamar->no_identitas = $input['no_identitas'];
         $updatePelamar->status_nikah = $input['statusnikah'];
         $updatePelamar->status_bekerja = $input['statusbekerja'];
         $updatePelamar->deskripsi_diri = $input['deskripsi'];
-
         $tz = "Asia/Bangkok";
         $tgl_lahir = Carbon::createFromDate($input['tahun'], $input['bulan'] + 1, $input['tanggal'], $tz);
         $updatePelamar->tanggal_lahir = $tgl_lahir;
 
-        if ($updatePelamar->kode_prov_ktp !== '0' && $input['propinsi_ktp'] !== '0' &&
-            $updatePelamar->kode_kota_ktp !== '0' && $input['kota_ktp'] !== '0' &&
-            $updatePelamar->kode_kec_ktp !== '0' && $input['kecamatan_ktp'] !== '0' &&
-            $updatePelamar->kode_kel_ktp !== '0' && $input['kelurahan_ktp'] !== '0') {
+        // $updatePelamar->no_ktp = $input['no_identitas'];
+        // $updatePelamar->alamat_ktp2 = $input['alamatktp2'];
+        // $updatePelamar->kodepos_ktp = $input['kodeposktp'];
+        // $updatePelamar->alamat_domisili2 = $input['alamatdomisili2'];
+        // $updatePelamar->kodepos_domisili = $input['kodeposdom'];
+        // $updatePelamar->email2 = $input['email2'];
+        // $updatePelamar->no_identitas = $input['no_identitas'];
+
+        if (session('propinsi_ktp') !== '0' &&
+            session('kota_ktp') !== '0' &&
+            session('kecamatan_ktp') !== '0' &&
+            session('kelurahan_ktp') !== '0') {
             // dd('simpan lokasi ktp');
-            $updatePelamar->kode_prov_ktp = $input['propinsi_ktp'];
-            $updatePelamar->kode_kota_ktp = $input['kota_ktp'];
-            $updatePelamar->kode_kec_ktp = $input['kecamatan_ktp'];
-            $updatePelamar->kode_kel_ktp = $input['kelurahan_ktp'];
+            $updatePelamar->kode_prov_ktp = session('propinsi_ktp');
+            $updatePelamar->kode_kota_ktp = session('kota_ktp');
+            $updatePelamar->kode_kec_ktp = session('kecamatan_ktp');
+            $updatePelamar->kode_kel_ktp = session('kelurahan_ktp');
         }
 
-        if ($updatePelamar->kode_prov !== '0' && $input['propinsi_dom'] !== '0' &&
-            $updatePelamar->kode_kota !== '0' && $input['kota_dom'] !== '0' &&
-            $updatePelamar->kode_kec !== '0' && $input['kecamatan_dom'] !== '0' &&
-            $updatePelamar->kode_kel !== '0' && $input['kelurahan_dom'] !== '0') {
+        if (isset($input['equals_with_ktp']) == false || $input['equals_with_ktp'] !== null) {
 
-            $updatePelamar->kode_prov = $input['propinsi_dom'];
-            $updatePelamar->kode_kota = $input['kota_dom'];
-            $updatePelamar->kode_kec = $input['kecamatan_dom'];
-            $updatePelamar->kode_kel = $input['kelurahan_dom'];
+            if (session('propinsi_dom') !== '0' &&
+                session('kota_dom') !== '0' &&
+                session('kecamatan_dom') !== '0' &&
+                session('kelurahan_dom') !== '0') {
+
+                $updatePelamar->kode_prov = session('propinsi_dom');
+                $updatePelamar->kode_kota = session('kota_dom');
+                $updatePelamar->kode_kec = session('kecamatan_dom');
+                $updatePelamar->kode_kel = session('kelurahan_dom');
+            }
         }
+
         session([
-            'idfoto' =>  $input['uploadfoto'],
+            'idfoto' => $input['uploadfoto'],
         ]);
 
         $updatePelamar->save();

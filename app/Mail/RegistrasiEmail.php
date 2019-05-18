@@ -30,10 +30,9 @@ class RegistrasiEmail extends Mailable
      */
     public function build()
     {
-        // return $this->from('no_reply@rio.co.id')->view('email.receive_email')->with([
-        //     'nama' => $this->registrasi,
-        // ]);
-
-        return $this->view('email.receive_email');
+        return $this->from('no_reply@rio.co.id')->view('email.receive_email')->with([
+            'nama' => $this->registrasi,
+        ]);
+        // return $this->view('email.receive_email');
     }
 }
