@@ -33,9 +33,7 @@ class PelamarController extends Controller
             ($cekPelamar->pasfoto == "-" || empty($cekPelamar->pasfoto)) ||
             ($cekPelamar->telp1 == "-" || empty($cekPelamar->telp1)) ||
             ($cekPelamar->alamat_ktp1 == "-" || empty($cekPelamar->alamat_ktp1)) ||
-            ($cekPelamar->kodepos_ktp == "-" || empty($cekPelamar->kodepos_ktp)) ||
             ($cekPelamar->alamat_domisili1 == "-" || empty($cekPelamar->alamat_domisili1)) ||
-            ($cekPelamar->kodepos_domisili == "-" || empty($cekPelamar->kodepos_domisili)) ||
             ($cekPelamar->email1 == "-" || empty($cekPelamar->email1)) ||
             ($cekPelamar->kode_prov_ktp == "-" || empty($cekPelamar->kode_prov_ktp)) ||
             ($cekPelamar->kode_kota_ktp == "-" || empty($cekPelamar->kode_kota_ktp)) ||
@@ -46,7 +44,6 @@ class PelamarController extends Controller
             ($cekPelamar->kode_kec == "-" || empty($cekPelamar->kode_kec)) ||
             ($cekPelamar->kode_kel == "-" || empty($cekPelamar->kode_kel)) ||
             ($cekPelamar->jenis_identitas == "-" || empty($cekPelamar->jenis_identitas)) ||
-            ($cekPelamar->no_identitas == "-" || empty($cekPelamar->no_identitas)) ||
             ($cekPelamar->status_nikah == "-" || empty($cekPelamar->status_nikah)) ||
             ($cekPelamar->status_bekerja == "-" || empty($cekPelamar->status_bekerja)) ||
             ($cekPelamar->deskripsi_diri == "-" || empty($cekPelamar->deskripsi_diri))) {

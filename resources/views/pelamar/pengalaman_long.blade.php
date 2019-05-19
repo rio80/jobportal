@@ -1,5 +1,20 @@
 @extends('pelamar.menu_pelamar')
 @section('content')
+<?php
+    $bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+
+    $tahuns = [];
+    for ($tahun = 1970; $tahun <= date('Y') - 15; $tahun++) {
+        $tahuns[$tahun] = $tahun;
+    }
+?>
+<script>
+    $().ready(function(){
+        $.fn.select2.defaults.set("theme", "bootstrap");
+        $('#id_jenis_perusahaan, #id_jenis_pekerjaan, #jabatan, ' +
+            '#bulan_awal, #bulan_akhir, #tahun_awal, #tahun_akhir').select2();
+    })
+</script>
 <div class="container">
     <div class="row">
         <button class="btn btn-info" id="menu-toggle" style="margin-top: -1rem;"><span
@@ -13,98 +28,93 @@
 
             </div>
             <div class="card-body">
-                <form>
-                   
-                    <div class="form-group row">
-                        <label for="nama_perusahaan" class="col-md-3 col-form-label text-left">Nama perusahaan <span
-                                class="text-danger">*</span></label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" id="nama_perusahaan" placeholder="Nama perusahaan">
+                {!! Form::open([
+                'url' => 'insert-pengalaman',
+                'method' => 'PATCH',
+                'files' => true,
+                ]) !!}
+                @csrf
+
+                <div class="form-group row">
+                    {!! Form::label('nama_perusahaan', 'Nama perusahaan <span class="text-danger">*</span></label>',
+                    ['class' => 'col-md-3 col-form-label text-left'], false) !!}
+                    <div class="col-md-9">
+                        {!! Form::text('nama_perusahaan', null,['class' => 'form-control', 'placeholder' => 'Nama Perusahaan', 'id' => 'nama_perusahaan']) !!}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    {!! Form::label('id_jenis_perusahaan', 'Industri <span class="text-danger">*</span>', ['class' =>
+                    'col-md-3 col-form-label text-left'], false) !!}
+                    <div class="col-md-6">
+                        {!! Form::select('id_jenis_perusahaan', ['Pilih Industri/Jenis Perusahaan'], null, ['class' => 'form-control', 'id' => 'id_jenis_perusahaan', 'placeholder' => 'Pilih Industri/Jenis Perusahaan', 'style' => 'text-align:left']) !!}
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    {!! Form::label('id_jenis_pekerjaan', 'Bidang pekerjaan <span class="text-danger">*</span>',
+                    ['class' => 'col-md-3 col-form-label text-left'], false) !!}
+                    <div class="col-md-6">
+                        {!! Form::select('id_jenis_pekerjaan', ['Pilih Jenis Pekerjaan'], null,
+                        ['class' => 'form-control' , 'id' => 'id_jenis_pekerjaan', 'placeholder' => 'Pilih Jenis Pekerjaan']) !!}
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    {!! Form::label('jabatan', 'Jabatan <span class="text-danger">*</span>', ['class' => 'col-md-3
+                    col-form-label text-left'], false) !!}
+                    <div class="col-md-6">
+                        {!! Form::select('jabatan', ['Pilih Jabatan'], null, ['class' => 'form-control', 'id' => 'jabatan', 'placeholder' => 'Pilih Jabatan']) !!}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    {!! Form::label('bulan_awal', 'Periode <span class="text-danger">*</span>', ['class' => 'col-md-3
+                    col-form-label text-left'], false) !!}
+                    <div class="col-md-3">
+                        {!! Form::select('bulan_awal', $bulan, null, ['class' =>
+                        'form-control', 'placeholder' => 'Pilih Bulan Awal Kerja', 'id' => 'bulan_awal']) !!}
+                    </div>
+                    <div class="col-md-3">
+                        {!! Form::select('tahun_awal', $tahuns, null, ['class' =>
+                        'form-control', 'placeholder' => 'Pilih Tahun Awal Kerja', 'id' => 'tahun_awal']) !!}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    {!! Form::label('bulan_akhir', 'Sampai <span class="text-danger">*</span>', ['class' => 'col-md-3
+                    col-form-label text-left'], false) !!}
+                    <div class="col-md-3">
+                        {!! Form::select('bulan_akhir', $bulan, null, ['class' =>
+                        'form-control', 'placeholder' => 'Pilih Bulan Akhir Kerja','id' => 'bulan_akhir']) !!}
+                    </div>
+                    <div class="col-md-3">
+                        {!! Form::select('tahun_akhir', $tahuns, null, ['class' =>
+                        'form-control', 'placeholder' => 'Pilih Tahun Akhir Kerja', 'id' => 'tahun_akhir']) !!}
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check text-left">
+
+                            <label class="form-check-label">
+                                {!! Form::checkbox('sekarang', 'Sekarang', true,
+                                ['class' => 'form-check-input']) !!}
+                                {{ 'Sekarang' }}
+                            </label>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="id_jenis_perusahaan" class="col-md-3 col-form-label text-left">Industri <span
-                                class="text-danger">*</span></label>
-                        <div class="col-md-9">
-                            <select id="id_jenis_perusahaan" class="form-control">
-                                <option selected>Choose</option>
-                                <option>...</option>
-                            </select>
-                        </div>
+                </div>
+
+                <div class="form-group row">
+                    {!! Form::label('tugas_tanggungjawab', 'Tugas dan Tanggung Jawab
+                    di perusahaan ini', ['class' => 'col-md-3 col-form-label text-left']) !!}
+                    <div class="col-md-9">
+                        {!! Form::textarea('tugas_tanggungjawab', null, ['class' => 'form-control']) !!}
                     </div>
-                    <div class="form-group row">
-                        <label for="id_jenis_pekerjaan" class="col-md-3 col-form-label text-left">Bidang pekerjaan <span
-                                class="text-danger">*</span></label>
-                        <div class="col-md-9">
-                            <select id="id_jenis_pekerjaan" class="form-control">
-                                <option selected>Choose</option>
-                                <option>...</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="jabatan" class="col-md-3 col-form-label text-left">Jabatan <span
-                                class="text-danger">*</span></label>
-                        <div class="col-md-9">
-                            <select id="jabatan" class="form-control">
-                                <option selected>Choose</option>
-                                <option>...</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="bulan_awal" class="col-md-3 col-form-label text-left">Periode <span
-                                class="text-danger">*</span></label>
-                        <div class="col-md-3">
-                            <select id="bulan_awal" class="form-control">
-                                <option selected>Oktober</option>
-                                <option>...</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <select id="tahun_awal" class="form-control">
-                                <option selected>2019</option>
-                                <option>...</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="bulan_akhir" class="col-md-3 col-form-label text-left">Sampai <span
-                                class="text-danger">*</span></label>
-                        <div class="col-md-3">
-                            <select id="bulan_akhir" class="form-control">
-                                <option selected>Oktober</option>
-                                <option>...</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <select id="tahun_akhir" class="form-control">
-                                <option selected>2019</option>
-                                <option>...</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-check text-left">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" name="sekarang" id="sekarang"> Sekarang
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group row">
-                        <label for="tugas_tanggungjawab" class="col-md-3 col-form-label text-left">Tugas dan Tanggung Jawab di perusahaan ini</label>
-                        <div class="col-md-9">
-                            <textarea class="form-control" id="tugas_tanggungjawab" rows="9"></textarea>
-                        </div>
-                    </div>
-                </form>
+                </div>
+                {!! Form::close() !!}
             </div>
             <div class="card-footer"
                 style="text-align: right; border-top: 1px solid #bbbbbb; background-color: #eeeeee">
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-success">Simpan</button>
-                    <button type="button" class="btn btn-danger">Batal</button>
+                    {!! Form::submit('Simpan', ['class' => 'btn btn-success']) !!}
+                    {!! Form::button('Batal', ['class' => 'btn btn-danger']) !!}
                 </div>
             </div>
         </div>
