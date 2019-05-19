@@ -7,6 +7,8 @@
     for ($tahun = 1970; $tahun <= date('Y') - 15; $tahun++) {
         $tahuns[$tahun] = $tahun;
     }
+
+    $message = '';
 ?>
 <script>
     $().ready(function(){
@@ -30,7 +32,7 @@
             <div class="card-body">
                 {!! Form::open([
                 'url' => 'insert-pengalaman',
-                'method' => 'PATCH',
+                'method' => 'POST',
                 'files' => true,
                 ]) !!}
                 @csrf
@@ -46,7 +48,9 @@
                     {!! Form::label('id_jenis_perusahaan', 'Industri <span class="text-danger">*</span>', ['class' =>
                     'col-md-3 col-form-label text-left'], false) !!}
                     <div class="col-md-6">
-                        {!! Form::select('id_jenis_perusahaan', ['Pilih Industri/Jenis Perusahaan'], null, ['class' => 'form-control', 'id' => 'id_jenis_perusahaan', 'placeholder' => 'Pilih Industri/Jenis Perusahaan', 'style' => 'text-align:left']) !!}
+                        {!! Form::select('id_jenis_perusahaan', ['Pilih Industri/Jenis Perusahaan'], null, ['class' =>
+                        'form-control', 'id' => 'id_jenis_perusahaan', 'placeholder' => 'Pilih Industri/Jenis
+                        Perusahaan', 'style' => 'text-align:left']) !!}
 
                     </div>
                 </div>
@@ -55,7 +59,8 @@
                     ['class' => 'col-md-3 col-form-label text-left'], false) !!}
                     <div class="col-md-6">
                         {!! Form::select('id_jenis_pekerjaan', ['Pilih Jenis Pekerjaan'], null,
-                        ['class' => 'form-control' , 'id' => 'id_jenis_pekerjaan', 'placeholder' => 'Pilih Jenis Pekerjaan']) !!}
+                        ['class' => 'form-control' , 'id' => 'id_jenis_pekerjaan', 'placeholder' => 'Pilih Jenis
+                        Pekerjaan']) !!}
 
                     </div>
                 </div>
@@ -63,7 +68,8 @@
                     {!! Form::label('jabatan', 'Jabatan <span class="text-danger">*</span>', ['class' => 'col-md-3
                     col-form-label text-left'], false) !!}
                     <div class="col-md-6">
-                        {!! Form::select('jabatan', ['Pilih Jabatan'], null, ['class' => 'form-control', 'id' => 'jabatan', 'placeholder' => 'Pilih Jabatan']) !!}
+                        {!! Form::select('jabatan', ['Pilih Jabatan'], null, ['class' => 'form-control', 'id' =>
+                        'jabatan', 'placeholder' => 'Pilih Jabatan']) !!}
                     </div>
                 </div>
                 <div class="form-group row">
@@ -108,15 +114,17 @@
                         {!! Form::textarea('tugas_tanggungjawab', null, ['class' => 'form-control']) !!}
                     </div>
                 </div>
-                {!! Form::close() !!}
-            </div>
-            <div class="card-footer"
-                style="text-align: right; border-top: 1px solid #bbbbbb; background-color: #eeeeee">
-                <div class="col-md-12">
-                    {!! Form::submit('Simpan', ['class' => 'btn btn-success']) !!}
-                    {!! Form::button('Batal', ['class' => 'btn btn-danger']) !!}
+                <div class="card-footer"
+                    style="text-align: right; border-top: 1px solid #bbbbbb; background-color: #eeeeee">
+                    <div class="col-md-12">
+                        {!! Form::submit('Simpan', ['class' => 'btn btn-success']) !!}
+                        {!! Form::button('Batal', ['class' => 'btn btn-danger']) !!}
+                    </div>
                 </div>
+                {!! Form::close() !!}
+
             </div>
+
         </div>
     </div>
 </div>

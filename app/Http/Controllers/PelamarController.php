@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreFormProfilRequest;
+use App\Http\Requests\StoreFormPengalamanRequest as saveExp;
 // use Auth;
 use App\Models\Kecamatan as kec;
 use App\Models\Kelurahan as kel;
@@ -138,6 +139,10 @@ class PelamarController extends Controller
     public function pengalaman_long()
     {
         return view('pelamar.pengalaman_long');
+    }
+
+    public function insertPengalaman(saveExp $req){
+        dd($req);
     }
 
     public function pengalaman_view()

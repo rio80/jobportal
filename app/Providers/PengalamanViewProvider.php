@@ -23,6 +23,10 @@ class PengalamanViewProvider extends ServiceProvider
      */
     public function boot()
     {
-        
+        view()->composer('pelamar.pengalaman_long', function($view){
+            $view->with('industri', DB::table('tb_ref_perusahaan_jenis')->pluck('jenis_perusahaan', 'kode_jenis'));
+            $view->with('bidang', DB::table('tb_ref_pekerjaan_jenis')->pluck('jenis_pekerjaan', 'kode_jenis'));
+            $view->with('stat_kerja', DB::table('tb_ref_pekerjaan_level')->pluck('level_pekerjaan', 'kode_level'));
+        });
     }
 }
