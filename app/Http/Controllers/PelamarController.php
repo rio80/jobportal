@@ -30,6 +30,12 @@ class PelamarController extends Controller
             ->join('users', 'tb_ref_registrasi.user_id', '=', 'users.id')
             ->where('users.id', $iduser)
             ->first();
+
+            session([
+                'idfoto' => $cekPelamar->pasfoto,
+                'nama' => $cekPelamar->nama,
+            ]);
+            
         if (($cekPelamar->nama == "-" || empty($cekPelamar->nama)) ||
             ($cekPelamar->pasfoto == "-" || empty($cekPelamar->pasfoto)) ||
             ($cekPelamar->telp1 == "-" || empty($cekPelamar->telp1)) ||

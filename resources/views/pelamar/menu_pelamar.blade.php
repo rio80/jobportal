@@ -14,10 +14,8 @@
                         <img src="" class="rounded-circle">
                         @endif
                     </div>
-                    <div class="col-md-12 text-center">
-                        <div class="row">
-                            Lorem ipsum dolor sit amet
-                        </div>
+                    <div class="col-md-12 text-center text-capitalize">
+                            {!! Session::get('nama') !!}
                     </div>
                 </div>
             </div>

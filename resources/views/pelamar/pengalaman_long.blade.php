@@ -48,9 +48,8 @@
                     {!! Form::label('id_jenis_perusahaan', 'Industri <span class="text-danger">*</span>', ['class' =>
                     'col-md-3 col-form-label text-left'], false) !!}
                     <div class="col-md-6">
-                        {!! Form::select('id_jenis_perusahaan', ['Pilih Industri/Jenis Perusahaan'], null, ['class' =>
-                        'form-control', 'id' => 'id_jenis_perusahaan', 'placeholder' => 'Pilih Industri/Jenis
-                        Perusahaan', 'style' => 'text-align:left']) !!}
+                        {!! Form::select('id_jenis_perusahaan', $industri, null, ['class' =>
+                        'form-control', 'id' => 'id_jenis_perusahaan', 'placeholder' => 'Pilih Industri/Jenis Perusahaan', 'style' => 'text-align:left']) !!}
 
                     </div>
                 </div>
@@ -58,9 +57,8 @@
                     {!! Form::label('id_jenis_pekerjaan', 'Bidang pekerjaan <span class="text-danger">*</span>',
                     ['class' => 'col-md-3 col-form-label text-left'], false) !!}
                     <div class="col-md-6">
-                        {!! Form::select('id_jenis_pekerjaan', ['Pilih Jenis Pekerjaan'], null,
-                        ['class' => 'form-control' , 'id' => 'id_jenis_pekerjaan', 'placeholder' => 'Pilih Jenis
-                        Pekerjaan']) !!}
+                        {!! Form::select('id_jenis_pekerjaan', $bidang, null,
+                        ['class' => 'form-control' , 'id' => 'id_jenis_pekerjaan', 'placeholder' => 'Pilih Jenis Pekerjaan']) !!}
 
                     </div>
                 </div>
@@ -68,7 +66,7 @@
                     {!! Form::label('jabatan', 'Jabatan <span class="text-danger">*</span>', ['class' => 'col-md-3
                     col-form-label text-left'], false) !!}
                     <div class="col-md-6">
-                        {!! Form::select('jabatan', ['Pilih Jabatan'], null, ['class' => 'form-control', 'id' =>
+                        {!! Form::select('jabatan', $jabatan, null, ['class' => 'form-control', 'id' =>
                         'jabatan', 'placeholder' => 'Pilih Jabatan']) !!}
                     </div>
                 </div>
@@ -100,7 +98,7 @@
 
                             <label class="form-check-label">
                                 {!! Form::checkbox('sekarang', 'Sekarang', true,
-                                ['class' => 'form-check-input']) !!}
+                                ['class' => 'form-check-input', 'id' => 'sekarang']) !!}
                                 {{ 'Sekarang' }}
                             </label>
                         </div>
@@ -128,4 +126,18 @@
         </div>
     </div>
 </div>
+<script>
+    $().ready(function(){
+        $('input[name=sekarang]').attr('checked', false);
+
+        $('#sekarang').on('click', function(){
+            let kondisi = false;
+            if($('#sekarang').is(":checked")){
+                kondisi = true;
+            }
+            $('#bulan_akhir, #tahun_akhir').prop('disabled', kondisi);
+
+        })
+    })
+</script>
 @endsection
