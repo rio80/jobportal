@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreFormProfilRequest;
 use App\Http\Requests\StoreFormPengalamanRequest as saveExp;
+use App\Http\Requests\StoreFormProfilRequest;
 // use Auth;
 use App\Models\Kecamatan as kec;
 use App\Models\Kelurahan as kel;
 use App\Models\Kota as kota;
 use App\Models\Pelamar;
+use App\Models\Pengalaman;
 use App\Models\Registrasi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -31,11 +32,12 @@ class PelamarController extends Controller
             ->where('users.id', $iduser)
             ->first();
 
-            session([
-                'idfoto' => $cekPelamar->pasfoto,
-                'nama' => $cekPelamar->nama,
-            ]);
-            
+        session([
+            'idfoto' => $cekPelamar->pasfoto,
+            'nama' => $cekPelamar->nama,
+            'noreg' => $cekPelamar->no_reg,
+        ]);
+
         if (($cekPelamar->nama == "-" || empty($cekPelamar->nama)) ||
             ($cekPelamar->pasfoto == "-" || empty($cekPelamar->pasfoto)) ||
             ($cekPelamar->telp1 == "-" || empty($cekPelamar->telp1)) ||
@@ -133,6 +135,7 @@ class PelamarController extends Controller
             'idfoto' => $pelamarTable->pasfoto,
             'dataPelamar' => $data['pelamar'],
             'idpelamar' => $pelamarTable->id,
+            'noreg' => $pelamarTable->no_reg,
         ]);
         return View::make('pelamar.form_profil', $data);
     }
@@ -142,18 +145,67 @@ class PelamarController extends Controller
         return view('pelamar.pengalaman_short');
     }
 
-    public function pengalaman_long()
+    public function pengalaman_create()
     {
-        return view('pelamar.pengalaman_long');
+        return view('pelamar.pengalaman_create');
     }
 
-    public function insertPengalaman(saveExp $req){
-        dd($req);
+    public function insertPengalaman(saveExp $req)
+    {
+
+        $noreg = session('noreg');
+        $tz = "Asia/Bangkok";
+        $tgl_gabung = Carbon::createFromDate($req->tahun_awal, $req->bulan_awal + 1, '01', $tz);
+        $tgl_berhenti = Carbon::createFromDate($req->tahun_akhir, $req->bulan_akhir + 1, '01', $tz);
+
+        $insert = Pengalaman::create([
+            'nama_perusahaan' => $req->nama_perusahaan,
+            'id_jenis_perusahaan' => $req->id_jenis_perusahaan,
+            'id_jenis_pekerjaan' => $req->id_jenis_pekerjaan,
+            'jabatan' => $req->jabatan,
+            'tugas_tanggungjawab' => $req->tugas_tanggungjawab,
+            'tanggal_gabung' => $tgl_gabung,
+            'tanggal_berhenti' => $tgl_berhenti,
+            'no_reg' => $noreg,
+        ]);
+    }
+
+    public function editPengalaman(Pengalaman $exp)
+    {
+        $pengalaman = $exp;
+
+        $data['getYearJoin'] = Carbon::createFromFormat('Y-m-d', $exp->tanggal_gabung)->year;
+        $data['getMonthJoin'] = Carbon::createFromFormat('Y-m-d', $exp->tanggal_gabung)->month;
+        $data['getYearEnd'] = Carbon::createFromFormat('Y-m-d', $exp->tanggal_berhenti)->year;
+        $data['getMonthEnd'] = Carbon::createFromFormat('Y-m-d', $exp->tanggal_berhenti)->month;
+
+        $data = json_decode(json_encode($data));
+        return view('pelamar.pengalaman_edit', compact('pengalaman', 'data'));
+    }
+
+    public function updatePengalaman(Pengalaman $exp, saveExp $saveExp){
+
+        $tz = "Asia/Bangkok";
+
+        $tgl_gabung = Carbon::createFromDate($saveExp->tahun_awal, $saveExp->bulan_awal + 1, '01', $tz);
+        $tgl_berhenti = Carbon::createFromDate($saveExp->tahun_akhir, $saveExp->bulan_akhir, '01', $tz);
+
+        $exp->tanggal_gabung = $tgl_gabung;
+        $exp->tanggal_berhenti = $tgl_berhenti;
+
+        $exp->save();
+
+        $input = $saveExp->all();
+        $exp->update($input);
+        
+        return redirect('pengalaman_view');
     }
 
     public function pengalaman_view()
-    {
-        return view('pelamar.pengalaman_view');
+    {   
+        $noreg = session('noreg');
+        $dataExp = Pengalaman::where('no_reg', $noreg)->orderBy('id')->get();
+        return view('pelamar.pengalaman_view', compact('dataExp'));
     }
 
     public function menu_resume()

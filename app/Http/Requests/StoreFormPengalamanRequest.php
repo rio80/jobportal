@@ -32,6 +32,7 @@ class StoreFormPengalamanRequest extends FormRequest
             'tahun_awal' => 'required',
             'bulan_akhir' => 'required',
             'tahun_akhir' => 'required',
+            'tugas_tanggungjawab' => 'required',
         ];
     }
 
@@ -46,6 +47,7 @@ class StoreFormPengalamanRequest extends FormRequest
             'tahun_awal.required' => 'Silahkan Pilih Awal Tahun Anda Bekerja',
             'bulan_akhir.required' => 'Silahkan Pilih Akhir Bulan Anda Bekerja',
             'tahun_akhir.required' => 'Silahkan Pilih Akhir Tahun Anda Bekerja',
+            'tugas_tanggungjawab.required' => 'Silahkan Isi Tugas dan Tanggung Jawab Anda Selama Bekerja',
         ];
     }
 

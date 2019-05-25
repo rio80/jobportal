@@ -68,12 +68,16 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function () {
         Route::get('/pendidikan_form','PelamarController@pendidikan_form')->name('pendidikan_form');
         Route::get('/pendidikan_view','PelamarController@pendidikan_view')->name('pendidikan_view');
         Route::get('/profil/{iduser}/edit','PelamarController@profil')->name('profil');
-        Route::get('/pengalaman','PelamarController@pengalaman_long')->name('pengalaman_long');
+        Route::get('/pengalaman','PelamarController@pengalaman_create')->name('pengalaman_create');
+
         Route::get('/pengalaman_view','PelamarController@pengalaman_view')->name('pengalaman_view');
         Route::get('/menu_pelamar','PelamarController@menu_resume')->name('menu_pelamar');
         Route::post('/fetch_lokasi', 'PelamarController@fetch_lokasi')->name('fetch_lokasi');
         Route::patch('/insert-profil', 'PelamarController@insertProfil')->name('insert-profil');
         Route::post('/insert-pengalaman','PelamarController@insertPengalaman')->name('insert-pengalaman');
+        Route::get('/pengalaman/{exp}/edit','PelamarController@editPengalaman')->name('editPengalaman');
+        Route::patch('/pengalaman/{exp}', 'PelamarController@updatePengalaman');
+
     });
     Route::group(['roles' => 'pengusaha'], function () {
 
