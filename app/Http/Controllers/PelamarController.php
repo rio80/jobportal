@@ -175,9 +175,9 @@ class PelamarController extends Controller
         $pengalaman = $exp;
 
         $data['getYearJoin'] = Carbon::createFromFormat('Y-m-d', $exp->tanggal_gabung)->year;
-        $data['getMonthJoin'] = Carbon::createFromFormat('Y-m-d', $exp->tanggal_gabung)->month;
+        $data['getMonthJoin'] = Carbon::createFromFormat('Y-m-d', $exp->tanggal_gabung)->month -1;
         $data['getYearEnd'] = Carbon::createFromFormat('Y-m-d', $exp->tanggal_berhenti)->year;
-        $data['getMonthEnd'] = Carbon::createFromFormat('Y-m-d', $exp->tanggal_berhenti)->month;
+        $data['getMonthEnd'] = Carbon::createFromFormat('Y-m-d', $exp->tanggal_berhenti)->month -1;
 
         $data = json_decode(json_encode($data));
         return view('pelamar.pengalaman_edit', compact('pengalaman', 'data'));
@@ -188,7 +188,7 @@ class PelamarController extends Controller
         $tz = "Asia/Bangkok";
 
         $tgl_gabung = Carbon::createFromDate($saveExp->tahun_awal, $saveExp->bulan_awal + 1, '01', $tz);
-        $tgl_berhenti = Carbon::createFromDate($saveExp->tahun_akhir, $saveExp->bulan_akhir, '01', $tz);
+        $tgl_berhenti = Carbon::createFromDate($saveExp->tahun_akhir, $saveExp->bulan_akhir + 1, '01', $tz);
 
         $exp->tanggal_gabung = $tgl_gabung;
         $exp->tanggal_berhenti = $tgl_berhenti;

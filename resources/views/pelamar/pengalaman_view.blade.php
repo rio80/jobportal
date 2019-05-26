@@ -13,8 +13,8 @@
                             <table>
                                 <tr>
                                     <td>
-                                        
-                                        
+
+
                                         <div class="card">
                                             <div class="card-header">
                                                 <div class="col-md-12">
@@ -39,16 +39,25 @@
                                                                 <div class="col-md-12">
                                                                     <div class="row">
                                                                         <span>
-                                        {!! $data->tanggal_gabung !!}
-                                        -
-                                        {!! $data->tanggal_berhenti !!}
-                                    </span>
+                                                                            {!! $data->tanggal_gabung !!}
+                                                                            -
+                                                                            {!! $data->tanggal_berhenti !!}
+                                                                        </span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12">
                                                                     <div class="row">
-                                                                        <sub style="margin-top: 0.55rem;">1 year 3
-                                                                            months</sub>
+                                                                        <sub style="margin-top: 0.55rem;">
+                                                                            <?php
+                                                                             $diffTahun = date_diff(date_create($data->tanggal_gabung), date_create($data->tanggal_berhenti))->y;
+                                                                            ?>
+                                                                            @if($diffTahun !== 0)
+                                                                            {!! $diffTahun . ' Tahun' !!}
+                                                                            @endif
+                                                                            {!!
+                                                                            date_diff(date_create($data->tanggal_gabung),
+                                                                            date_create($data->tanggal_berhenti))->m . '
+                                                                            Bulan' !!} </sub>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -57,7 +66,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="row">
-                                                                        <h5>{!! $data->id_jenis_pekerjaan !!}
+                                                                        <h5>{!! $data->bidang->jenis_pekerjaan !!}
                                                                         </h5>
                                                                     </div>
                                                                 </div>
@@ -67,7 +76,8 @@
                                                                         <div class="col-md-7">
                                                                             <div class="row">
                                                                                 <span
-                                                                                    class="text-uppercase font-weight-bold">{!! $data->nama_perusahaan !!}</span>
+                                                                                    class="text-uppercase font-weight-bold">{!!
+                                                                                    $data->nama_perusahaan !!}</span>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-2">
@@ -174,7 +184,8 @@
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="row" style="margin-top: 1.5rem;">
-                                                                {!! link_to('pengalaman/6/edit', 'Edit', ['class' =>
+                                                                {!! link_to('pengalaman/'.$data->id.'/edit', 'Edit',
+                                                                ['class' =>
                                                                 'btn btn-sm btn-info fas fa-pencil-alt"']) !!}
 
                                                                 {!! link_to('pengalaman/{id}/hapus', 'Hapus', ['class'
@@ -186,7 +197,7 @@
                                                 <br>
 
                                             </div>
-                                        @endforeach
+                                            @endforeach
 
                                         </div>
                                     </td>
