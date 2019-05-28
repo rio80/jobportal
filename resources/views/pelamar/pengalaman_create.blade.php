@@ -13,7 +13,7 @@
 <script>
     $().ready(function(){
         $.fn.select2.defaults.set("theme", "bootstrap");
-        $('#id_jenis_perusahaan, #id_jenis_pekerjaan, #jabatan, ' +
+        $('#id_jenis_perusahaan, #id_jenis_pekerjaan, #id_level_pekerjaan, ' +
             '#bulan_awal, #bulan_akhir, #tahun_awal, #tahun_akhir').select2();
     })
 </script>

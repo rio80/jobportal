@@ -1,5 +1,10 @@
 @extends('pelamar.menu_pelamar')
 @section('content')
+<style>
+    .redColor{
+        color: #ff6868
+    }
+</style>
 <div class="container">
     <div class="row">
         <button class="btn btn-info" id="menu-toggle" style="margin-top: -1rem;"><span
@@ -47,26 +52,18 @@
                                                                 </div>
                                                                 <div class="col-md-12">
                                                                     <div class="row">
-                                                                        <sub style="margin-top: 0.55rem;">
-                                                                            <?php
-                                                                             $diffTahun = date_diff(date_create($data->tanggal_gabung), date_create($data->tanggal_berhenti))->y;
-                                                                            ?>
-                                                                            @if($diffTahun !== 0)
-                                                                            {!! $diffTahun . ' Tahun' !!}
-                                                                            @endif
-                                                                            {!!
-                                                                            date_diff(date_create($data->tanggal_gabung),
-                                                                            date_create($data->tanggal_berhenti))->m . '
-                                                                            Bulan' !!} </sub>
+                                                            <span class="redColor">
+                                                    {{-- diff_date berasal dari attribute buatan di Model Pengalaman, bukan dari kolom tabel --}}
+                                                                            {!! $data->diff_date !!} </span>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-8">
+                                                        <div class="col-md-8"> 
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="row">
-                                                                        <h5>{!! $data->bidang->jenis_pekerjaan !!}
+                                                                        <h5>{!! $data->posisi !!}
                                                                         </h5>
                                                                     </div>
                                                                 </div>
@@ -80,19 +77,19 @@
                                                                                     $data->nama_perusahaan !!}</span>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-2">
+                                                                        {{-- <div class="col-md-2">
                                                                             <div class="row">
                                                                                 <span
                                                                                     class="fas fa-map-marker-alt"></span>&nbsp;&nbsp;consectetur
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="col-md-3">
+                                                                        </div> --}}
+                                                                        {{-- <div class="col-md-3">
                                                                             <div class="row">
                                                                                 <span
                                                                                     class="fas fa-comment-dots"></span>&nbsp;&nbsp;Ulas
                                                                                 perusahaan
                                                                             </div>
-                                                                        </div>
+                                                                        </div> --}}
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12" style="margin-top: 1rem;">
@@ -100,13 +97,13 @@
                                                                         <div class="col-md-12">
                                                                             <div class="row">
                                                                                 <div class="col-md-4">
-                                                                                    <div class="row text-success">
-                                                                                        dolor sit amet
+                                                                                    <div class="row redColor">
+                                                                                        Industri 
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-md-8">
                                                                                     <div class="row">
-                                                                                        consectetur adipisicing elit
+                                                                                        {!! $data->industri->jenis_perusahaan !!}
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -114,13 +111,13 @@
                                                                         <div class="col-md-12">
                                                                             <div class="row">
                                                                                 <div class="col-md-4">
-                                                                                    <div class="row text-success">
-                                                                                        sed do eiusmod tempor
+                                                                                    <div class="row redColor">
+                                                                                        Bidang Pekerjaan
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-md-8">
                                                                                     <div class="row">
-                                                                                        incididunt ut labore et dolore
+                                                                                        {!! $data->bidang->jenis_pekerjaan !!}
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -128,56 +125,23 @@
                                                                         <div class="col-md-12">
                                                                             <div class="row">
                                                                                 <div class="col-md-4">
-                                                                                    <div class="row text-success">
-                                                                                        Ut enim ad minim veniam
+                                                                                    <div class="row redColor">
+                                                                                       Jabatan
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-md-8">
                                                                                     <div class="row">
-                                                                                        quis nostrud exercitation
+                                                                                        {!! $data->jabatan->level_pekerjaan !!}
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-12">
-                                                                            <div class="row">
-                                                                                <div class="col-md-4">
-                                                                                    <div class="row text-success">
-                                                                                        Ullamco laboris
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-8">
-                                                                                    <div class="row">
-                                                                                        nisi ut aliquip ex ea commodo
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-12">
-                                                                            <div class="row">
-                                                                                <div class="col-md-4">
-                                                                                    <div class="row text-success">
-                                                                                        Duis aute irure
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-8">
-                                                                                    <div class="row">
-                                                                                        dolor in reprehenderit in
-                                                                                        voluptate
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+                                                                       
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12" style="margin-top: 1rem;">
                                                                     <div class="row">
-                                                                        <span>Lorem ipsum dolor sit amet, consectetur
-                                                                            adipisicing elit, sed do eiusmod tempor
-                                                                            incididunt ut labore et dolore magna aliqua.
-                                                                            Ut enim ad minim veniam, quis nostrud
-                                                                            exercitation ullamco laboris nisi ut aliquip
-                                                                            ex ea commodo consequat.</span>
+                                                                        <span>{!! $data->tugas_tanggungjawab !!}</span>
                                                                     </div>
                                                                 </div>
                                                             </div>

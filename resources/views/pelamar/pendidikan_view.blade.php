@@ -23,12 +23,14 @@
                                                                 Pendidikan</h5>
                                                         </div>
                                                         <div class="col-md-6 text-right">
-                                                                <a class="btn btn-sm btn-info" href="{{ route('pendidikan_form') }}"><span class="fas fa-plus-circle"></span> Tambah</a>
-                                                            </div>
+                                                            <a class="btn btn-sm btn-info"
+                                                                href="{{ route('pendidikan_form') }}"><span
+                                                                    class="fas fa-plus-circle"></span> Tambah</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing
-                                                    elit
+                                                elit
                                             </div>
                                             <div class="card-body">
                                                 <div class="col-md-12">
@@ -104,19 +106,21 @@
                                                         <div class="col-md-2">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                        <div class="row" style="margin-top: 1.5rem;">
-                                                                                <a href="{{ route('pendidikan_form') }}"><span
-                                                                                        class="fas fa-pencil-alt"></span><button class="btn btn-sm btn-info">Edit</button></a>
-                                                                                <a href="#"><span
-                                                                                        class="fas fa-trash-alt"></span><button  class="btn btn-sm btn-danger">hapus</button></a>
-                                                                            </div>
+                                                                    <div class="row" style="margin-top: 1.5rem;">
+                                                                        <a href="{{ route('pendidikan_form') }}"><span
+                                                                                class="fas fa-pencil-alt"></span><button
+                                                                                class="btn btn-sm btn-info">Edit</button></a>
+                                                                        <a href="#"><span
+                                                                                class="fas fa-trash-alt"></span><button
+                                                                                class="btn btn-sm btn-danger">hapus</button></a>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <br>
-                                                
+
                                             </div>
                                         </div>
                                     </td>

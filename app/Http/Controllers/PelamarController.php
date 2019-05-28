@@ -173,29 +173,32 @@ class PelamarController extends Controller
     public function editPengalaman(Pengalaman $exp)
     {
         $pengalaman = $exp;
-
-        $data['getYearJoin'] = Carbon::createFromFormat('Y-m-d', $exp->tanggal_gabung)->year;
-        $data['getMonthJoin'] = Carbon::createFromFormat('Y-m-d', $exp->tanggal_gabung)->month -1;
-        $data['getYearEnd'] = Carbon::createFromFormat('Y-m-d', $exp->tanggal_berhenti)->year;
-        $data['getMonthEnd'] = Carbon::createFromFormat('Y-m-d', $exp->tanggal_berhenti)->month -1;
+        // dd($exp->tanggal_gabung);
+        $data['getYearJoin'] = Carbon::createFromFormat('M Y', $exp->tanggal_gabung)->year;
+        $data['getMonthJoin'] = Carbon::createFromFormat('M Y', $exp->tanggal_gabung)->month -1;
+        $data['getYearEnd'] = Carbon::createFromFormat('M Y', $exp->tanggal_berhenti)->year;
+        $data['getMonthEnd'] = Carbon::createFromFormat('M Y', $exp->tanggal_berhenti)->month -1;
 
         $data = json_decode(json_encode($data));
         return view('pelamar.pengalaman_edit', compact('pengalaman', 'data'));
     }
 
-    public function updatePengalaman(Pengalaman $exp, saveExp $saveExp){
+    public function updatePengalaman(Pengalaman $exp, saveExp $req){
 
         $tz = "Asia/Bangkok";
-
-        $tgl_gabung = Carbon::createFromDate($saveExp->tahun_awal, $saveExp->bulan_awal + 1, '01', $tz);
-        $tgl_berhenti = Carbon::createFromDate($saveExp->tahun_akhir, $saveExp->bulan_akhir + 1, '01', $tz);
+        $day = '01';
+        $first_month = $req->bulan_awal + 1;
+        $first_year = $req->tahun_awal;
+        $end_month = $req->bulan_akhir + 1;
+        $end_year = $req->tahun_akhir;
+        $tgl_gabung = Carbon::createFromDate($first_year, $first_month, $day, $tz);
+        $tgl_berhenti = Carbon::createFromDate($end_year, $end_month, $day, $tz);
 
         $exp->tanggal_gabung = $tgl_gabung;
         $exp->tanggal_berhenti = $tgl_berhenti;
-
         $exp->save();
 
-        $input = $saveExp->all();
+        $input = $req->all();
         $exp->update($input);
         
         return redirect('pengalaman_view');

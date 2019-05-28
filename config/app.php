@@ -181,6 +181,8 @@ return [
         App\Providers\FormProfilServiceProvider::class,
         App\Providers\MenuPelamarProvider::class,
         App\Providers\PengalamanViewProvider::class,
+        App\Providers\PendidikanViewProvider::class,
+
 
     ],
 

@@ -24,10 +24,11 @@ class StoreFormPengalamanRequest extends FormRequest
     public function rules()
     {
         return [
+            'posisi' => 'required',
             'nama_perusahaan' => 'required',
             'id_jenis_perusahaan' => 'required',
             'id_jenis_pekerjaan' => 'required',
-            'jabatan' => 'required',
+            'id_level_pekerjaan' => 'required',
             'bulan_awal' => 'required',
             'tahun_awal' => 'required',
             'bulan_akhir' => 'required',
@@ -39,10 +40,11 @@ class StoreFormPengalamanRequest extends FormRequest
     public function messages()
     {
         return [
+            'posisi.required' => 'Mohon Isikan Posisi Anda Saat ini / Sebelumnya',
             'nama_perusahaan.required' => 'Mohon Isikan Nama Perusahaan Anda Saat ini / Sebelumnya',
             'id_jenis_perusahaan.required' => 'Silahkan Pilih Jenis Perusahaan',
             'id_jenis_pekerjaan.required' => 'Silahkan Pilih Bidang Pekerjaan',
-            'jabatan.required' => 'Silahkan Pilih Jabatan',
+            'id_level_pekerjaan.required' => 'Silahkan Pilih Jabatan',
             'bulan_awal.required' => 'Silahkan Pilih Awal Bulan Anda Bekerja',
             'tahun_awal.required' => 'Silahkan Pilih Awal Tahun Anda Bekerja',
             'bulan_akhir.required' => 'Silahkan Pilih Akhir Bulan Anda Bekerja',

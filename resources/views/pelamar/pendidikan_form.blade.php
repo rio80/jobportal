@@ -1,5 +1,19 @@
 @extends('pelamar.menu_pelamar')
 @section('content')
+<?php
+
+    $tahuns = [];
+    for ($tahun = 1970; $tahun <= date('Y') - 15; $tahun++) {
+        $tahuns[$tahun] = $tahun;
+    }
+?>
+
+<script>
+        $().ready(function(){
+            $.fn.select2.defaults.set("theme", "bootstrap");
+            $('#tahun_lulus').select2();
+        })
+    </script>
 <div class="container">
     <div class="row">
         <div class="card">
@@ -9,114 +23,68 @@
                 </div>
             </div>
             <div class="card-body">
-                <form>
+                    {!! Form::open([
+                        'url' => 'insert-pengalaman',
+                        'method' => 'POST',
+                        ]) !!}
+                        @csrf
                     <div class="form-group row">
-                        <label for="input1" class="col-md-2 col-form-label text-left">Institusi <span
-                                class="text-danger">*</span></label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" id="input1" placeholder="Institusi">
+                        {!! Form::label('nama_institusi', 'Nama Sekolah/Universitas <span
+                            class="text-danger">*</span></label>', ['class' => 'col-md-3 col-form-label text-left'],
+                        false) !!}
+                        <div class="col-md-9">
+                            {!! Form::text('nama_institusi', null, ['class' => 'form-control', 'id' => 'nama_institusi',
+                            'placeholder' => 'Nama Sekolah / Universitas']) !!}
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="input2" class="col-md-2 col-form-label text-left">Tanggal Wisuda <span
-                                class="text-danger">*</span></label>
-                        <div class="col-md-3">
-                            <select id="input2" class="form-control">
-                                <option selected>Oktober</option>
-                                <option>...</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <select id="input3" class="form-control">
-                                <option selected>2019</option>
-                                <option>...</option>
-                            </select>
+                        {!! Form::label('tahun_lulus', 'Tahun Lulus <span class="text-danger">*</span>', ['class' =>
+                        'col-md-3 col-form-label text-left'], false) !!}
+
+                        <div class="col-md-2">
+                            {!! Form::select('tahun_lulus', $tahuns, null, ['class' => 'form-control', 'placeholder' =>
+                            'Tahun Lulus', 'id' => 'tahun_lulus']) !!}
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="input4" class="col-md-2 col-form-label text-left">Kualifikasi <span
-                                class="text-danger">*</span></label>
-                        <div class="col-md-10">
-                            <select id="input4" class="form-control">
-                                <option selected>Sarjana (S1)</option>
-                                <option>...</option>
-                            </select>
+                        {!! Form::label('id_tingkat', 'Tingkat Pendidikan <span class="text-danger">*</span>', ['class'
+                        => 'col-md-3 col-form-label text-left'], false) !!}
+                        <div class="col-md-2">
+                            {!! Form::select('id_tingkat', $tingkat, null, ['class' => 'form-control']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        {!! Form::label('bidang_studi', 'Bidang Studi <span class="text-danger">*</span>', ['class' =>
+                        'col-md-3 col-form-label text-left'], false) !!}
+                        <div class="col-md-9">
+                            {!! Form::text('bidang_studi', null, ['class' => 'form-control', 'id' => 'bidang_studi',
+                            'placeholder' => 'Masukan Bidang Studi']) !!}
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="input5" class="col-md-2 col-form-label text-left">Lokasi <span
-                                class="text-danger">*</span></label>
-                        <div class="col-md-10">
-                            <select id="input5" class="form-control">
-                                <option selected>Indonesia</option>
-                                <option>...</option>
-                            </select>
+                        {!! Form::label('jurusan', 'Jurusan <span class="text-danger">*</span>', ['class' => 'col-md-3
+                        col-form-label text-left'], false) !!}
+
+                        <div class="col-md-9">
+                            {!! Form::text('jurusan', null, ['class' => 'form-control', 'id' => 'jurusan',
+                            'placeholder' => 'Masukan Jurusan']) !!}
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="input6" class="col-md-2 col-form-label text-left">Bidang Studi <span
-                                class="text-danger">*</span></label>
-                        <div class="col-md-10">
-                            <select id="input6" class="form-control">
-                                <option selected>Ilmu Komputer</option>
-                                <option>...</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="input7" class="col-md-2 col-form-label text-left">Jurusan</label>
-                        <div class="col-md-10">
-                            <select id="input7" class="form-control">
-                                <option selected>Tehnik Informatika</option>
-                                <option>...</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="input8" class="col-md-2 col-form-label text-left">Nilai Akhir</label>
-                        <div class="col-md-10">
-                            <select id="input8" class="form-control">
-                                <option selected>IPK</option>
-                                <option>...</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="input9" class="col-md-2 col-form-label text-left">Skor <span
-                                class="text-danger">*</span></label>
-                        <div class="col-md-3">
-                            <input type="text" class="form-control" id="input9" placeholder="...">
-                        </div>
-                        <label for="input10" class="col-md-1 col-form-label text-left">Dari <span
-                                class="text-danger">*</span></label>
-                        <div class="col-md-3">
-                            <input type="text" class="form-control" id="input10" placeholder="...">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="input11" class="col-md-2 col-form-label text-left">Informasi Tambahan</label>
-                        <div class="col-md-10">
-                            <textarea class="form-control" id="input11" rows="9"></textarea>
-                        </div>
-                    </div>
-                </form>
+
+               
             </div>
             <div class="card-footer"
                 style="text-align: right; border-top: 1px solid #bbbbbb; background-color: #eeeeee">
                 <div class="col-md-12">
-                    <button type="button" class="btn btn-success">Simpan</button>
-                    <button type="button" class="btn btn-danger">Batal</button>
+
+                    {!! Form::submit('Submit', ['class' => 'btn btn-success']) !!}
+                    {!! Form::button('Batal', ['class' => 'btn btn-danger']) !!}
                 </div>
             </div>
+            {!! Form::close() !!}
         </div>
-        <div class="col-md-12">
-            <div class="col-md-4">
-
-            </div>
-            <div class="col-md-8">
-
-            </div>
-        </div>
+        
     </div>
 </div>
 @endsection

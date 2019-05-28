@@ -75,6 +75,8 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function () {
         Route::post('/fetch_lokasi', 'PelamarController@fetch_lokasi')->name('fetch_lokasi');
         Route::patch('/insert-profil', 'PelamarController@insertProfil')->name('insert-profil');
         Route::post('/insert-pengalaman','PelamarController@insertPengalaman')->name('insert-pengalaman');
+        Route::post('/insert-pendidikan','PelamarController@insertPendidikan')->name('insert-pendidikan');
+
         Route::get('/pengalaman/{exp}/edit','PelamarController@editPengalaman')->name('editPengalaman');
         Route::patch('/pengalaman/{exp}', 'PelamarController@updatePengalaman');
 
