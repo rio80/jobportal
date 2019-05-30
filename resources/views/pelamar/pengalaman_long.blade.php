@@ -124,7 +124,8 @@
     style="text-align: right; border-top: 1px solid #bbbbbb; background-color: #eeeeee">
     <div class="col-md-12">
         {!! Form::submit($submitButtonText, ['class' => 'btn btn-success']) !!}
-        {!! Form::button('Batal', ['class' => 'btn btn-danger']) !!}
+
+        {!! link_to('/pengalaman_view', 'Batal', ['class' => 'btn btn-danger']) !!}
     </div>
 </div>
                

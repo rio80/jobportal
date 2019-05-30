@@ -1,12 +1,7 @@
 @extends('pelamar.menu_pelamar')
 @section('content')
 <?php
-    $bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-
-    $tahuns = [];
-    for ($tahun = 1970; $tahun <= date('Y') - 15; $tahun++) {
-        $tahuns[$tahun] = $tahun;
-    }
+    
 
     $message = '';
 ?>

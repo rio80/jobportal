@@ -65,7 +65,7 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function () {
         Route::get('/dashboard/{iduser}', 'PelamarController@index')->name('dashboard');
         Route::get('/print_cv','PelamarController@print_cv')->name('print_cv');
         Route::get('/lowongan_detail','PelamarController@resume')->name('lowongan_detail');
-        Route::get('/pendidikan_form','PelamarController@pendidikan_form')->name('pendidikan_form');
+        Route::get('/pendidikan_new','PelamarController@pendidikan_new')->name('pendidikan_new');
         Route::get('/pendidikan_view','PelamarController@pendidikan_view')->name('pendidikan_view');
         Route::get('/profil/{iduser}/edit','PelamarController@profil')->name('profil');
         Route::get('/pengalaman','PelamarController@pengalaman_create')->name('pengalaman_create');
@@ -75,10 +75,13 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function () {
         Route::post('/fetch_lokasi', 'PelamarController@fetch_lokasi')->name('fetch_lokasi');
         Route::patch('/insert-profil', 'PelamarController@insertProfil')->name('insert-profil');
         Route::post('/insert-pengalaman','PelamarController@insertPengalaman')->name('insert-pengalaman');
-        Route::post('/insert-pendidikan','PelamarController@insertPendidikan')->name('insert-pendidikan');
+        Route::post('/insert-pendidikan','PelamarController@pendidikanInsert')->name('insert-pendidikan');
 
         Route::get('/pengalaman/{exp}/edit','PelamarController@editPengalaman')->name('editPengalaman');
         Route::patch('/pengalaman/{exp}', 'PelamarController@updatePengalaman');
+        Route::get('/pendidikan/{edu}/edit', 'PelamarController@pendidikanEdit');
+        Route::patch('/pendidikan/{edu}', 'PelamarController@pendidikanUpdate');
+
 
     });
     Route::group(['roles' => 'pengusaha'], function () {

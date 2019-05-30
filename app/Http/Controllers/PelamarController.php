@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreFormPendidikanRequest as saveEdu;
 use App\Http\Requests\StoreFormPengalamanRequest as saveExp;
 use App\Http\Requests\StoreFormProfilRequest;
 // use Auth;
@@ -9,6 +10,7 @@ use App\Models\Kecamatan as kec;
 use App\Models\Kelurahan as kel;
 use App\Models\Kota as kota;
 use App\Models\Pelamar;
+use App\Models\Pendidikan;
 use App\Models\Pengalaman;
 use App\Models\Registrasi;
 use Carbon\Carbon;
@@ -72,14 +74,78 @@ class PelamarController extends Controller
         return view('pelamar.lowongan_detail');
     }
 
-    public function pendidikan_form()
+    public function pendidikan_new()
     {
-        return view('pelamar.pendidikan_form');
+        return view('pelamar.pendidikan_create');
     }
 
     public function pendidikan_view()
     {
-        return view('pelamar.pendidikan_view');
+        $noreg = session('noreg');
+        $dataEdu = Pendidikan::where('no_reg', $noreg)->orderBy('id')->get();
+        return view('pelamar.pendidikan_view', compact('dataEdu'));
+    }
+
+    public function pendidikanEdit(Pendidikan $edu)
+    {
+        $pendidikan = $edu;
+        return view('pelamar.pendidikan_edit', compact('pendidikan'));
+    }
+
+    public function pendidikanInsert(saveEdu $req)
+    {
+        $noreg = session('noreg');
+
+        $institusiUnique = Pendidikan::where([
+            'no_reg' => $noreg,
+            'tahun_lulus' => $req->tahun_lulus,
+            'id_tingkat' => $req->id_tingkat,
+        ])->get()->count();
+
+        // Lakukan Pengecekan Data
+        if ($institusiUnique == 0) {
+            $insert = Pendidikan::create([
+                'no_reg' => $noreg,
+                'jurusan' => $req->jurusan,
+                'nama_institusi' => $req->nama_institusi,
+                'tahun_lulus' => $req->tahun_lulus,
+                'bidang_studi' => $req->bidang_studi,
+                'id_tingkat' => $req->id_tingkat,
+            ]);
+
+            return redirect('pendidikan_view');
+
+        } else {
+            alert()->warning(null, 'Data Sudah Ada');
+            return redirect('pendidikan_new')->withInput();
+        }
+
+    }
+
+    public function pendidikanUpdate(Pendidikan $edu, saveEdu $saveEdu)
+    {
+        $noreg = session('noreg');
+
+        $pendidikan = $saveEdu;
+        $institusiUnique = Pendidikan::where([
+            'no_reg' => $noreg,
+            'tahun_lulus' => $saveEdu->tahun_lulus,
+            'id_tingkat' => $saveEdu->id_tingkat,
+        ])
+            ->where('id', '!=', $edu->id)
+            ->get()->count();
+
+        if ($institusiUnique == 0) {
+            $data = $saveEdu->all();
+            $update = $edu->update($data);
+            return redirect('pendidikan_view');
+        } else {
+
+            alert()->warning(null, 'Data Sudah Ada');
+            return view('pelamar.pendidikan_edit', compact('pendidikan'));
+
+        }
+
     }
 
     public function profil(Pelamar $req, $iduser = null)
@@ -140,6 +206,13 @@ class PelamarController extends Controller
         return View::make('pelamar.form_profil', $data);
     }
 
+    public function pengalaman_view()
+    {
+        $noreg = session('noreg');
+        $dataExp = Pengalaman::where('no_reg', $noreg)->orderBy('id')->get();
+        return view('pelamar.pengalaman_view', compact('dataExp'));
+    }
+
     public function pengalaman_short()
     {
         return view('pelamar.pengalaman_short');
@@ -175,15 +248,17 @@ class PelamarController extends Controller
         $pengalaman = $exp;
         // dd($exp->tanggal_gabung);
         $data['getYearJoin'] = Carbon::createFromFormat('M Y', $exp->tanggal_gabung)->year;
-        $data['getMonthJoin'] = Carbon::createFromFormat('M Y', $exp->tanggal_gabung)->month -1;
+        $data['getMonthJoin'] = Carbon::createFromFormat('M Y', $exp->tanggal_gabung)->month - 1;
         $data['getYearEnd'] = Carbon::createFromFormat('M Y', $exp->tanggal_berhenti)->year;
-        $data['getMonthEnd'] = Carbon::createFromFormat('M Y', $exp->tanggal_berhenti)->month -1;
+        $data['getMonthEnd'] = Carbon::createFromFormat('M Y', $exp->tanggal_berhenti)->month - 1;
 
         $data = json_decode(json_encode($data));
+
         return view('pelamar.pengalaman_edit', compact('pengalaman', 'data'));
     }
 
-    public function updatePengalaman(Pengalaman $exp, saveExp $req){
+    public function updatePengalaman(Pengalaman $exp, saveExp $req)
+    {
 
         $tz = "Asia/Bangkok";
         $day = '01';
@@ -199,16 +274,9 @@ class PelamarController extends Controller
         $exp->save();
 
         $input = $req->all();
-        $exp->update($input);
-        
-        return redirect('pengalaman_view');
-    }
+        $update = $exp->update($input);
 
-    public function pengalaman_view()
-    {   
-        $noreg = session('noreg');
-        $dataExp = Pengalaman::where('no_reg', $noreg)->orderBy('id')->get();
-        return view('pelamar.pengalaman_view', compact('dataExp'));
+        return redirect('pengalaman_view');
     }
 
     public function menu_resume()
@@ -329,8 +397,7 @@ class PelamarController extends Controller
             $updatePelamar->kode_kec_ktp = session('kecamatan_ktp');
             $updatePelamar->kode_kel_ktp = session('kelurahan_ktp');
         }
-
-        if (isset($input['equals_with_ktp']) == false || $input['equals_with_ktp'] !== null) {
+        if (isset($input['equals_with_ktp']) == false || $input['equals_with_ktp'] == null) {
 
             if (session('propinsi_dom') !== '0' &&
                 session('kota_dom') !== '0' &&
@@ -342,6 +409,11 @@ class PelamarController extends Controller
                 $updatePelamar->kode_kec = session('kecamatan_dom');
                 $updatePelamar->kode_kel = session('kelurahan_dom');
             }
+        } else {
+            $updatePelamar->kode_prov = session('propinsi_ktp');
+            $updatePelamar->kode_kota = session('kota_ktp');
+            $updatePelamar->kode_kec = session('kecamatan_ktp');
+            $updatePelamar->kode_kel = session('kelurahan_ktp');
         }
 
         session([

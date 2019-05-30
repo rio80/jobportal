@@ -677,10 +677,8 @@ for ($tahun = 1970; $tahun <= date('Y') - 15; $tahun++) {
             }
         });
         
-        $('.equals_with_ktp').hide();
-        $('#equals-ktp').hide();
-        $('input[name=equals_with_ktp]').attr('checked', false);
-
+        // $('.equals_with_ktp').hide();
+        // $('#equals-ktp').hide();
 
         $('#kelurahan_ktp').on('change', function(){
             if($( "#propinsi_ktp option:selected" ).val() !== '' &&
@@ -753,6 +751,7 @@ for ($tahun = 1970; $tahun <= date('Y') - 15; $tahun++) {
         });
 
 
+        $('input[name=equals_with_ktp]').attr('checked', false);
 
     })
 

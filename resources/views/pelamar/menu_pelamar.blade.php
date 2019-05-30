@@ -15,7 +15,7 @@
                         @endif
                     </div>
                     <div class="col-md-12 text-center text-capitalize">
-                            {!! Session::get('nama') !!}
+                        {!! Session::get('nama') !!}
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                 {{ link_to('profil/'.Auth::user()->id.'/edit','Profil',['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'profil' ? 'active' : ''), 'id' => 'profil'])}}
 
                 {{ link_to('#', 'Resume Di unggah', ['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'res_unggah' ? 'active' : ''), 'id' => 'res_unggah']) }}
-                
+
                 {{ link_to('#', 'Pengaturan
                 Privasi', ['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'res_unggah' ? 'active' : ''), 'id' => 'privacy']) }}
 
@@ -44,7 +44,8 @@
         <div id="page-content-wrapper" class="login-page sidebar-collapse">
             @extends('navbar')
             <div class="not-landing page-header clear-filter" filter-color="white">
-                <div class="page-header-image" style="background-image:url({{ asset('img/white-solid.jpg') }}); z-index: 0;">
+                <div class="page-header-image"
+                    style="background-image:url({{ asset('img/white-solid.jpg') }}); z-index: 0;">
                 </div>
 
                 <div class="content">

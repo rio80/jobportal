@@ -4,7 +4,7 @@
     <div class="container">
         <div class="navbar-translate">
             <span class="logo-container"><img class="brand" src="{{ URL::asset('img/job-icon.png') }}" alt=""></span>
-            <a class="navbar-brand" href="index.html" rel="tooltip" title="Job Seekers" data-placement="bottom">
+            <a class="navbar-brand" href="{{ '/' }}" rel="tooltip" title="Job Seekers" data-placement="bottom">
                 <h3>Job Seekers</h3>
             </a>
             <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"

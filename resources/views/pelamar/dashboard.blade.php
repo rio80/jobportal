@@ -2,7 +2,6 @@
 @section('page')
 
 <body class="profile-page sidebar-collapse">
-    @extends('navbar')
 
     <div class="wrapper">
         <div class="page-header clear-filter" filter-color="orange">
