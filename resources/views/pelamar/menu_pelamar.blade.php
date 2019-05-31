@@ -21,17 +21,20 @@
             </div>
             <div class="list-group list-group-flush">
 
-                {{ link_to('pengalaman_view', 'Pengalaman', ['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'exp_view' ? 'active' : ''), 'id' => 'exp_view']) }}
+                {{ link_to('profil/'.Auth::user()->id.'/edit','Profil',['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'profil' ? 'active' : ''), 'id' => 'profil'])}}
 
                 {{ link_to('pendidikan_view', 'Pendidikan', ['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'edu_view' ? 'active' : ''), 'id' => 'edu_view']) }}
 
-                {{ link_to('#', 'keterampilan', ['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'skl_view' ? 'active' : ''), 'id' => 'skl_view']) }}
+                {{ link_to('pengalaman_view', 'Pengalaman', ['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'exp_view' ? 'active' : ''), 'id' => 'exp_view']) }}
 
-                {{ link_to('#', 'Bahasa', ['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'lng_view' ? 'active' : ''), 'id' => 'lng_view']) }}
+                {{ link_to('skill_view', 'keterampilan', ['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'skill_view' ? 'active' : ''), 'id' => 'skill_view']) }}
+
+
+                {{ link_to('#', 'Peminatan', ['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'minat' ? 'active' : ''), 'id' => 'minat_view']) }}
 
                 {{ link_to('', 'Info Lain', ['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'inflain_view' ? 'active' : ''), 'id' => 'inflain_view']) }}
 
-                {{ link_to('profil/'.Auth::user()->id.'/edit','Profil',['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'profil' ? 'active' : ''), 'id' => 'profil'])}}
+
 
                 {{ link_to('#', 'Resume Di unggah', ['class' => 'list-group-item list-group-item-action '.(isset($halaman) && $halaman == 'res_unggah' ? 'active' : ''), 'id' => 'res_unggah']) }}
 

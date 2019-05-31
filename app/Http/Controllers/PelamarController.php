@@ -279,6 +279,14 @@ class PelamarController extends Controller
         return redirect('pengalaman_view');
     }
 
+    public function skillView(){
+        return view('pelamar.skill_view');
+    }
+
+    public function skillCreate(){
+        return view('pelamar.skill_create');
+    }
+
     public function menu_resume()
     {
         return view('pelamar.menu_pelamar');
