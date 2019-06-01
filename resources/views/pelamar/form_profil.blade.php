@@ -676,7 +676,7 @@ for ($tahun = 1970; $tahun <= date('Y') - 15; $tahun++) {
                 });
             }
         });
-        
+
         // $('.equals_with_ktp').hide();
         // $('#equals-ktp').hide();
 
@@ -703,7 +703,7 @@ for ($tahun = 1970; $tahun <= date('Y') - 15; $tahun++) {
             $('#propinsi_dom, #kota_dom, #kecamatan_dom, #kelurahan_dom').prop('disabled', kondisi);
 
         })
-        
+
 
         $('.dropdown_lokasi_ktp_otomatis').hide();
         $('.dropdown_lokasi_dom_otomatis').hide();

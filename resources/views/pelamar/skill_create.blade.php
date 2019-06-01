@@ -13,6 +13,8 @@
 </script>
 <div class="container">
     <div class="row">
+            <button class="btn btn-info" id="menu-toggle" style="margin-top: -1rem;"><span
+                class="fas fa-bars"></span></button>
         <div class="card">
             <div class="card-header" style="text-align: left; border-bottom: 1px solid #bbbbbb">
                 <div class="col-md-12">
@@ -21,6 +23,7 @@
             </div>
             <div class="card-body">
                 {!! Form::open([
+                'id' => 'skill_insert',
                 'url' => 'skill_insert',
                 'method' => 'POST',
                 ]) !!}
@@ -31,4 +34,23 @@
 
         </div>
     </div>
+
+    <script>
+        $().ready(function(){
+            $('#skill_insert').submit(function(e){
+                e.preventDefault();
+                $.ajax({
+                    'type' : 'POST',
+                    'url' : 'skill_insert',
+                    'dataType' : 'json',
+                    'data' : $(this).serialize(),
+                    'success' : function(data){
+                        $d = data.data;
+                        window.location.reload();
+                    }
+                })
+            })
+        })
+
+    </script>
     @endsection

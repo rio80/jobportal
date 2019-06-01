@@ -65,6 +65,7 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function () {
 
         Route::get('/skill_view', 'PelamarController@skillView')->name('skill_view');
         Route::get('/skill_create', 'PelamarController@skillCreate')->name('skill_create');
+        Route::post('/skill_insert', 'PelamarController@skillInsert')->name('skill_insert');
 
 
 

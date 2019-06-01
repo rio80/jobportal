@@ -23,6 +23,10 @@ class SkillViewProvider extends ServiceProvider
      */
     public function boot()
     {
+        view()->composer('pelamar.skill_form', function ($view) {
+            $view->with('level', \App\Models\Level::select()->pluck('nama', 'id'));
+            $view->with('skill', \App\Models\Keterampilan::select('level', 'keterampilan')->get());
 
+        });
     }
 }

@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreFormPendidikanRequest as saveEdu;
 use App\Http\Requests\StoreFormPengalamanRequest as saveExp;
 use App\Http\Requests\StoreFormProfilRequest;
+use App\Http\Requests\StoreFormSkillRequest as saveSkl;
 // use Auth;
 use App\Models\Kecamatan as kec;
 use App\Models\Kelurahan as kel;
+use App\Models\Keterampilan;
 use App\Models\Kota as kota;
 use App\Models\Pelamar;
 use App\Models\Pendidikan;
@@ -279,12 +281,44 @@ class PelamarController extends Controller
         return redirect('pengalaman_view');
     }
 
-    public function skillView(){
+    public function skillView()
+    {
         return view('pelamar.skill_view');
     }
 
-    public function skillCreate(){
+    public function skillCreate()
+    {
         return view('pelamar.skill_create');
+    }
+
+    public function skillInsert(saveSkl $req)
+    {
+
+        $error = 1;
+
+        $insert = Keterampilan::create([
+            'no_reg' => session('noreg'),
+            'level' => $req->level,
+            'keterampilan' => $req->keterampilan,
+        ]);
+
+        $data = array(null);
+
+        if ($insert != null) {
+            $error = 0;
+            $data = array(
+                'level' => $req->level,
+                'keterampilan' => $req->keterampilan,
+            );
+        }
+
+        $json = json_encode(array(
+            'error' => $error,
+            'message' => 'Berhasil',
+            'data' => $data)
+        );
+
+        return $json;
     }
 
     public function menu_resume()
