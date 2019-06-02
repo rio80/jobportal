@@ -283,7 +283,38 @@ class PelamarController extends Controller
 
     public function skillView()
     {
-        return view('pelamar.skill_view');
+        // $collect = Keterampilan::select('level', 'keterampilan')->get();
+        $collect = Keterampilan::join('tb_ref_level',
+        'tb_mst_keahlian.level', '=', 'tb_ref_level.id')
+        ->select('tb_ref_level.id as idlevel', 'tb_ref_level.nama as level', 'keterampilan')
+        ->orderBy('tb_ref_level.id', 'asc')
+        ->get();
+
+        $group = $collect->groupBy('level')->toArray();
+
+        $hasil = [];
+        $arrayGroup;
+        foreach ($group as $key) {
+
+            $arrayTerampil = [];
+            $level = $key[0]['level'];
+            $id = $key[0]['idlevel'];
+
+            foreach ($key as $data) {
+                array_push($arrayTerampil, $data['keterampilan']);
+            }
+
+            array_push($hasil, array(
+                'id' => $id,
+                'keterampilan' => implode($arrayTerampil, ', '),
+                'level' => $level,
+            ));
+
+        }
+
+        $hasil = json_decode(json_encode($hasil), false);
+
+        return view('pelamar.skill_view', compact('hasil'));
     }
 
     public function skillCreate()
@@ -319,6 +350,11 @@ class PelamarController extends Controller
         );
 
         return $json;
+    }
+
+    public function skillViewEdit(){
+
+        return view('pelamar.skill_edit');
     }
 
     public function menu_resume()

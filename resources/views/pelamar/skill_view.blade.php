@@ -35,12 +35,16 @@
                                                                 href="{{ route('skill_create') }}">
                                                                 <span class="fas fa-plus-circle"></span>
                                                                 Tambah
+                                                                {!! link_to('/skill_view_edit', 'Edit',
+                                                                ['class' =>
+                                                                'btn btn-sm btn-warning fas fa-pencil-alt"']) !!}
                                                             </a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="card-body">
+                                                @foreach ($hasil as $g)
                                                 <div class="col-md-12">
                                                     <div class="row">
                                                         <div class="col-md-2">
@@ -48,7 +52,7 @@
                                                                 <div class="col-md-12">
                                                                     <div class="row">
                                                                         <span>
-                                                                            Menengah
+                                                                                {!! $g->level !!}
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -59,24 +63,20 @@
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="row">
-                                                                        <h5>Programmer VB, java, designer, animator, network troubleshoot (IPCOP, Microtik), maintenance hardware, Mobile Programming (Android), PHP And MySQL, JAVASCRIPT, Laravel, VB.NET, C#.NET, AJAX, HTML 5, CSS3, BootStrap
+
+                                                                        <h5>{!! $g->keterampilan !!}
                                                                         </h5>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
-                                                            <div class="row">
-                                                                {!! link_to('pengalaman/1/edit', 'Edit',
-                                                                ['class' =>
-                                                                'btn btn-sm btn-info fas fa-pencil-alt"']) !!}
 
-                                                                {!! link_to('pengalaman/{id}/hapus', 'Hapus', ['class'
-                                                                => 'btn btn-sm btn-danger fas fa-trash-alt"']) !!}
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                @endforeach
                                                 <br>
                                             </div>
                                         </div>

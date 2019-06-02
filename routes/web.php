@@ -63,9 +63,16 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function () {
         Route::get('/pendidikan/{edu}/edit', 'PelamarController@pendidikanEdit');
         Route::patch('/pendidikan/{edu}', 'PelamarController@pendidikanUpdate');
 
-        Route::get('/skill_view', 'PelamarController@skillView')->name('skill_view');
         Route::get('/skill_create', 'PelamarController@skillCreate')->name('skill_create');
+        Route::get('/skill_view', 'PelamarController@skillView')->name('skill_view');
         Route::post('/skill_insert', 'PelamarController@skillInsert')->name('skill_insert');
+        Route::get('/skill_view_edit', 'PelamarController@skillViewEdit');
+        Route::get('/skill/{skill}/edit', 'PelamarController@skillEdit');
+
+        Route::patch('/skill/{skl}', 'PelamarController@skillUpdate');
+
+
+
 
 
 

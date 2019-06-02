@@ -18,7 +18,7 @@
         <div class="card">
             <div class="card-header" style="text-align: left; border-bottom: 1px solid #bbbbbb">
                 <div class="col-md-12">
-                    <h4>Keterampilan <span class="badge badge-danger">EDIT</span></h4>
+                    <h4>Keterampilan <span class="badge badge-danger">BUAT DATA BARU</span></h4>
                 </div>
             </div>
             <div class="card-body">

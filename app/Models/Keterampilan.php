@@ -8,6 +8,8 @@ class Keterampilan extends Model
 {
     protected $table = "tb_mst_keahlian";
 
+    protected $primary_key = "id";
+
     protected $fillable = [
         "no_reg", "level", "keterampilan",
     ];

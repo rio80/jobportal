@@ -36,14 +36,13 @@
             </tr>
             @foreach ($skill as $s)
             <tr>
+                <td id="id" style="display:none">{!! $s->id !!}</td>
                 <td id="level"> {!! $s->levels->nama !!} </td>
                 <td id="keterampilan"> {!! $s->keterampilan !!} </td>
                 <td id="aksi">
                      {!! link_to("skill_edit", "Rubah", ['class' => 'btn-sm btn-info']) !!}
                      {!! link_to("skill_delete", "Hapus", ['class' => 'btn-sm btn-danger']) !!}
-
                     </td>
-
             </tr>
             @endforeach
         </table>
