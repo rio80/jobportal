@@ -25,6 +25,7 @@
                 {!! Form::open([
                 'id' => 'skill_view_edit',
                 'method' => 'POST',
+                'url' => 'skill_update',
                 ]) !!}
                 @csrf
                 @include('pelamar.skill_form', ['SubmitButtonText' => 'Perbarui Keahlian'])

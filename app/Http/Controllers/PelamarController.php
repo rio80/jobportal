@@ -285,10 +285,10 @@ class PelamarController extends Controller
     {
         // $collect = Keterampilan::select('level', 'keterampilan')->get();
         $collect = Keterampilan::join('tb_ref_level',
-        'tb_mst_keahlian.level', '=', 'tb_ref_level.id')
-        ->select('tb_ref_level.id as idlevel', 'tb_ref_level.nama as level', 'keterampilan')
-        ->orderBy('tb_ref_level.id', 'asc')
-        ->get();
+            'tb_mst_keahlian.level', '=', 'tb_ref_level.id')
+            ->select('tb_ref_level.id as idlevel', 'tb_ref_level.nama as level', 'keterampilan')
+            ->orderBy('tb_ref_level.id', 'asc')
+            ->get();
 
         $group = $collect->groupBy('level')->toArray();
 
@@ -319,6 +319,10 @@ class PelamarController extends Controller
 
     public function skillCreate()
     {
+        session([
+            'skill_edit_mode' => false,
+        ]);
+
         return view('pelamar.skill_create');
     }
 
@@ -352,9 +356,29 @@ class PelamarController extends Controller
         return $json;
     }
 
-    public function skillViewEdit(){
+    public function skillViewEdit($id)
+    {
+
+        session([
+            'skill_edit_mode' => true,
+            'skill_edit_id' => $id,
+        ]);
 
         return view('pelamar.skill_edit');
+    }
+
+    public function skillUpdate(Request $skill)
+    {
+        session([
+            'skill_edit_mode' => false,
+        ]);
+
+        $update = Keterampilan::select('*')->where('id' ,$skill->id)->first();
+        $update->level =$skill->level ;
+        $update->keterampilan = $skill->keterampilan;
+        $update->save();
+
+        return redirect('skill_view');
     }
 
     public function menu_resume()

@@ -35,9 +35,6 @@
                                                                 href="{{ route('skill_create') }}">
                                                                 <span class="fas fa-plus-circle"></span>
                                                                 Tambah
-                                                                {!! link_to('/skill_view_edit', 'Edit',
-                                                                ['class' =>
-                                                                'btn btn-sm btn-warning fas fa-pencil-alt"']) !!}
                                                             </a>
                                                         </div>
                                                     </div>
@@ -71,7 +68,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
-
+                                                                {!! link_to('/skill_view_edit/'.$g->id, 'Edit',
+                                                                ['class' =>
+                                                                'btn btn-sm btn-warning fas fa-pencil-alt"']) !!}
                                                         </div>
                                                     </div>
                                                 </div>
