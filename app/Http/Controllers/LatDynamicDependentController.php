@@ -14,7 +14,7 @@ class LatDynamicDependentController extends Controller
         // dd($provList);
         return view('lat_dynamic_dependent')->with('provList', $provList);
     }
-    
+
     public function fetch(Request $req){
         $select = $req->get('select');
         $value = $req->get('value');
@@ -34,15 +34,15 @@ class LatDynamicDependentController extends Controller
             foreach($data as $row){
                 $output .= '<option value="'.$row->id_kec.'">'.$row->nama_kec.'</option>';
             }
-        } 
+        }
 
         if($select == 'kec'){
             $data = kel::select('id_kel', 'nama_kel')->where('id_kec', $value)->get();
             foreach($data as $row){
                 $output .= '<option value="'.$row->id_kel.'">'.$row->nama_kel.'</option>';
             }
-        } 
-        
+        }
+
 
         echo $output;
     }

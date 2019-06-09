@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\DB;
 use App\Models\Provinsi as prov;
+use App\Models\Bidang;
+
 use Illuminate\Support\Facades\View;
 
 class FormProfilServiceProvider extends ServiceProvider
@@ -16,8 +18,8 @@ class FormProfilServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        
-        
+
+
     }
 
     /**
@@ -32,6 +34,8 @@ class FormProfilServiceProvider extends ServiceProvider
             $view->with('stat_nikah', DB::table('tb_ref_statusnikah')->pluck('nama', 'id'));
             $view->with('stat_kerja', DB::table('tb_ref_statuskerja')->pluck('nama', 'id'));
             $view->with('jenis_identitas', DB::table('tb_ref_noidentitas')->pluck('nama', 'id'));
+            $view->with('minat', Bidang::select()->pluck('jenis_pekerjaan', 'id'));
+            // $view->with('minat', Bidang::lists('jenis_pekerjaan', 'id'));
         });
     }
 }

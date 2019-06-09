@@ -15,6 +15,8 @@ use App\Models\Pelamar;
 use App\Models\Pendidikan;
 use App\Models\Pengalaman;
 use App\Models\Registrasi;
+use App\Models\Bidang;
+
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -157,8 +159,9 @@ class PelamarController extends Controller
         $pelamarTable = DB::table('tb_mst_pelamar')
             ->join('tb_ref_registrasi', 'tb_mst_pelamar.no_reg', '=', 'tb_ref_registrasi.id')
             ->select('tb_mst_pelamar.*')->where('tb_ref_registrasi.id', $no_reg->id_reg)->first();
-        // dd($pelamarTable->id);
         $data['pelamar'] = Pelamar::findOrFail($pelamarTable->id);
+
+        $data['bidang_select'] = $data['pelamar']->bidang->pluck('id');
 
         $data['propinsi'] = DB::table('tb_mst_provinsi')
             ->select('id_prov', 'nama_prov')
@@ -488,12 +491,10 @@ class PelamarController extends Controller
         // $updatePelamar->kodepos_domisili = $input['kodeposdom'];
         // $updatePelamar->email2 = $input['email2'];
         // $updatePelamar->no_identitas = $input['no_identitas'];
-
-        if (session('propinsi_ktp') !== '0' &&
-            session('kota_ktp') !== '0' &&
-            session('kecamatan_ktp') !== '0' &&
-            session('kelurahan_ktp') !== '0') {
-            // dd('simpan lokasi ktp');
+        if ((session('propinsi_ktp') !== '0' && session('propinsi_ktp') !== null) &&
+            (session('kota_ktp') !== '0' && session('kota_ktp') !== null) &&
+            (session('kecamatan_ktp') !== '0' && session('kecamatan_ktp') !== null) &&
+            (session('kelurahan_ktp') !== '0' && session('kelurahan_ktp') !== null)) {
             $updatePelamar->kode_prov_ktp = session('propinsi_ktp');
             $updatePelamar->kode_kota_ktp = session('kota_ktp');
             $updatePelamar->kode_kec_ktp = session('kecamatan_ktp');
@@ -512,15 +513,17 @@ class PelamarController extends Controller
                 $updatePelamar->kode_kel = session('kelurahan_dom');
             }
         } else {
-            $updatePelamar->kode_prov = session('propinsi_ktp');
-            $updatePelamar->kode_kota = session('kota_ktp');
-            $updatePelamar->kode_kec = session('kecamatan_ktp');
-            $updatePelamar->kode_kel = session('kelurahan_ktp');
+            $updatePelamar->kode_prov = $updatePelamar->kode_prov_ktp;
+            $updatePelamar->kode_kota = $updatePelamar->kode_kota_ktp;
+            $updatePelamar->kode_kec = $updatePelamar->kode_kec_ktp;
+            $updatePelamar->kode_kel = $updatePelamar->kode_kel_ktp;
         }
 
         session([
             'idfoto' => $input['uploadfoto'],
         ]);
+
+        $updatePelamar->bidang()->sync($req->input('minat'));
 
         $updatePelamar->save();
         alert()->success('Success Message', 'Data Profil Anda Sudah Komplit');

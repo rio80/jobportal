@@ -21,7 +21,7 @@ for ($tahun = 1970; $tahun <= date('Y') - 15; $tahun++) {
         $.fn.select2.defaults.set("theme", "bootstrap");
         $('#tanggal, #bulan, #tahun, ' +
             '#propinsi_ktp, #kota_ktp, #kecamatan_ktp, #kelurahan_ktp, ' +
-            '#propinsi_dom, #kota_dom, #kecamatan_dom, #kelurahan_dom').select2();
+            '#propinsi_dom, #kota_dom, #kecamatan_dom, #kelurahan_dom, #minat').select2();
     })
 
 </script>
@@ -612,6 +612,20 @@ for ($tahun = 1970; $tahun <= date('Y') - 15; $tahun++) {
                     </div>
                 </div>
 
+
+                <div class="form-group text-left">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                {!! Form::label('minat', 'Masukan Minat Pekerjaan Anda : <span
+                                    class="text-danger">*</span>', ['class' =>
+                                'control-label'], false) !!}
+                                {!! Form::select('minat[]', $minat, $bidang_select, ['class' => 'form-control', 'id' => 'minat', 'multiple', 'selected' => true, 'placeholder' => 'Pilih Peminatan']) !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-group text-left">
                     <div class="col-md-12">
                         <div class="row">
@@ -648,6 +662,9 @@ for ($tahun = 1970; $tahun <= date('Y') - 15; $tahun++) {
 
 <script>
     $(function ($) {
+
+
+
         $('.dynamic').change(function () {
             if ($(this).val() != '') {
                 var select = $(this).attr('id');

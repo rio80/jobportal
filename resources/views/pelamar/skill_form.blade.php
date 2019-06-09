@@ -55,6 +55,7 @@
     $(document).ready(function(){
             $('#edit_skill').on('click', function(){
                 $('#skill_table tr').click(function(){
+
                     var id =  $(this).closest('tr').find("#id").text();
                     var level =  $(this).closest('tr').find("#id_level").text();
                     var keterampilan =  $(this).closest('tr').find("#keterampilan").text();
