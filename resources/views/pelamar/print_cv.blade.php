@@ -1,8 +1,8 @@
-@extends('template')
-@section('page')
+{{-- @extends('template')
+@section('page') --}}
 
 <body class="login-page sidebar-collapse">
-    @extends('navbar')
+    {{-- @extends('navbar') --}}
     <div class="not-landing page-header clear-filter" filter-color="white">
         <div class="page-header-image" style="background-image:url({{ 'img/white-solid.jpg' }}); z-index: 0;"></div>
         <div class="content">
@@ -26,7 +26,7 @@
                                             <td class="text-center" colspan="4">
                                                 <h2>CURRICULUM <span class="text-info">VITAE</span></h2>
                                             </td>
-                                            <td class="foto-cv" rowspan="6"><img src="assets/img/ryan.jpg" alt="" />
+                                            <td class="foto-cv" rowspan="6"><img src="{!! URL::asset('fotoupload/e819f85f-4f24-4764-b44e-178e4c1ae26d_20190509152813.jpg') !!}" alt="" width="150" height="200"/>
                                             </td>
                                         </tr>
                                         <tr>
@@ -315,4 +315,4 @@
             </div>
         </div>
     </div>
-    @endsection
+    {{-- @endsection --}}

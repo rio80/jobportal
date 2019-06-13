@@ -22,6 +22,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Storage;
 use View;
+use PDF;
 
 class PelamarController extends Controller
 {
@@ -68,9 +69,16 @@ class PelamarController extends Controller
         return view('pelamar.menu_pelamar');
     }
 
+    public function lihat_cv()
+    {
+        return view('pelamar.lihat_cv');
+    }
+
     public function print_cv()
     {
-        return view('pelamar.print_cv');
+        $pdf = PDF::loadview('pelamar.print_cv');
+        return $pdf->download('cv_jobportal');
+        // return view('pelamar.print_cv');
     }
 
     public function lowongan_detail()

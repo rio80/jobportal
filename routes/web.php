@@ -74,7 +74,7 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function () {
 
 
 
-
+        Route::get('/lihat_cv','PelamarController@lihat_cv')->name('lihat_cv');
         Route::get('/print_cv','PelamarController@print_cv')->name('print_cv');
         Route::get('/lowongan_detail','PelamarController@resume')->name('lowongan_detail');
 

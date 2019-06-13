@@ -42,7 +42,20 @@ for ($tahun = 1970; $tahun <= date('Y') - 15; $tahun++) {
         <div class="card">
             <div class="card-header" style="text-align: left; border-bottom: 1px solid #bbbbbb">
                 <div class="col-md-12">
-                    <h4><span class="fas fa-user"></span> Profil Saya <span class="badge badge-danger">EDIT</span></h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4><span class="fas fa-user"></span> Profil Saya <span
+                                    class="badge badge-danger">EDIT</span>
+                            </h4>
+                        </div>
+                        <div class="col-md-6" style="text-align:right">
+                            {!! link_to('lihat_cv', 'Lihat CV', ['class' =>
+                            'btn btn-info', 'id'=>'lihat_cv']) !!}
+                            {!! link_to('print_cv', 'Download CV', ['class' =>
+                            'btn btn-success', 'id'=>'download_cv']) !!}
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="card-body">
@@ -142,11 +155,12 @@ for ($tahun = 1970; $tahun <= date('Y') - 15; $tahun++) {
                                 ],
                                 null,
                                 [
-                                'class' => 'form-control '.($errors->first('jenis_kelamin') ? 'is-invalid' : 'is-valid'),
+                                'class' => 'form-control '.($errors->first('jenis_kelamin') ? 'is-invalid' :
+                                'is-valid'),
                                 'id' => 'jenis_kelamin',
                                 'placeholder' => 'Pilih Jenis Kelamin'
                                 ]) !!}
-                                 <span class="help-block pesan-error">{{ $errors->first('jenis_kelamin') }}</span>
+                                <span class="help-block pesan-error">{{ $errors->first('jenis_kelamin') }}</span>
                             </div>
                         </div>
                     </div>
@@ -458,7 +472,8 @@ for ($tahun = 1970; $tahun <= date('Y') - 15; $tahun++) {
                                         <div class="col-md-6">
                                             <div class="checkbox" id="equals-ktp">
                                                 <label>
-                                                    {!! Form::checkbox('equals_with_ktp', 'Sama dengan KTP', true, ['class'
+                                                    {!! Form::checkbox('equals_with_ktp', 'Sama dengan KTP', true,
+                                                    ['class'
                                                     =>
                                                     'equals_with_ktp']) !!}
                                                     {{ 'Sama dengan KTP' }}
@@ -466,7 +481,8 @@ for ($tahun = 1970; $tahun <= date('Y') - 15; $tahun++) {
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="text-right"><a class="btn btn-danger edit-dom-cancel">Batal Edit</a>
+                                            <div class="text-right"><a class="btn btn-danger edit-dom-cancel">Batal
+                                                    Edit</a>
                                             </div>
                                         </div>
                                     </div>
@@ -620,7 +636,8 @@ for ($tahun = 1970; $tahun <= date('Y') - 15; $tahun++) {
                                 {!! Form::label('minat', 'Masukan Minat Pekerjaan Anda : <span
                                     class="text-danger">*</span>', ['class' =>
                                 'control-label'], false) !!}
-                                {!! Form::select('minat[]', $minat, $bidang_select, ['class' => 'form-control', 'id' => 'minat', 'multiple', 'selected' => true, 'placeholder' => 'Pilih Peminatan']) !!}
+                                {!! Form::select('minat[]', $minat, $bidang_select, ['class' => 'form-control', 'id' =>
+                                'minat', 'multiple', 'selected' => true, 'placeholder' => 'Pilih Peminatan']) !!}
                             </div>
                         </div>
                     </div>
