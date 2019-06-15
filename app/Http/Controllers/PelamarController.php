@@ -13,6 +13,7 @@ use App\Models\Keterampilan;
 use App\Models\Kota as kota;
 use App\Models\Pelamar;
 use App\Models\Pendidikan;
+use App\Models\PendNonFormal;
 use App\Models\Pengalaman;
 use App\Models\Registrasi;
 use App\Models\Bidang;
@@ -69,14 +70,72 @@ class PelamarController extends Controller
         return view('pelamar.menu_pelamar');
     }
 
+    public function generated_cv(){
+        $noreg =  session('noreg');
+
+        $data['profil_utama'] = Pelamar::where('no_reg', $noreg)
+        ->first();
+
+        $data['pendidikan'] = Pendidikan::where('no_reg', $noreg)
+        ->orderBy('id')
+        ->get();
+
+        $data['pengalaman'] = Pengalaman::where('no_reg', $noreg)
+        ->orderBy('id')
+        ->get();
+
+        $data['pend_nonformal'] = PendNonFormal::where('no_reg', $noreg)
+        ->orderBy('id')
+        ->get();
+
+        $collectSkill = Keterampilan::join('tb_ref_level',
+        'tb_mst_keahlian.level', '=', 'tb_ref_level.id')
+        ->select('tb_ref_level.id as idlevel', 'tb_ref_level.nama as level', 'keterampilan')
+        ->orderBy('tb_ref_level.id', 'asc')
+        ->get();
+
+        $group = $collectSkill->groupBy('level')->toArray();
+
+        $hasil = [];
+        $arrayGroup;
+        foreach ($group as $key) {
+
+            $arrayTerampil = [];
+            $level = $key[0]['level'];
+            $id = $key[0]['idlevel'];
+
+            foreach ($key as $dt) {
+                array_push($arrayTerampil, $dt['keterampilan']);
+            }
+
+            array_push($hasil, array(
+                'id' => $id,
+                'keterampilan' => implode($arrayTerampil, ', '),
+                'level' => $level,
+            ));
+        }
+        // return $hasil;
+        $hasil = json_decode(json_encode($hasil), false);
+        $data['skill'] = $hasil;
+
+        return $data;
+    }
     public function lihat_cv()
     {
-        return view('pelamar.lihat_cv');
+        $data = $this->generated_cv();
+        $data['status'] = "view";
+        // return $data;
+        // return $data['profil_utama']->statusNikah->nama;
+        // $data = json_decode(json_encode($data));
+        // return $data->profil_utama->status_nikah;
+        return view('pelamar.lihat_cv', compact('data'));
     }
 
     public function print_cv()
     {
-        $pdf = PDF::loadview('pelamar.print_cv');
+        $data = $this->generated_cv();
+        $data['status'] = "print";
+        $pdf = PDF::loadview('pelamar.print_cv', ['data' => $data]);
         return $pdf->download('cv_jobportal');
         // return view('pelamar.print_cv');
     }
@@ -95,6 +154,7 @@ class PelamarController extends Controller
     {
         $noreg = session('noreg');
         $dataEdu = Pendidikan::where('no_reg', $noreg)->orderBy('id')->get();
+
         return view('pelamar.pendidikan_view', compact('dataEdu'));
     }
 
