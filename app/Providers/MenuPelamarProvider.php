@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Request;
+
 class MenuPelamarProvider extends ServiceProvider
 {
     /**
@@ -24,14 +25,26 @@ class MenuPelamarProvider extends ServiceProvider
     public function boot()
     {
         $halaman = '';
-        if(Request::segment(1) == 'pengalaman_view'){
+        $reqSegmentMenu = Request::segment(1);
+
+        if ($reqSegmentMenu == 'pengalaman_view' ||
+            $reqSegmentMenu == 'pengalaman') {
             $halaman = 'exp_view';
         }
-        if(Request::segment(1) == 'pendidikan_view'){
+
+        if ($reqSegmentMenu == 'pendidikan_view' ||
+            $reqSegmentMenu == 'pendidikan_new' ||
+            $reqSegmentMenu == 'pendidikan') {
             $halaman = 'edu_view';
         }
-        if(Request::segment(1) == 'profil'){
+
+        if ($reqSegmentMenu == 'profil') {
             $halaman = 'profil';
+        }
+
+        if ($reqSegmentMenu == 'skill_view' ||
+            $reqSegmentMenu == 'skill_create') {
+            $halaman = 'skill_view';
         }
 
         view()->share('halaman', $halaman);

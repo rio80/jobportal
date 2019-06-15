@@ -2,7 +2,7 @@
 @section('content')
 <?php
 
-    
+
 ?>
 
 <script>
@@ -13,6 +13,8 @@
 </script>
 <div class="container">
     <div class="row">
+            <button class="btn btn-info" id="menu-toggle" style="margin-top: -1rem;"><span
+                class="fas fa-bars"></span></button>
         <div class="card">
             <div class="card-header" style="text-align: left; border-bottom: 1px solid #bbbbbb">
                 <div class="col-md-12">
@@ -28,7 +30,7 @@
                 @include('pelamar.pendidikan_form', ['SubmitButtonText' => 'Simpan Pendidikan'])
                 {!! Form::close() !!}
             </div>
-    
+
         </div>
     </div>
     @endsection

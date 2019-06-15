@@ -63,11 +63,18 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function () {
         Route::get('/pendidikan/{edu}/edit', 'PelamarController@pendidikanEdit');
         Route::patch('/pendidikan/{edu}', 'PelamarController@pendidikanUpdate');
 
-        Route::get('/skill_view', 'PelamarController@skillView')->name('skill_view');
         Route::get('/skill_create', 'PelamarController@skillCreate')->name('skill_create');
+        Route::get('/skill_view', 'PelamarController@skillView')->name('skill_view');
+        Route::post('/skill_insert', 'PelamarController@skillInsert')->name('skill_insert');
+        Route::get('/skill_view_edit/{id}', 'PelamarController@skillViewEdit');
+        // Route::get('/skill/{skill}/edit', 'PelamarController@skillEdit');
+        Route::post('/skill_update', 'PelamarController@skillUpdate')->name('skill_update');
 
 
 
+
+
+        Route::get('/lihat_cv','PelamarController@lihat_cv')->name('lihat_cv');
         Route::get('/print_cv','PelamarController@print_cv')->name('print_cv');
         Route::get('/lowongan_detail','PelamarController@resume')->name('lowongan_detail');
 

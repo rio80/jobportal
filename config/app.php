@@ -182,7 +182,7 @@ return [
         App\Providers\MenuPelamarProvider::class,
         App\Providers\PengalamanViewProvider::class,
         App\Providers\PendidikanViewProvider::class,
-
+        App\Providers\SkillViewProvider::class,
 
     ],
 

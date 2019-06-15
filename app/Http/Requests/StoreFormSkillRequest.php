@@ -13,7 +13,7 @@ class StoreFormSkillRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,21 @@ class StoreFormSkillRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'level' => 'required',
+            'keterampilan' => 'required',
+        ];
+    }
+
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'level.required' => 'Harap pilih Level',
+            'keterampilan.required' => 'Harap Isi Keterampilan Anda'
         ];
     }
 }

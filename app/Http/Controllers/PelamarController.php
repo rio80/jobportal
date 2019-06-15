@@ -5,19 +5,25 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreFormPendidikanRequest as saveEdu;
 use App\Http\Requests\StoreFormPengalamanRequest as saveExp;
 use App\Http\Requests\StoreFormProfilRequest;
+use App\Http\Requests\StoreFormSkillRequest as saveSkl;
 // use Auth;
 use App\Models\Kecamatan as kec;
 use App\Models\Kelurahan as kel;
+use App\Models\Keterampilan;
 use App\Models\Kota as kota;
 use App\Models\Pelamar;
 use App\Models\Pendidikan;
+use App\Models\PendNonFormal;
 use App\Models\Pengalaman;
 use App\Models\Registrasi;
+use App\Models\Bidang;
+
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Storage;
 use View;
+use PDF;
 
 class PelamarController extends Controller
 {
@@ -64,9 +70,74 @@ class PelamarController extends Controller
         return view('pelamar.menu_pelamar');
     }
 
+    public function generated_cv(){
+        $noreg =  session('noreg');
+
+        $data['profil_utama'] = Pelamar::where('no_reg', $noreg)
+        ->first();
+
+        $data['pendidikan'] = Pendidikan::where('no_reg', $noreg)
+        ->orderBy('id')
+        ->get();
+
+        $data['pengalaman'] = Pengalaman::where('no_reg', $noreg)
+        ->orderBy('id')
+        ->get();
+
+        $data['pend_nonformal'] = PendNonFormal::where('no_reg', $noreg)
+        ->orderBy('id')
+        ->get();
+
+        $collectSkill = Keterampilan::join('tb_ref_level',
+        'tb_mst_keahlian.level', '=', 'tb_ref_level.id')
+        ->select('tb_ref_level.id as idlevel', 'tb_ref_level.nama as level', 'keterampilan')
+        ->orderBy('tb_ref_level.id', 'asc')
+        ->get();
+
+        $group = $collectSkill->groupBy('level')->toArray();
+
+        $hasil = [];
+        $arrayGroup;
+        foreach ($group as $key) {
+
+            $arrayTerampil = [];
+            $level = $key[0]['level'];
+            $id = $key[0]['idlevel'];
+
+            foreach ($key as $dt) {
+                array_push($arrayTerampil, $dt['keterampilan']);
+            }
+
+            array_push($hasil, array(
+                'id' => $id,
+                'keterampilan' => implode($arrayTerampil, ', '),
+                'level' => $level,
+            ));
+        }
+        // return $hasil;
+        $hasil = json_decode(json_encode($hasil), false);
+        $data['skill'] = $hasil;
+
+        return $data;
+    }
+    public function lihat_cv()
+    {
+        $data = $this->generated_cv();
+        $data['status'] = "view";
+        // return $data;
+        // return $data['profil_utama']->statusNikah->nama;
+        // $data = json_decode(json_encode($data));
+        // return $data->profil_utama->status_nikah;
+        return view('pelamar.lihat_cv', compact('data'));
+    }
+
     public function print_cv()
     {
-        return view('pelamar.print_cv');
+        $data = $this->generated_cv();
+        $data['status'] = "print";
+        $pdf = PDF::loadview('pelamar.print_cv', ['data' => $data]);
+        return $pdf->download('cv_jobportal');
+        // return view('pelamar.print_cv');
     }
 
     public function lowongan_detail()
@@ -83,6 +154,7 @@ class PelamarController extends Controller
     {
         $noreg = session('noreg');
         $dataEdu = Pendidikan::where('no_reg', $noreg)->orderBy('id')->get();
+
         return view('pelamar.pendidikan_view', compact('dataEdu'));
     }
 
@@ -155,8 +227,9 @@ class PelamarController extends Controller
         $pelamarTable = DB::table('tb_mst_pelamar')
             ->join('tb_ref_registrasi', 'tb_mst_pelamar.no_reg', '=', 'tb_ref_registrasi.id')
             ->select('tb_mst_pelamar.*')->where('tb_ref_registrasi.id', $no_reg->id_reg)->first();
-        // dd($pelamarTable->id);
         $data['pelamar'] = Pelamar::findOrFail($pelamarTable->id);
+
+        $data['bidang_select'] = $data['pelamar']->bidang->pluck('id');
 
         $data['propinsi'] = DB::table('tb_mst_provinsi')
             ->select('id_prov', 'nama_prov')
@@ -279,12 +352,104 @@ class PelamarController extends Controller
         return redirect('pengalaman_view');
     }
 
-    public function skillView(){
-        return view('pelamar.skill_view');
+    public function skillView()
+    {
+        // $collect = Keterampilan::select('level', 'keterampilan')->get();
+        $collect = Keterampilan::join('tb_ref_level',
+            'tb_mst_keahlian.level', '=', 'tb_ref_level.id')
+            ->select('tb_ref_level.id as idlevel', 'tb_ref_level.nama as level', 'keterampilan')
+            ->orderBy('tb_ref_level.id', 'asc')
+            ->get();
+
+        $group = $collect->groupBy('level')->toArray();
+
+        $hasil = [];
+        $arrayGroup;
+        foreach ($group as $key) {
+
+            $arrayTerampil = [];
+            $level = $key[0]['level'];
+            $id = $key[0]['idlevel'];
+
+            foreach ($key as $data) {
+                array_push($arrayTerampil, $data['keterampilan']);
+            }
+
+            array_push($hasil, array(
+                'id' => $id,
+                'keterampilan' => implode($arrayTerampil, ', '),
+                'level' => $level,
+            ));
+
+        }
+
+        $hasil = json_decode(json_encode($hasil), false);
+
+        return view('pelamar.skill_view', compact('hasil'));
     }
 
-    public function skillCreate(){
+    public function skillCreate()
+    {
+        session([
+            'skill_edit_mode' => false,
+        ]);
+
         return view('pelamar.skill_create');
+    }
+
+    public function skillInsert(saveSkl $req)
+    {
+
+        $error = 1;
+
+        $insert = Keterampilan::create([
+            'no_reg' => session('noreg'),
+            'level' => $req->level,
+            'keterampilan' => $req->keterampilan,
+        ]);
+
+        $data = array(null);
+
+        if ($insert != null) {
+            $error = 0;
+            $data = array(
+                'level' => $req->level,
+                'keterampilan' => $req->keterampilan,
+            );
+        }
+
+        $json = json_encode(array(
+            'error' => $error,
+            'message' => 'Berhasil',
+            'data' => $data)
+        );
+
+        return $json;
+    }
+
+    public function skillViewEdit($id)
+    {
+
+        session([
+            'skill_edit_mode' => true,
+            'skill_edit_id' => $id,
+        ]);
+
+        return view('pelamar.skill_edit');
+    }
+
+    public function skillUpdate(Request $skill)
+    {
+        session([
+            'skill_edit_mode' => false,
+        ]);
+
+        $update = Keterampilan::select('*')->where('id' ,$skill->id)->first();
+        $update->level =$skill->level ;
+        $update->keterampilan = $skill->keterampilan;
+        $update->save();
+
+        return redirect('skill_view');
     }
 
     public function menu_resume()
@@ -394,12 +559,10 @@ class PelamarController extends Controller
         // $updatePelamar->kodepos_domisili = $input['kodeposdom'];
         // $updatePelamar->email2 = $input['email2'];
         // $updatePelamar->no_identitas = $input['no_identitas'];
-
-        if (session('propinsi_ktp') !== '0' &&
-            session('kota_ktp') !== '0' &&
-            session('kecamatan_ktp') !== '0' &&
-            session('kelurahan_ktp') !== '0') {
-            // dd('simpan lokasi ktp');
+        if ((session('propinsi_ktp') !== '0' && session('propinsi_ktp') !== null) &&
+            (session('kota_ktp') !== '0' && session('kota_ktp') !== null) &&
+            (session('kecamatan_ktp') !== '0' && session('kecamatan_ktp') !== null) &&
+            (session('kelurahan_ktp') !== '0' && session('kelurahan_ktp') !== null)) {
             $updatePelamar->kode_prov_ktp = session('propinsi_ktp');
             $updatePelamar->kode_kota_ktp = session('kota_ktp');
             $updatePelamar->kode_kec_ktp = session('kecamatan_ktp');
@@ -418,15 +581,17 @@ class PelamarController extends Controller
                 $updatePelamar->kode_kel = session('kelurahan_dom');
             }
         } else {
-            $updatePelamar->kode_prov = session('propinsi_ktp');
-            $updatePelamar->kode_kota = session('kota_ktp');
-            $updatePelamar->kode_kec = session('kecamatan_ktp');
-            $updatePelamar->kode_kel = session('kelurahan_ktp');
+            $updatePelamar->kode_prov = $updatePelamar->kode_prov_ktp;
+            $updatePelamar->kode_kota = $updatePelamar->kode_kota_ktp;
+            $updatePelamar->kode_kec = $updatePelamar->kode_kec_ktp;
+            $updatePelamar->kode_kel = $updatePelamar->kode_kel_ktp;
         }
 
         session([
             'idfoto' => $input['uploadfoto'],
         ]);
+
+        $updatePelamar->bidang()->sync($req->input('minat'));
 
         $updatePelamar->save();
         alert()->success('Success Message', 'Data Profil Anda Sudah Komplit');
