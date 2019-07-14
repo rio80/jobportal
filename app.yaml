@@ -6,3 +6,6 @@ env_variables:
   APP_STORAGE: /tmp
   VIEW_COMPILED_PATH: /tmp
   SESSION_DRIVER: cookie
+
+runtime_config:
+  document_root: public
