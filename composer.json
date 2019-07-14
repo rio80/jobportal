@@ -13,6 +13,7 @@
         "barryvdh/laravel-dompdf": "^0.8.4",
         "components/bootstrap-datetimepicker": "^2.4",
         "fideloper/proxy": "^4.0",
+        "google/cloud-logging": "^1.16",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "5.7.*",
@@ -33,6 +34,12 @@
         "preferred-install": "dist",
         "sort-packages": true
     },
+    "repositories": {
+    "packagist.org": {
+      "type": "composer",
+      "url": "https://packagist.org"
+    }
+  },
     "extra": {
         "laravel": {
             "dont-discover": []
@@ -67,7 +74,8 @@
         ],
         "post-install-cmd": [
 		    "chmod -R 755 bootstrap\/cache",
-		    "php artisan cache:clear"
+		    "php artisan cache:clear",
+		    "php artisan route:cache"
 		]
     }
 }
