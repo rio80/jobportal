@@ -1,7 +1,6 @@
 steps:
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
-    - cp
     - .env.testing
     - .env
 - name: 'docker/compose:1.4.2'
@@ -24,7 +23,6 @@ steps:
     - --no-coverage
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
-    - cp
     - ${_APP_YAML_CONFIG}
     - app.yaml
 - name: 'gcr.io/cloud-builders/gcloud'
