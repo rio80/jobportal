@@ -1,5 +1,5 @@
 steps:
-- name: 'gcr.io/cloud-builders/gsutil'
+- name: 'gcr.io/cloud-builders/gcloud'
   args:
     - cp
     - .env.testing
@@ -22,7 +22,7 @@ steps:
     - app
     - vendor/bin/phpunit
     - --no-coverage
-- name: 'gcr.io/cloud-builders/gsutil'
+- name: 'gcr.io/cloud-builders/gcloud'
   args:
     - cp
     - ${_APP_YAML_CONFIG}
@@ -32,4 +32,4 @@ steps:
     - app
     - deploy
     - --no-promote
-timeout: '600s'
+timeout: '1600s'
