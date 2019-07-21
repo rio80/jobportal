@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "portalkerja",
+  "private_key_id": "1dfd5cf0992cbecbbc9fad94f2b7e104e9bea25b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCr5LUoZSs5k4eo\nATTQb8RerTBYpF9cMKkAok6cGSZXNjMLz0P4YC3CVTq2Ryn+vOlGpNxMwVRwHx7k\nVk6lrSBAVaU++14px6Zoq7jXuCvy8dYGLpvyG7yRa2tazfJTBK0/u++Jg6vBE5FP\nablLMlbP0LQaF5j4YXZIGo77pVfsqQleAMkpY/mf3hggRXH94olamsl6R4ci7Mom\nkYK7OeVZKXWiadIshz7qHO0mgcB9fHt4rJZ+KyBWJxbaGda17y9ZJTfuFTnt2O3w\nVJZCWj6ZQpNpmy+la7+x8r0+jI+aiW3iFMSJaS89nQe6IJhu/min/FLE9zJlGRic\nLAA4Djb/AgMBAAECggEADBUG0MCPsbvXcK0pB6+bd2Yn/EsNct7uuh8udFVmNwIV\nw3I9nlMwVDUGa/KDlqazpOYIoBKEu17MnpMccxPArRT4CP3FKB2i6j+LvgnxeOGb\nwBJ9np5pejU5Ngg8zK4K+Wxd0WYiZ+9WquTNA+aVaIUMa7sV4vuCw12uiCyeigFY\nFiF9eZvi6tinQ4Yoc7cvea9qY167l2EpTTv4fEjJ/nzaTs4m2axE4UUHeoI8lvo1\nswdNhzY4UdzJni30G+ZRbLhriMPqwAJyHP/AzfD1vTDE5mOLusJ4DwRS80s2N8ou\n4ABlATWQUIH3vtHP99M+b7vVg4wYVUNE/o4fFEyWEQKBgQDifj6fgCiKXRNHh8lG\nSYO/0GSO543BSrW5sXcASfJfsif68OLkYNaHX6uv4Ep9wqW5X94h1tio6ljUBk82\nWSxmRhVzmkW8GCVmA60VP+WaDum9VwJwY3M5FCoP500Dr4um9KEGccp9ZOmwAL6w\n0sX3ufM15iBOAvVOdNAcKF5PLwKBgQDCSYLGbcasRJERVD61JS1YCbQusTqYPXvo\n80vRpggDguQ0DPKtc30As4tKIzFH8R4h+doRQmL4WO63luD6kQgtzK+qea/JMlwF\n/w5+Kh7a09e7zikmDU3CFLfP9ObSlGm/W/kec4HSqKQ2a2jOwtwzvpalJMXWcTjr\n0DaJs/QhMQKBgQCUVUvcGAn0/BoJScOm9bSEZg3FjZ7IDY7Qi4o9NTC4Paxza1md\nalJ1nFGLwN/oVxdEPaX0EYoZrkj4qx0roeEzJgkcidfL5SBxHE050nwjlkq8hwSA\n6JDou+0EN1634Dsc36+p0dJkpzdo3kQE+DVRFYZUMV/M16Eifdxh5IpHXwKBgDSF\nEqj5O9+NmXmJwHnPVvaZiO+mUSSeWkSaoEBIFZp9Y5r+dQuWUJBD+L9NzCCaeX7N\nv7kyrPZddAqE6sRROFjJICOBSZel2WJ1lEFeuYCGC6dlD5KNvhtc5mN83HjITd3A\nyxMEPm/nzpw3ZNmfq08Bkk+KJUDW0oBMhLGsx63BAoGAIyFlDSOabhZ41fvBcbTA\nIKetOZ5mrBZX3HkG25ysL9QF8KS7rpXZcuUfRoNrqKbzpLAolmSwJmcMbYrWpnDL\nQISRTVJKExyo9lTibWgvwidSzrFHcf8X/dKcS+As1TDMnoz0diiUZAmagt052D7q\n8627oQI0GgcplCv5FW2Plcw=\n-----END PRIVATE KEY-----\n",
+  "client_email": "portalkerja@appspot.gserviceaccount.com",
+  "client_id": "111309298132644637283",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/portalkerja%40appspot.gserviceaccount.com"
+}
