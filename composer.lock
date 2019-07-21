@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b83e6eeafc895f4140267d1e0bf8df2c",
+    "content-hash": "36b76660e3f3b9ec458ebfdab728ce32",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -878,6 +878,56 @@
             ],
             "description": "Stackdriver Logging Client for PHP",
             "time": "2019-06-10T19:08:31+00:00"
+        },
+        {
+            "name": "google/cloud-storage",
+            "version": "v1.12.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/googleapis/google-cloud-php-storage.git",
+                "reference": "79cffd74f4a876e689b0c23248eb745c894f2e82"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/googleapis/google-cloud-php-storage/zipball/79cffd74f4a876e689b0c23248eb745c894f2e82",
+                "reference": "79cffd74f4a876e689b0c23248eb745c894f2e82",
+                "shasum": ""
+            },
+            "require": {
+                "google/cloud-core": "^1.28"
+            },
+            "require-dev": {
+                "erusev/parsedown": "^1.6",
+                "google/cloud-pubsub": "^1.0",
+                "phpdocumentor/reflection": "^3.0",
+                "phpseclib/phpseclib": "^2",
+                "phpunit/phpunit": "^4.8|^5.0",
+                "squizlabs/php_codesniffer": "2.*"
+            },
+            "suggest": {
+                "google/cloud-pubsub": "May be used to register a topic to receive bucket notifications.",
+                "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs. Please require version ^2."
+            },
+            "type": "library",
+            "extra": {
+                "component": {
+                    "id": "cloud-storage",
+                    "target": "googleapis/google-cloud-php-storage.git",
+                    "path": "Storage",
+                    "entry": "src/StorageClient.php"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Google\\Cloud\\Storage\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Cloud Storage Client for PHP",
+            "time": "2019-06-27T20:27:31+00:00"
         },
         {
             "name": "google/common-protos",
