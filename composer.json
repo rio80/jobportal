@@ -14,6 +14,7 @@
         "components/bootstrap-datetimepicker": "^2.4",
         "fideloper/proxy": "^4.0",
         "google/cloud-logging": "^1.16",
+        "google/cloud-storage": "^1.12",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "5.7.*",
