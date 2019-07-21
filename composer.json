@@ -75,7 +75,7 @@
         "post-install-cmd": [
 		    "chmod -R 755 bootstrap\/cache",
 		    "php artisan cache:clear",
-		    "chmod -R storage\/logs"
+		    "chmod -R 755 storage\/logs"
 		]
     }
 }
